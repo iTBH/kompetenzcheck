@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  kc:
+    image: itbh/kompetenzcheck
+    ports:
+      - 80:80
+    env_file:
+      - .env
+    environment:
+      - MONGO_HOST=mongo
+    links:
+      - mongo
+
+  mongo:
+    image: mongo
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

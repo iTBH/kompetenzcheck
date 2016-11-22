@@ -1,0 +1,118 @@
+/* 0 */
+{
+    "profession" : "Mediengestalter/in Digital/Print",
+    "abbreviation" : "mdp",
+    "__v" : 0,
+    "_id" : ObjectId("52e24050a0e7c2eb2d000004"),
+    "questions" : [ 
+        {
+            "id" : 10,
+            "question" : "Worauf muss bei der Analyse des Kundenauftrags geachtet werden?",
+            "defaultterms" : "Umsetzbarkeit, Kundenwünsche, Genauigkeit",
+            "phase" : "beginning",
+            "cat" : "f",
+            "_id" : ObjectId("52e24050a0e7c2eb2d000010"),
+            "competence" : [ 
+                {
+                    "id" : 100,
+                    "statement" : "Anfragen des Auftraggebers im Hinblick auf ### analysieren",
+                    "phase" : "beginning",
+                    "cat" : "f",
+                    "_id" : ObjectId("52e24050a0e7c2eb2d000011")
+                }
+            ]
+        }, 
+        {
+            "id" : 20,
+            "question" : "Worauf muss bei der fachlichen Beratung des Kunden geachtet werden?",
+            "defaultterms" : "Zeitpunkt der Fertigstellung, Einsatzzweck",
+            "phase" : "beginning",
+            "cat" : "f",
+            "_id" : ObjectId("52e24050a0e7c2eb2d00000d"),
+            "competence" : [ 
+                {
+                    "id" : 110,
+                    "statement" : "den Auftraggeber hinsichtlich ### beraten",
+                    "phase" : "beginning",
+                    "cat" : "f",
+                    "_id" : ObjectId("52e24050a0e7c2eb2d00000f")
+                }, 
+                {
+                    "id" : 120,
+                    "statement" : "Kosten für ### überschlägig kalkulieren",
+                    "phase" : "beginning",
+                    "cat" : "f",
+                    "_id" : ObjectId("52e24050a0e7c2eb2d00000e")
+                }
+            ]
+        }, 
+        {
+            "id" : 30,
+            "question" : "Welches Produkt wird erstellt?",
+            "defaultterms" : "Angebot, Rebrief, Logo",
+            "phase" : "beginning",
+            "cat" : "m",
+            "_id" : ObjectId("52e24050a0e7c2eb2d00000b"),
+            "competence" : [ 
+                {
+                    "id" : 130,
+                    "statement" : "### systematisch erstellen",
+                    "phase" : "beginning",
+                    "cat" : "m",
+                    "_id" : ObjectId("52e24050a0e7c2eb2d00000c")
+                }
+            ]
+        }, 
+        {
+            "id" : 40,
+            "question" : "Welche Vorschriften, Normen, Gesetze müssen berücksichtigt werden?",
+            "defaultterms" : "kulturelle Normen, Urheberrecht",
+            "phase" : "beginning",
+            "cat" : "m",
+            "_id" : ObjectId("52e24050a0e7c2eb2d000009"),
+            "competence" : [ 
+                {
+                    "id" : 140,
+                    "statement" : "nach ### recherchieren",
+                    "phase" : "beginning",
+                    "cat" : "m",
+                    "_id" : ObjectId("52e24050a0e7c2eb2d00000a")
+                }
+            ]
+        }, 
+        {
+            "id" : 50,
+            "question" : "Worauf muss bei der Kommunikation mit dem Kunden geachtet werden?",
+            "defaultterms" : "Serviceorientierung, Fachlichkeit, Freundlichkeit, Sachlichkeit",
+            "phase" : "beginning",
+            "cat" : "s",
+            "_id" : ObjectId("52e24050a0e7c2eb2d000007"),
+            "competence" : [ 
+                {
+                    "id" : 150,
+                    "statement" : "dem Auftraggeber gegenüber mit ### auftreten",
+                    "phase" : "beginning",
+                    "cat" : "s",
+                    "_id" : ObjectId("52e24050a0e7c2eb2d000008")
+                }
+            ]
+        }, 
+        {
+            "id" : 60,
+            "question" : "Mit welchen Abteilungen/Mitarbeitern wird zusammengearbeitet?",
+            "defaultterms" : "dem Controlling, der Kundenberatung, der Produktion",
+            "phase" : "beginning",
+            "cat" : "s",
+            "_id" : ObjectId("52e24050a0e7c2eb2d000005"),
+            "competence" : [ 
+                {
+                    "id" : 160,
+                    "statement" : "mit ### kommunizieren und kooperieren",
+                    "phase" : "beginning",
+                    "cat" : "s",
+                    "_id" : ObjectId("52e24050a0e7c2eb2d000006")
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+<form class="form form-horizontal" name="sharePartnerForm" ng-submit="shareWithPartner(sharePartnerForm, checkToBeShared)" novalidate>
+    <h4>Check an bekannte Person zuweisen</h4>
+    <p>Sie können einer Person einen Kompetenz-Check direkt zuweisen, wenn Sie zuvor als Partnerin oder Partner eingetragen haben.</p>
+    <div class="form-group">
+        <label class="col-xs-4 control-label">Person auswählen</label>
+        <div class="col-xs-8">
+            <select class="form-control" name="partner" id="partner" ng-model="addressee.email">
+                <option value="">--- Bitte auswählen ---</option>
+                <option ng-repeat="p in partners" value="{{ p.email }}">{{ p.firstname }} {{ p.lastname }} ({{ p.email }})</option>
+            </select>
+        </div>
+    </div>
+    <input ng-disabled="sharePartnerForm.partner.$invalid && sharePartnerForm.partner.$dirty || sharePartnerForm.partner.value == ''" type="submit" value="Kompetenz-Check zuweisen" class="btn btn-primary pull-right" />
+    <div style="clear: both;"></div>
+</form>

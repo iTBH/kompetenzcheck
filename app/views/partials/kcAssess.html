@@ -1,0 +1,135 @@
+<div ng-repeat="c in check.runs[0].phrases | filter:{phase: phase }">
+    <div ng-if="!c.dirty">
+        <div style="padding: 10px 15px" class="check-row" ng-click="assessCompetence(c, c.rating)">
+            <span ng-switch on="c.cat">
+                <span ng-switch-when="f"><span class="fa-stack fa-lg pull-left">
+                                            <i class="fa fa-square-o fa-stack-2x"></i>
+                                            <i class="fa fa-wrench fa-stack-1x"></i>
+                                        </span></span>
+                <span ng-switch-when="s"><span class="fa-stack fa-lg pull-left">
+                                            <i class="fa fa-square-o fa-stack-2x"></i>
+                                            <i class="fa fa-users fa-stack-1x"></i>
+                                        </span></span>
+            </span>
+            <div ng-if="secondRun.phrases">
+                <div ng-repeat="r in secondRun.phrases" ng-if="c.id == r.id" ng-init="c.rating = r.rating">
+                    <button ng-disabled="check.globalDirty" title="Kompetenz einschätzen" ng-click="assessCompetence(c, r.rating)"
+                            class="btn btn-danger action btn-sm pull-right"><i class="fa fa-fw fa-sliders"></i></button>
+                    <!--<span style="margin-right: 20px; font-size: 18px" class="badge badge-primary pull-right">{{ c.rating }}</span>-->
+                    <div class="pull-right show-rating-container">
+                        <input class="show-rating" on-finish-count-ratings="ngCountingReady"
+                               data-min="0" data-max="4" data-step="1" data-stars=4
+                               data-ng-value="{{c.rating}}"/>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="!secondRun.phrases">
+                <button ng-disabled="check.globalDirty" title="Kompetenz einschätzen" ng-click="assessCompetence(c, c.rating)"
+                        class="btn btn-danger action btn-sm pull-right"><i class="fa fa-fw fa-sliders"></i></button>
+                <!--<span style="margin-right: 20px; font-size: 18px" class="badge badge-primary pull-right">{{ c.rating }}</span>-->
+                <div class="pull-right show-rating-container">
+                    <input class="show-rating" on-finish-count-ratings="ngCountingReady"
+                           data-min="0" data-max="4" data-step="1" data-stars=4
+                           data-ng-value="{{c.rating}}"/>
+                </div>
+            </div>
+            <p class="competence-readonly">{{ user }} (Ich) {{ c.statement }}.</p>
+        </div>
+    </div>
+    <div ng-if="c.dirty">
+        <div class="editable-competence">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="pull-left">
+                        <h4>
+                            <span ng-switch on="c.cat">
+                                <span ng-switch-when="f"><i class="fa fa-fw fa-wrench"></i></span>
+                                <span ng-switch-when="s"><i class="fa fa-fw fa-users"></i></span>
+                            </span>
+                            {{ user }} (Ich) {{ c.statement }}.
+                        </h4>
+                    </div>
+                    <div class="pull-right">
+                        <button ng-disabled="!kcExpr{{ c.id }}.$valid" class="btn btn-primary btn-sm sub"
+                                ng-click="c.dirty = false; check.globalDirty = false; check.countOpenPerPhase(); clearModalInputOnComplete(); updateLittleStars(c)">
+                            Einschätzung speichern
+                        </button>
+                        <button class="btn btn-danger btn-sm sub"
+                                ng-click="cancelAssessing(c, c.phase)">Abbrechen
+                        </button>
+                        <button class="btn sub btn-info btn-sm help-aside-btn" ng-show="true" ng-click="showHelpAside('Hilfetext_Selbsteinschaetzung_Kompetenzen.html')">Hilfe
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <form class="form-assess" name="kcExpr{{ c.id }}" novalidate>
+                <!--        <div class="row">
+                          <div class="col-sm-3">
+                          <div class="radio">
+                          <input ng-required="c.rating !== undefined" id="dimension-1-{{ c.id }}" type="radio"
+                          name="dimension{{ c.id }}" ng-model="c.rating" value="1"/>
+                          <label for="dimension-1-{{ c.id }}">Ich mache das <strong>zum ersten Mal</strong>.</label>
+                          </div>
+                          </div>
+                          <div class="col-sm-3">
+                          <div class="radio">
+                          <input ng-required="c.cat == f || c.cat == s" id="dimension-2-{{ c.id }}" type="radio"
+                          name="dimension{{ c.id }}" ng-model="c.rating" value="2"/>
+                          <label for="dimension-2-{{ c.id }}">Ich kann das <strong>mithilfe</strong> einer anderen Person.</label>
+                          </div>
+                          </div>
+                          <div class="col-sm-3">
+                          <div class="radio">
+                          <input ng-required="c.cat == f || c.cat == s" id="dimension-3-{{ c.id }}" type="radio"
+                          name="dimension{{ c.id }}" ng-model="c.rating" value="3"/>
+                          <label for="dimension-3-{{ c.id }}">Ich kann das <strong>selbstständig</strong>.</label>
+                          </div>
+                          </div>
+                          <div class="col-sm-3">
+                          <div class="radio">
+                          <input ng-required="c.cat == f || c.cat == s" id="dimension-4-{{ c.id }}" type="radio"
+                          name="dimension{{ c.id }}" ng-model="c.rating" value="4"/>
+                          <label for="dimension-4-{{ c.id }}">Ich kann das in einer <strong>anderen Situation</strong>.</label>
+                          </div>
+                          </div>
+
+
+                        </div>-->
+                <!--Momentan wird hier das bootstrap-star-rating plugin benutzt laut Kunden,
+                 nicht das richtige, evetl noch css anzupassen oder etwas anderes zu wählen
+                 ansonsten sind oben noch die radio-buttons auskommentiert aufzufinden.
+
+                 Analog hierzu ist die kcAssessEx.html für die fremdeinschätzungen
+
+
+                -->
+
+                <!--<div>-->
+                <!--Hier muss was sein-->
+                <!--<uib-rating ng-init="x = 5" ng-model="y" rating-states="ratingStates" aria-labelledby="custom-icons-2"></uib-rating>-->
+                <!--genau hier-->
+                <!--{{ratingStates}}-->
+                <!--</div>-->
+                <!--<button style="margin-right: 10px" class="btn btn-danger btn-sm sub pull-right"-->
+                <!--ng-click="loadStars()">Abbrechen-->
+                <!--</button>-->
+
+                <!--{{c}}-->
+                <input on-finish-render-ratings="ngRatingsReady"
+                       data-stars="4"
+                       type="number"
+                       ng-required="c.rating !== undefined"
+                       id="dimension-1-{{ c.id }}"
+                       name="dimension{{ c.id }}"
+                       ng-model="c.rating"
+                       class="rating"
+                       min=0
+                       max=4
+                       step=1
+                       data-size="lg"/>
+                <!--&lt;!&ndash;<input on-finish-render="ngRatingsReady" data-stars="4" type="number" ng-required="c.rating !== undefined" id="dimension-1-{{ c.id }}" name="dimension{{ c.id }}" ng-model="c.rating" class="rating" min=0 max=4 step=1 data-size="lg" >&ndash;&gt;-->
+                <div ng-include="'partials/list-comment.html'" onload="item = c"></div>
+            </form>
+        </div>
+    </div>
+</div>

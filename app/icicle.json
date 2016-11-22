@@ -1,0 +1,28 @@
+{
+    "Auszubildender": {
+        "Personalkompetenzen": {
+            "mit dem Auftraggeber sprechen": {
+                "selbst": 4,
+                "fremd": 4
+            },
+            "dem Auftraggeber gegenüber mit Sachlichkeit auftreten": {
+                "selbst": 2,
+                "fremd": 3
+            },
+            "den Auftraggeber zu seinem Vorteil beraten": {
+                "selbst": 2,
+                "fremd": 2
+            }
+        },
+        "Fachkompetenzen": {
+            "das richtige Verfahren zur Herstellung wählen": {
+                "selbst": 3,
+                "fremd": 2
+            },
+            "die richtigen Einstellungen für den Drucker wählen": {
+                "selbst": 3,
+                "fremd": 2
+            }
+        }
+    }
+}

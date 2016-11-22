@@ -1,0 +1,70 @@
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <h3>Assistent für Kompetenzbeschreibungen</h3>
+                <h4 style="margin: 0">{{ tabConfig.tabs[tabConfig.tabs.activeTab].title }}phase</h4>
+            </div>
+            <div class="modal-body" style="padding-top: 12px; padding-bottom: 0">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="form-inline">
+                            <div ng-repeat="q in proposals.questions | filter:{phase:tabConfig.tabs[tabConfig.tabs.activeTab].phase}">
+                                <div class="form-group">
+                                    <label class="control-label" for="input-{{ q.id }}">
+                                        {{ q.question }}
+                                    </label>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon" style="padding: 2px">
+                                            <span ng-switch on="q.cat">
+                                                <span ng-switch-when="f">
+                                                    <span class="fa-stack pull-left">
+                                                        <i class="fa fa-square-o fa-stack-2x"></i>
+                                                        <i class="fa fa-wrench fa-stack-1x"></i>
+                                                    </span>
+                                                </span>
+                                                <span ng-switch-when="s">
+                                                    <span class="fa-stack pull-left">
+                                                        <i class="fa fa-square-o fa-stack-2x"></i>
+                                                        <i class="fa fa-users fa-stack-1x"></i>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </span>
+                                        <input ng-model="q.input" class="col-xs-6 form-control" type="text"
+                                               id="input-{{ q.id }}" placeholder="z.B. {{ q.defaultterms }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <br/>
+                <p>
+                    <span class="fa-stack">
+                        <i class="fa fa-square-o fa-stack-2x"></i>
+                        <i class="fa fa-wrench fa-stack-1x"></i>
+                    </span> Fachkompetenz</span>
+                    <span class="fa-stack">
+                        <i class="fa fa-square-o fa-stack-2x"></i>
+                        <i class="fa fa-users fa-stack-1x"></i>
+                    </span> Personalkompetenz</span>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="controls">
+                        <button class="btn pull-right" style="margin-left: 10px" ng-click="$hide()">Abbrechen</button>
+                        <button class="btn pull-right" style="margin-left: 10px" ng-click="reset()">Zurücksetzen
+                        </button>
+                        <button ng-click="generate(tabConfig.tabs[tabConfig.tabs.activeTab].phase)"
+                                class="btn btn-success pull-right">Kompetenzen generieren
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

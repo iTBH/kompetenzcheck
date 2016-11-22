@@ -1,0 +1,13 @@
+<form class="form form-horizontal" name="shareNumberForm" ng-submit="shareViaNumber(shareNumberForm, checkToBeShared)" novalidate>
+    <h4>Check per Checknummer zuweisen</h4>
+    <!--<p class="alert alert-danger">Dieses Feature ist noch nicht implementiert.</p>-->
+    <p>Sie können Checks mit Personen teilen, in dem Sie Ihnen die Checknummer mitteilen. Der Check kann damit in ein eigenes Account importiert werden.</p>
+    <div class="form-group">
+        <label class="col-xs-4 control-label">Checknummer</label>
+        <div class="col-xs-8">
+            <input class="form-control" ng-model="shareNumber" type="text" disabled value="{{shareNumber}}" />
+        </div>
+    </div>
+    <input ng-hide="hasShareNumber" ng-disabled="shareNumberForm.number.$invalid && shareNumberForm.number.$dirty" type="submit" value="Kompetenz-Check zuweisen" class="btn btn-primary pull-right" />
+    <div style="clear: both;"></div>
+</form>

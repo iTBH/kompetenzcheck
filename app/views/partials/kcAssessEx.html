@@ -1,0 +1,144 @@
+<div ng-repeat="c in check.runs[0].phrases | filter:{phase: phase }">
+    <!-- zeigt das Bewertungsformular für einzelne Kompetenzbeschreibungen -->
+    <div ng-if="!c.dirty">
+        <div style="padding: 10px 15px" class="check-row">
+            <span ng-switch on="c.cat">
+                <span ng-switch-when="f"><span class="fa-stack fa-lg pull-left">
+                                            <i class="fa fa-square-o fa-stack-2x"></i>
+                                            <i class="fa fa-wrench fa-stack-1x"></i>
+                                        </span></span>
+                <span ng-switch-when="s"><span class="fa-stack fa-lg pull-left">
+                                            <i class="fa fa-square-o fa-stack-2x"></i>
+                                            <i class="fa fa-users fa-stack-1x"></i>
+                                        </span></span>
+            </span>
+            <button ng-show="check.status != 'locked'" ng-disabled="check.globalDirty" title="Kompetenz einschätzen" ng-click="assessCompetence(c)"
+                    class="btn btn-danger action btn-sm pull-right"><i class="fa fa-fw fa-sliders"></i></button>
+            <!--<span style="margin-right: 20px; font-size: 18px"-->
+            <!--class="badge badge-primary pull-right">{{ c.rating }}</span>-->
+            <div class="pull-right show-rating-container">
+                <input class="show-rating" on-finish-count-ex-ratings="ngExCountingReady"
+                       data-min="0" data-max="4" data-step="1" data-stars=4
+                       data-ng-value="{{c.rating}}"/>
+            </div>
+
+            <p class="competence-readonly">{{ check.inviter.firstname }} {{ check.inviter.lastname }} {{ c.statement }}.</p.competence-readonly>
+        </div>
+    </div>
+    <div ng-if="c.dirty">
+        <div class="editable-competence">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="pull-left">
+                        <h4>
+                    <span ng-switch on="c.cat">
+                        <span ng-switch-when="f"><span class="fa-stack pull-left">
+                                            <i class="fa fa-square-o fa-stack-2x"></i>
+                                            <i class="fa fa-wrench fa-stack-1x"></i>
+                                        </span></span>
+                        <span ng-switch-when="s"><span class="fa-stack pull-left">
+                                            <i class="fa fa-square-o fa-stack-2x"></i>
+                                            <i class="fa fa-users fa-stack-1x"></i>
+                                        </span></span>
+                    </span>
+                            <span>{{ check.inviter.firstname }} {{ check.inviter.lastname }} {{ c.statement }}.</span>
+                        </h4>
+                    </div>
+                    <div class="pull-right">
+                        <button ng-disabled="!kcExpr{{ c.id }}.$valid" class="btn btn-primary btn-sm sub"
+                                ng-click="closeAssessCompetence(c);">Einschätzung speichern
+                        </button>
+                        <button class="btn btn-danger btn-sm sub"
+                                ng-click="cancelAssessing(c, c.phase)">Abbrechen
+                        </button>
+                        <button class="btn sub btn-info btn-sm help-aside-btn" ng-show="true" ng-click="showHelpAside('Hilfetext_Fremdeinschaetzung_Kompetenzen.html')">
+                            Hilfe
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <form name="kcExpr{{ c.id }}" novalidate class="form-horizontal exass">
+                <!--<div class="radio">-->
+                <!--<label>-->
+                <!--<input ng-required="c.rating !== undefined" id="dimension-1-{{ c.id }}" type="radio"-->
+                <!--name="dimension{{ c.id }}" ng-model="c.rating" value="1"/>-->
+                <!--{{ check.inviter.firstname}} macht das <strong>zum ersten Mal</strong>.-->
+                <!--</label>-->
+                <!--</div>-->
+                <!--<div class="radio">-->
+                <!--<label>-->
+                <!--<input ng-required="c.cat == f || c.cat == s" id="dimension-2-{{ c.id }}" type="radio"-->
+                <!--name="dimension{{ c.id }}" ng-model="c.rating" value="2"/>-->
+                <!--{{ check.inviter.firstname}} kann das <strong>mithilfe</strong> einer anderen Person.-->
+                <!--</label>-->
+                <!--</div>-->
+                <!--<div class="radio">-->
+                <!--<label>-->
+                <!--<input ng-required="c.cat == f || c.cat == s" id="dimension-3-{{ c.id }}" type="radio"-->
+                <!--name="dimension{{ c.id }}" ng-model="c.rating" value="3"/>-->
+                <!--{{ check.inviter.firstname}} kann das <strong>selbstständig</strong>.-->
+                <!--</label>-->
+                <!--</div>-->
+                <!--<div class="radio">-->
+                <!--<label>-->
+                <!--<input ng-required="c.cat == f || c.cat == s" id="dimension-4-{{ c.id }}" type="radio"-->
+                <!--name="dimension{{ c.id }}" ng-model="c.rating" value="4"/>-->
+                <!--{{ check.inviter.firstname}} kann das in einer <strong>anderen Situation</strong>.-->
+                <!--</label>-->
+                <!--</div>-->
+                <!--<div class="radio">-->
+                <!--<label>-->
+                <!--<input id="dimension-0-{{ c.id }}" type="radio" name="dimension{{ c.id }}"-->
+                <!--ng-model="c.rating" value="0"/>-->
+                <!--Ich kann diese Kompetenz nicht bewerten.-->
+                <!--</label>-->
+                <!--</div>-->
+                <div class="radio">
+                    <label>
+                        <input id="dimension-0-{{ c.id }}" type="checkbox" name="dimension{{ c.id }}"
+                               ng-click="resetStars(c)" ng-model="c.noRating" value="0"/>
+                        keine Einschätzung möglich.
+                    </label>
+                </div>
+                <input on-finish-render-ex-ratings="ngRatingsReady"
+                       data-stars="4"
+                       type="number"
+                       id="dimension-1-{{ c.id }}"
+                       name="dimension{{ c.id }}"
+                       ng-model="c.rating"
+                       class="rating"
+                       ng-change="resetCheckbox(c.id, c)"
+                       min=0
+                       max=4
+                       step=1
+                       data-size="lg"/>
+                <!--<input on-finish-render-ex-ratings="ngRatingsReady" -->
+                <!--data-stars="4"-->
+                <!--type="number"-->
+                <!--id="dimension-1-{{ c.id }}"-->
+                <!--name="dimension{{ c.id }}"-->
+                <!--ng-required = "c.rating !== undefined"-->
+                <!--ng-model="c.rating"-->
+                <!--class="rating"-->
+                <!--ng-change="resetCheckbox(c.id)"-->
+                <!--min=0-->
+                <!--max=4-->
+                <!--step=1-->
+                <!--data-size="lg"/>-->
+                <!--<span id="kv-caption"></span>-->
+
+                <!--<div class="col-xs-6">-->
+                <!--<div class="form-group" style="clear: both">-->
+                <!--<label style="margin-bottom: 8px" class="control-label"-->
+                <!--for="ratingNote"><strong>Beobachtung</strong></label>-->
+                <!--<textarea-->
+                <!--placeholder="Notieren Sie hier Beobachtungen und Begründungen, die zur Kompetenzeinschätzung geführt haben."-->
+                <!--rows="4" style="width: 97%" class="form-control" id="ratingNote" name="ratingNote"-->
+                <!--ng-model="c.note"></textarea>-->
+                <!--</div>-->
+                <!--</div>-->
+                <div ng-include="'partials/list-comment.html'" onload="item = c"></div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<div ng-if="secondRun.phrases">
+    <div ng-repeat="r in secondRun.phrases" ng-if="item.id == r.id" ng-init="item = r">
+        <div ng-if="item.comment">
+            <strong>Aktueller Kommentar:</strong>
+            {{item.comment}}
+            <a href="" ng-click="openCommentModal(item)"> (Kommentar bearbeiten)</a>
+        </div>
+        <div ng-if="!item.comment">
+            <a href="" ng-click="openCommentModal(item)">Kommentar verfassen</a>
+        </div>
+    </div>
+</div>
+<div ng-if="!secondRun.phrases">
+    <div ng-if="item.comment">
+        <strong>Aktueller Kommentar:</strong>
+        {{item.comment}}
+        <a href="" ng-click="openCommentModal(item)"> (Kommentar bearbeiten)</a>
+    </div>
+    <div ng-if="!item.comment">
+        <a href="" ng-click="openCommentModal(item)">Kommentar verfassen</a>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+<div ng-include="'partials/header'"></div>
+<div ng-include="'partials/main-navigation'"></div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="pull-left">
+            <h2>Vorlagen</h2>
+        </div>
+        <div class="pull-right">
+            <button class="btn btn-info btn-sm help-aside-btn" ng-show="true" ng-click="showHelpAside('Hilfetext_Vorlagen.html')">
+                Hilfe
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <p>Hier können Sie Ihre Kompetenz-Checks, die Sie als Vorlage gespeichert haben verwalten. Sie können die Vorlagen ansehen, bearbeiten und duplizieren.
+            <br><br>
+            Vorlagen sind dann hilfreich, wenn Sie einen erstellten Kompetenz-Check zukünftig nochmals durchführen möchten. Sie können den entsprechenden Check als Vorlage speichern, indem Sie beim
+            Erstellen des Checks die Checkbox "als Vorlage speichern" anwählen.</p>
+    </div>
+</div>
+<div ng-show="getNumberOfChecks() > 0">
+    <hr/>
+    <div class="row">
+
+        <div class="col-xs-12">
+            <div class="row kc-dashboard"
+                 ng-repeat="c in checks | orderBy:predicate">
+                <div class="col-sm-12 check-details">
+                    <div class="pull-right kc-admin-actions">
+                        <div class="pull-right" ng-hide="ifUserHasToDecideOnImport(c)">
+
+                            <a class="btn btn-default" title="Ansehen"
+                               href="check/{{ c._id }}"><i class="fa fa-fw fa-eye"></i></a>
+
+                            <a class="btn btn-default" title="Duplizieren" href="" ng-click="duplicateCheck(c)"><i
+                                    class="fa fa-lg fa-copy"></i></a>
+
+                            <a class="pull-right btn btn-info btn-sm help-aside-btn" ng-show="cueExists('/patterns')"
+                               ng-click="showHelpAside('Hilfetext_Vorlagen.html')"
+                               style="margin-left:10px; width:39px">Hilfe</a>
+
+                        </div>
+
+                    </div>
+
+                    <h5 class="check-title">{{ c.title }}</h5>
+
+                    <h4 class="check-description">{{ c.description }}</h4>
+
+                    <p>{{ c.purpose }}</p>
+
+          <span class="keys" ng-repeat="key in c.keywords" value="{{key}}">
+            {{key}}
+          </span>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

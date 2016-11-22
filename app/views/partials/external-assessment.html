@@ -1,0 +1,64 @@
+<div ng-include="'partials/header'"></div>
+<!--<div ng-include="'partials/main-navigation'"></div>-->
+<!-- neuer button benötigt : "Mein Feedback abschließen", welcher nur die ergebnisse speichert aber nicht den check abschließt -->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="pull-left">
+            <h2>Fremdeinschätzung von {{ check.inviter.firstname }} {{ check.inviter.lastname }}</h2>
+        </div>
+        <div class="pull-right" ng-show="check.status != 'locked'">
+            <a ng-disabled="(!kcForm.$valid || check.globalDirty || countTotalOpen() != 0)" class="btn btn-primary btn-sm" ref="" ng-click="closeAssessment()">Fremdeinschätzung
+                abschließen</a>
+            <a class="btn btn-danger btn-sm" href="" ng-click="cancelAssessment()">Abbrechen</a>
+            <button class="btn btn-info btn-sm help-aside-btn" ng-show="true" ng-click="showHelpAside('Hilfetext_Fremdeinschaetzung.html')">Hilfe</button>
+        </div>
+    </div>
+</div>
+<!--<span class="fa fa-lg fa-thumbs-o-up" ng-hide="countTotalOpen() != 0" style="color:lawngreen;">Sie können nun die Beurteilung abschließen</span>-->
+<!--<span class="fa fa-pencil-square-o" ng-show="countTotalOpen() != 0">Schätzen Sie hier auf Grundlage von Beobachtungen oder Erfahrungen ein, wie gut der Check-Partner oder die Check-Partnerin die beschriebenen Kompetenzen beherrscht.</span>-->
+<div class="site-description-row">
+    <span ng-show="countTotalOpen() != 0">Schätzen Sie hier auf Grundlage von Beobachtungen oder Erfahrungen ein, wie gut der Check-Partner oder die Check-Partnerin die beschriebenen Kompetenzen beherrscht.</span>
+</div>
+<div ng-include="'partials/progress-track'"></div>
+<form role="form" name="kcForm">
+    <div class="row">
+        <div ng-if="check.title" class="check-information-row">
+            <label class="col-xs-3 editcheck-cols check-label-heading">Kurztitel des Checks</label>
+            <div class="col-xs-9 editcheck-cols">
+                <span>{{ check.title }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div ng-if="check.purpose" class="check-information-row">
+            <label class="col-xs-3 editcheck-cols check-label-heading">Verwendungszweck</label>
+
+            <div class="col-xs-9 editcheck-cols">
+                <span id="purpose">{{ check.purpose }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div ng-if="check.description" class="check-information-row">
+            <label class="col-xs-3 editcheck-cols check-label-heading">Auftragsbeschreibung</label>
+            <div class="col-xs-9 editcheck-cols">
+                <span>{{ check.description }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div ng-if="check.keywords" class="check-information-row">
+            <label for="keywords" class="col-xs-3 editcheck-cols check-label-heading">Schlagwörter</label>
+            <div class="col-xs-9 editcheck-cols" id="keywords">
+            <span ng-repeat="k in check.keywords">
+                {{ $last ? k : k + "," }}
+            </span>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="row">
+    <div class="col-sm-12">
+        <kc-tabs-ex kc-tbs="tabConfig.tabs" ng-model="tabConfig.tabs.activeTab" check="check" subtemplate="externalassess"></kc-tabs-ex>
+    </div>
+</div>

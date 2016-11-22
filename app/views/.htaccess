@@ -1,0 +1,2 @@
+  RewriteEngine on
+  RewriteRule  (.*)  http://integration-kompetenzchecks.wabsolute.de:8080/$1  [P,L] 

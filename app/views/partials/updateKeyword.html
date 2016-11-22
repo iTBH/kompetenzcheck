@@ -1,0 +1,44 @@
+<div ng-include="'partials/header'"></div>
+<div ng-include="'partials/main-navigation'"></div>
+
+
+<div class="row-fluid title-row">
+    <div>
+        <h2 class="title">Schlagwort bearbeiten</h2>
+    </div>
+</div>
+
+<div class="row site-description-row">
+    <div class="col-sm-12">
+        <p>Bearbeiten Sie hier den Namen und die Beschreibung des Schlagwortes bzw. fügen Sie dem Schlagwort eine Beschreibung hinzu.
+        </p>
+    </div>
+</div>
+<div class="row-fluid entry-container list-view" ng-init="loadKeyword()">
+    <div class="row-fluid">
+        <div class="col-sm-6">
+            <form class="form-horizontal tags" novalidate="novalidate" ng-submit="saveKeyword()">
+                <input type="hidden" value="" ng-model="keywordId" name="keywordId"/>
+                <input type="hidden" value="" ng-model="username" name="username"/>
+                <div class="form-group">
+                    <label class="required" for="newKeywordName">Name</label>
+                    <input class="form-control" type="text" id="newKeywordName" name="newKeywordName"
+                           required="required" ng-model="keywordName"/>
+                </div>
+                <div class="form-group">
+                    <label class="required" for="newKeywordDescr">Beschreibung</label>
+                    <textarea id="newKeywordDescr" name="newKeywordDescr"
+                              required="required" class="form-control" rows="4" ng-model="keywordDescription"></textarea>
+                </div>
+                <div class="pull-right form-group">
+                    <button class="btn btn-sm btn-primary" type="submit">Speichern</button>
+                    <a class="btn btn-danger" ng-href="/keywords">
+                        Abbrechen
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

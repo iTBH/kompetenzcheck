@@ -1,0 +1,18 @@
+<div class="aside" tabindex="-1" role="dialog">
+    <div class="aside-dialog">
+        <div class="aside-content">
+            <div class="aside-header">
+                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <h4 class="aside-title">Hilfe zu dieser Ansicht</h4>
+            </div>
+            <div class="aside-body">
+                <ng-include src="help_template"> </ng-include>
+                <!--<div ng-bind-html="data.view"></div>-->
+                <!--<div ng-include="'http://www.refsnesdata.no/angular_include.asp'"></div> http://www.w3schools.com/angular/angular_includes.asp-->
+            </div>
+            <div class="aside-footer">
+                <button type="button" class="btn btn-default" ng-click="$hide()">Schließen</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<div ng-include="'partials/header'"></div>
+<div ng-include="'partials/main-navigation'"></div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <h2>Account löschen</h2>
+    </div>
+    <div class="col-sm-6 pull-right text-right">
+        <!--<a class="btn btn-info help-aside-btn" ng-click="showHelpAside('Hilfetext_Profil.html')">Hilfe</a>-->
+    </div>
+</div>
+<div class="row site-description-row">
+    <div class="col-sm-12">
+        Hier können Sie Ihren Account vollständig löschen. Alle durchgeführten Checks von Ihnen werden gelöscht.
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <form class="form" name="form" ng-submit="deleteAccount(form)" novalidate>
+
+            <div class="form-group">
+                <label>Aktuelles Passwort</label>
+
+                <input type="password" name="password" class="form-control" ng-model="user.password"
+                       mongoose-error/>
+
+                <p class="help-block" ng-show="form.password.$error.mongoose">
+                    {{ errors.other }}
+                </p>
+            </div>
+            <button class="btn btn-lg btn-primary" type="submit">Account löschen</button>
+        </form>
+    </div>
+    <!--<div class="col-sm-6">-->
+    <!--<h2>Berufsbezeichnung ändern</h2>-->
+
+    <!--<form class="form" name="formProf" ng-submit="changeProfession(formProf)" novalidate>-->
+
+    <!--<div class="form-group">-->
+    <!--<label>Aktuelle Berufsbezeichnung</label>-->
+
+    <!--<input required-->
+    <!--type="text"-->
+    <!--name="professionlong"-->
+    <!--class="form-control"-->
+    <!--ng-model="user.professionlong" />-->
+
+    <!--<p class="help-block"-->
+    <!--ng-show="formProf.professionlong.$error.required && (formProf.professionlong.$dirty || submittedProf)">-->
+    <!--Bitte geben Sie eine Berufsbezeichnung ein.-->
+    <!--</p>-->
+    <!--</div>-->
+    <!--<button class="btn btn-lg btn-primary" type="submit">Berufsbezeichnung ändern</button>-->
+    <!--</form>-->
+    <!--&lt;!&ndash;<br/>&ndash;&gt;-->
+    <!--&lt;!&ndash;<h2>Mailtoken</h2>&ndash;&gt;-->
+    <!--&lt;!&ndash;<pre>{{ user.mailToken }}</pre>&ndash;&gt;-->
+    <!--</div>-->
+</div>

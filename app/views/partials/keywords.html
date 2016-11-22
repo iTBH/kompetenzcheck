@@ -1,0 +1,101 @@
+<div ng-include="'partials/header'"></div>
+<div ng-include="'partials/main-navigation'"></div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="pull-left">
+            <h2>Schlagwort</h2>
+        </div>
+        <div class="pull-right">
+            <button class="btn btn-info btn-sm help-aside-btn" ng-show="true" ng-click="showHelpAside('Hilfetext_Schlagwoerter.html')">
+                Hilfe
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="row site-description-row">
+    <div class="col-sm-12">
+        <p>Hier können Sie neue Schlagwörter hinzufügen oder bestehende
+            bearbeiten. Schlagwörter unterstützen Sie dabei, Checks nach
+            bestimmten, von Ihnen vergebenen Begriffen zu sortieren, z. B. durch
+            das Schlagwort Vorlage.</p>
+        <p>
+            Sie können einem Check beliebig viele Schlagwörter hinzufügen.
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-5">
+        <h3>Neues Schlagwort</h3>
+    </div>
+    <div class="col-xs-7">
+        <h3>Vorhandene Schlagwörter bearbeiten</h3>
+    </div>
+</div>
+
+<div class="row" style="">
+    <div class="col-xs-5" id="keyWordColLeft">
+        <form class="form-inline keyword-form form-horizontal tags" novalidate="novalidate" ng-submit="saveKeyword()">
+            <div>
+                <div class="row">
+                    <label for="keyWordName" class="col-xs-4">Name</label>
+                    <div class="col-xs-6">
+                        <input type="text" name="keywordName" class="form-control full-width" id="keyWordName" required
+                               ng-model="keywordName"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="keyWordDescription" class="col-xs-4">Beschreibung</label>
+                    <div class="col-xs-6">
+                        <textarea rows="4" cols="19" name="keywordDesc" type="text" class="form-control full-width" id="keyWordDescription" required ng-model="keywordDescription"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-10">
+                        <input type="submit" value="Speichern" class="btn btn-sm btn-primary pull-right"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-xs-7" id="keyWordColRight">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-hover table-striped keyword-table">
+                    <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Beschreibung</td>
+                        <td>Verwendung</td>
+                        <td>Aktion</td>
+                    </tr>
+                    </thead>
+                    <tbody ng-repeat="keyword in allKeywords | orderBy:predicate">
+                    <tr>
+                        <td>
+                            {{ keyword.name }}
+                        </td>
+
+                        <td>
+                            {{ keyword.description }}
+                        </td>
+                        <td>
+                            <span class="badge" ng-class="{ 'blue-badge': keyword.count > 0 }"> {{keyword.count ? keyword.count: 0}} <!--TODO einen zähler für die verwendung implementieren--> </span>
+                        </td>
+                        <td>
+                            <div class="tag actions">
+                                <a ng-href="/updateKeyword/{{keyword._id}}"><i uib-tooltip="{{infotooltip['edit']}}" class="fa fa-pencil-square-o" aria-hidden="true"></i></a> |
+                                <a href="" class="" ng-click="removeKeyword(keyword._id)"><i uib-tooltip="{{infotooltip['delete']}}" class="fa fa-trash-o fa-lg"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

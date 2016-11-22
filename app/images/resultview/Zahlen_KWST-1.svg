@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="85.04px" height="85.04px" viewBox="0 0 85.04 85.04" enable-background="new 0 0 85.04 85.04" xml:space="preserve">
+<g>
+	<defs>
+		<rect id="SVGID_3_" x="22.49" y="23.021" width="40.527" height="40.527"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_3_"  overflow="visible"/>
+	</clipPath>
+	<path clip-path="url(#SVGID_2_)" fill="#FFFFFF" d="M26.24,23.771c0,0-3,0-3,3v33.029c0,0,0,3,3,3h33.027c0,0,3,0,3-3V26.771
+		c0,0,0-3-3-3H26.24z"/>
+	<path clip-path="url(#SVGID_2_)" fill="none" stroke="#1D1D1B" stroke-width="1.5" d="M26.24,23.771c0,0-3,0-3,3v33.029
+		c0,0,0,3,3,3h33.027c0,0,3,0,3-3V26.771c0,0,0-3-3-3H26.24z"/>
+	<path clip-path="url(#SVGID_2_)" fill="#1D1D1B" d="M46.201,33.416h-3.348l-6.211,4.945l1.965,2.453l2.215-1.781
+		c0.262-0.209,0.734-0.654,1.41-1.332l-0.066,2.004l-0.039,1.832v11.156h4.074V33.416z"/>
+</g>
+</svg>

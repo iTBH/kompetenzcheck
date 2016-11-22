@@ -1,0 +1,5 @@
+<div style="padding: 15px;" ng-show="check.count[tab.phase] == 0">
+    <strong>Hinweis</strong>: Fügen Sie an dieser Stellen neue Kompetenzbeschreibungen hinzu. Klicken Sie dafür auf den Plus-Button in der jeweiligen Prozessphase.
+</div>
+<!-- Rendert die Kompetenzbeschreibungen -->
+<kc-competence  ng-show="check.count[tab.phase] > 0" check="check" phase="{{ tab.phase }}" tabs="tabs"></kc-competence>

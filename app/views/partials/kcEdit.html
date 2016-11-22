@@ -1,0 +1,82 @@
+<div>
+    <div ng-repeat="c in check.phrases | filter:{ phase: phase }">
+        <div ng-if="!c.dirty">
+            <div style="padding: 10px 15px">
+            <span ng-switch on="c.cat">
+                            <span ng-switch-when="f"><span class="fa-stack fa-lg pull-left">
+                                            <i class="fa fa-square-o fa-stack-2x"></i>
+                                            <i class="fa fa-wrench fa-stack-1x"></i>
+                                        </span></span>
+                            <span ng-switch-when="s"><span class="fa-stack fa-lg pull-left">
+                                            <i class="fa fa-square-o fa-stack-2x"></i>
+                                            <i class="fa fa-users fa-stack-1x"></i>
+                                        </span></span>
+                            </span>
+                <div ng-show="!check.locked && !check.assignedTo.length">
+                    <button ng-disabled="check.globalDirty" tooltip-placement="left" uib-tooltip="{{infotooltip['delete_competence']}}" ng-click="deleteCompetence(c)"
+                            style="margin-left: 10px" class="btn btn-sm btn-danger action pull-right"><i
+                            class="fa fa-fw fa-trash-o"></i></button>
+                    <button tooltip-placement="left" ng-disabled="check.globalDirty" uib-tooltip="{{infotooltip['edit_competence']}}" ng-click="editCompetence(c)"
+                            class="btn btn-danger action btn-sm pull-right"><i class="fa fa-fw fa-edit"></i></button>
+                </div>
+                <p class="competence-readonly">Der/Die Lernende {{ c.statement }}.</p>
+            </div>
+        </div>
+        <div ng-if="c.dirty">
+            <div class="editable-competence">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button class="pull-right btn btn-info sub btn-sm help-aside-btn" ng-show="cueExists('/check/{{check._id}}')"
+                                ng-click="showHelpAside('Hilfetext_Check_erstellen_Kompetenzen.html')">Hilfe
+                        </button>
+                        <button class="pull-right btn btn-info sub btn-sm help-aside-btn" ng-show="cueExists('/check/new')" ng-click="showHelpAside('Hilfetext_Check_erstellen_Kompetenzen.html')">
+                            Hilfe
+                        </button>
+                        <button style="margin-right: 10px" class="btn btn-danger btn-sm sub pull-right"
+                                ng-click="cancelEditing(c, c.phase)">Abbrechen
+                        </button>
+                        <button style="margin-right: 10px;" ng-disabled="!kcExpr{{ c.id }}.$valid" class="btn btn-primary btn-sm sub pull-right" ng-click="completePhrase(c)">Kompetenzbeschreibung
+                            speichern
+                        </button>
+                    </div>
+                </div>
+                <form name="kcExpr{{ c.id }}" novalidate>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="radio">
+                            <span class="fa-stack fa-lg pull-left">
+                                            <i class="fa fa-square-o fa-stack-2x"></i>
+                                            <i class="fa fa-users fa-stack-1x"></i>
+                                        </span>
+                                <input ng-required="c.cat == f || c.cat == s" id="per-dimension{{ c.id }}" type="radio"
+                                       name="dimension{{ c.id }}" ng-model="c.cat" value="s"/>&nbsp;
+                                <label for="per-dimension{{ c.id }}">Personale Kompetenz</label><span class="kc-explain-dimension"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="radio">
+                            <span class="fa-stack fa-lg pull-left">
+                                            <i class="fa fa-square-o fa-stack-2x"></i>
+                                            <i class="fa fa-wrench fa-stack-1x"></i>
+                                        </span>
+                                <input ng-required="c.cat == f || c.cat == s" id="fach-dimension{{ c.id }}" type="radio"
+                                       name="dimension{{ c.id }}" ng-model="c.cat" value="f"/>&nbsp;
+                                <label for="fach-dimension{{ c.id }}">Fachkompetenz<span class="kc-explain-dimension"></span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label class="comp-expression" for="comp-expression{{ c.id }}">Der/Die Lernende </label>
+                        </div>
+                        <div class="col-sm-9">
+                            <input required ng-model="c.statement" type="text" class="form-control comp-expression-input"
+                                   id="comp-expression{{ c.id }}"
+                                   placeholder="führt eine auftragsspezifische Handlung fachgerecht durch">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

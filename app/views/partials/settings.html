@@ -1,0 +1,122 @@
+<div ng-include="'partials/header'"></div>
+<div ng-include="'partials/main-navigation'"></div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <h2>Ihre persönlichen Einstellungen</h2>
+    </div>
+    <div class="col-sm-6 pull-right text-right">
+        <a class="btn btn-info help-aside-btn" ng-click="showHelpAside('Hilfetext_Profil.html')">Hilfe</a>
+    </div>
+</div>
+<div class="row site-description-row">
+    <div class="col-sm-12">
+        Hier können Sie Ihre Daten und Ihr Passwort ändern.
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <form class="form" name="form2" ng-submit="changeSettings(form2)" novalidate>
+
+            <div class="form-group">
+                <label>E-Mail-Adresse ändern</label>
+
+                <input type="email" name="email" class="form-control" ng-model="user.email"
+                       ng-minlength="5"
+                       required/>
+
+                <p class="help-block"
+                   ng-show="(form2.email.$error.type || form2.email.$error.minlength || form2.email.$error.required)">
+                    E-Mail muss eine gültige E-Mail Adresse sein.
+                </p>
+            </div>
+
+            <div class="form-group">
+                <label>Vorname ändern</label>
+
+                <input type="text" name="firstname" class="form-control" ng-model="user.firstname"
+                       ng-minlength="2"
+                       required/>
+                <p class="help-block"
+                   ng-show="(form2.firstname.$error.minlength || form2.firstname.$error.required)">
+                    Geben Sie Ihren Vornamen an.
+                </p>
+            </div>
+            <div class="form-group">
+                <label>Nachname ändern</label>
+
+                <input type="text" name="lastname" class="form-control" ng-model="user.lastname"
+                       ng-minlength="2"
+                       required/>
+                <p class="help-block"
+                   ng-show="(form2.lastname.$error.minlength || form2.lastname.$error.required)">
+                    Geben Sie Ihren Nachnamen ein.
+                </p>
+            </div>
+
+            <p class="help-block"> {{ message }} </p>
+
+            <button class="btn btn-sm btn-primary pull-right" type="submit">Einstellungen speichern</button>
+        </form>
+    </div>
+    <div class="col-sm-6">
+        <form class="form" name="form" ng-submit="changePassword(form)" novalidate>
+
+            <div class="form-group">
+                <label>Aktuelles Passwort</label>
+
+                <input type="password" name="password" class="form-control" ng-model="user.oldPassword"
+                       mongoose-error/>
+
+                <p class="help-block" ng-show="form.password.$error.mongoose">
+                    {{ errors.other }}
+                </p>
+            </div>
+
+            <div class="form-group">
+                <label>Neues Passwort</label>
+
+                <input type="password" name="newPassword" class="form-control" ng-model="user.newPassword"
+                       ng-minlength="3"
+                       required/>
+
+                <p class="help-block"
+                   ng-show="(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty)">
+                    Password must be at least 3 characters.
+                </p>
+            </div>
+
+            <p class="help-block"> {{ message }} </p>
+
+            <div class="pull-right">
+                <button class="btn btn-sm btn-primary" type="submit">Passwort ändern</button>
+                <a href="settings/deleteAccount" class="btn btn-sm btn-primary">Account löschen</a>
+            </div>
+        </form>
+    </div>
+    <!--<div class="col-sm-6">-->
+    <!--<h2>Berufsbezeichnung ändern</h2>-->
+
+    <!--<form class="form" name="formProf" ng-submit="changeProfession(formProf)" novalidate>-->
+
+    <!--<div class="form-group">-->
+    <!--<label>Aktuelle Berufsbezeichnung</label>-->
+
+    <!--<input required-->
+    <!--type="text"-->
+    <!--name="professionlong"-->
+    <!--class="form-control"-->
+    <!--ng-model="user.professionlong" />-->
+
+    <!--<p class="help-block"-->
+    <!--ng-show="formProf.professionlong.$error.required && (formProf.professionlong.$dirty || submittedProf)">-->
+    <!--Bitte geben Sie eine Berufsbezeichnung ein.-->
+    <!--</p>-->
+    <!--</div>-->
+    <!--<button class="btn btn-lg btn-primary" type="submit">Berufsbezeichnung ändern</button>-->
+    <!--</form>-->
+    <!--&lt;!&ndash;<br/>&ndash;&gt;-->
+    <!--&lt;!&ndash;<h2>Mailtoken</h2>&ndash;&gt;-->
+    <!--&lt;!&ndash;<pre>{{ user.mailToken }}</pre>&ndash;&gt;-->
+    <!--</div>-->
+</div>

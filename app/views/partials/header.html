@@ -1,0 +1,21 @@
+<div class="row" style="margin-bottom: 40px">
+    <div class="col-sm-2">
+        <img
+                width="128"
+                height="42"
+                class="logo"
+                ng-cloak
+                ng-src="images/kwst-logo.png"
+                alt="Der Kompetenz-Check der Kompetenzwerkstatt"/>
+
+    </div>
+    <p style="width: 80px; height:30px;" class="whois col-sm-2">{{ user.professionlong }}</p>
+    <div class="col-sm-9" style="position: relative;" ng-show="user.firstname">
+        <!--<a href="/changelog" target="_blank" style="position: absolute; top: -30px; right: 15px; font-size: 10px">Changelog</a>-->
+
+        <p class="username pull-right"><b>{{ user.firstname }} {{ user.lastname }}</b> ({{ user.email }})</p><i style=" margin-right: 5px; margin-top: 5px; color:darkgrey"
+                                                                                                    class="username-icon pull-right fa fa-user fa-2x"></i>
+    </div>
+    <div class="spinner" cg-busy="xhrloader"></div>
+
+</div>

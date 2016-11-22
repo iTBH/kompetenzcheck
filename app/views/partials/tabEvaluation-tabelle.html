@@ -1,0 +1,18 @@
+<p>Die Tabelle zeigt die einzelnen Kompetenzen mit dazugehörigen Einschätzungen.</p>
+<table class="table table-hover table-striped evaluation">
+    <tr>
+        <th width="60%">Kompetenz</th>
+        <th ng-repeat="r in runs" style="text-align: center">
+            <p ng-if="r.type == 'self'" class="label label-success">selbst</p>
+            <p ng-if="r.type == 'external'" class="label label-warning">fremd</p>
+            <span>{{ r.start_date | date:'dd.MM.y' }}</span>
+            <span>{{ r.assessor.mail }}</span>
+        </th>
+    </tr>
+    <tr ng-repeat="c in check.phrases">
+        <td><span class="label label-info" style="display: inline-block; width: 60px">{{ c.phase }}</span> {{ c.statement }}</td>
+        <td ng-repeat="r in runs" class="rating-cell">
+            <span class="rating rating-{{ r.phrases[$parent.$index].rating }}"></span>
+        </td>
+    </tr>
+</table>

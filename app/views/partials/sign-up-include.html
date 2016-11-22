@@ -1,0 +1,121 @@
+<div class="signup">
+    <h2>Registrieren</h2>
+
+    <form class="form" name="form" ng-submit="register(form)" novalidate>
+        <input type="hidden" name="isAuthenticated" ng-model="user.isAuthenticated" value="false"/>
+
+        <!--<div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,-->
+        <!--'has-error': form.name.$invalid && submitted }">-->
+        <!--<label>Benutzername</label>-->
+
+        <!--<input type="text" name="name" class="form-control" ng-model="user.username"-->
+        <!--required/>-->
+
+        <!--<p class="help-block" ng-show="form.name.$error.required && submitted">-->
+        <!--Ein Benutzername ist erforderlich.-->
+        <!--</p>-->
+        <!--</div>-->
+
+        <div class="form-group" ng-class="{ 'has-success': form.vorname.$valid && submitted,
+                                          'has-error': form.vorname.$invalid && submitted }">
+            <label>Vorname</label>
+
+            <input type="text" placeholder="Vorname" name="vorname" class="form-control" ng-model="user.firstname"
+                   required/>
+
+            <p class="help-block" ng-show="form.vorname.$error.required && submitted">
+                Bitte geben Sie Ihren Vornamen an.
+            </p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form.lastname.$valid && submitted,
+                                          'has-error': form.lastname.$invalid && submitted }">
+            <label>Nachname</label>
+
+            <input type="text" placeholder="Nachname" name="lastname" class="form-control" ng-model="user.lastname"
+                   required/>
+
+            <p class="help-block" ng-show="form.lastname.$error.required && submitted">
+                Bitte geben Sie Ihren Nachnamen an.
+            </p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
+                                          'has-error': form.email.$invalid && submitted }">
+            <label>E-Mail-Adresse</label>
+
+            <input type="email" placeholder="E-Mail-Adresse" name="email" class="form-control" ng-model="user.email"
+                   required
+                   mongoose-error/>
+
+            <p class="help-block" ng-show="form.email.$error.email && submitted">
+                Das sieht nicht wie eine valide E-Mail aus.
+            </p>
+
+            <p class="help-block" ng-show="form.email.$error.required && submitted">
+                Bitte geben Sie Ihre E-Mail-Adresse an.
+            </p>
+
+            <p class="help-block" ng-show="form.email.$error.mongoose">
+                Die E-Mail-Adresse wird bereits genutzt.
+            </p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form.password.$valid && submitted,
+                                          'has-error': form.password.$invalid && submitted }">
+            <label>Passwort</label>
+
+            <input type="password" placeholder="Passwort" name="password" class="form-control" ng-model="user.password"
+                   ng-minlength="6"
+                   required
+                   mongoose-error/>
+
+            <p class="help-block"
+               ng-show="(form.password.$error.minlength || form.password.$error.required) && submitted">
+                Das Passwort muss mindestens 6 Zeichen lang sein.
+            </p>
+
+            <p class="help-block" ng-show="form.password.$error.mongoose">
+                {{ errors.password }}
+            </p>
+        </div>
+        <div class="form-group" ng-class="{ 'has-success': user.password == user.confirm_password && submitted,
+                                          'has-error': user.password != user.confirm_password && submitted }">
+            <label>Passwort wiederholen</label>
+
+            <input class="form-control" ng-model='user.confirm_password' type="password" name='confirm_password' placeholder='Passwort' required>
+            <p class="help-block" ng-show="form.confirm_password.$error.mongoose">
+                {{ errors.password }}
+            </p>
+            <p class="help-block" ng-show="submitted && user.password != user.confirm_password">Passwörter stimmen nicht überein</p>
+
+        </div>
+
+
+        <!--<div class="form-group" ng-class="{ 'has-success': form.profession.$valid && submitted,-->
+        <!--'has-error': form.profession.$invalid && submitted }">-->
+        <!--<label>Ausbildungsberuf</label>-->
+        <!--<select name="profession" class="form-control" ng-model="user.profession" required mongoose-error>-->
+        <!--<option value="">&#45;&#45; Bitte auswählen &#45;&#45;</option>-->
+        <!--<option value="mdp">Mediengestalter/in Digital/Print</option>-->
+        <!--<option value="mbt">Mediengestalter/in Bild/Ton</option>-->
+        <!--<option value="eeg">Elektroniker/in Gebäude- und Infrastruktursysteme</option>-->
+        <!--<option value="amshk">Anlagenmechaniker/in SHK</option>-->
+        <!--<option value="dach">Dachdecker/in</option>-->
+        <!--<option value="mal">Maler/in und Lackierer/in</option>-->
+        <!--<option value="veranst">Fachkraft für Veranstaltungstechnik</option>-->
+        <!--<option value="general">Allgemeines Profil</option>-->
+        <!--</select>-->
+        <!--<p class="help-block"-->
+        <!--ng-show="(form.profession.$error.minlength || form.profession.$error.required) && submitted">-->
+        <!--Der Ausbildungsberuf muss ausgewählt werden.-->
+        <!--</p>-->
+        <!--<p class="help-block" ng-show="form.profession.$error.mongoose">-->
+        <!--{{ errors.profession }}-->
+        <!--</p>-->
+        <!--</div>-->
+
+        <button class="btn btn-primary pull-right" type="submit">Registrieren</button>
+        <p>Schon registriert? <a href="/login" class="text-center new-account">Zur Anmeldung</a>.</p>
+    </form>
+</div>

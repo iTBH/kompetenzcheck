@@ -1,0 +1,84 @@
+<div ng-include="'partials/header'"></div>
+<div ng-include="'partials/main-navigation'"></div>
+<!--<a class="pull-right btn btn-info btn-sm help-aside-btn" ng-click="showHelpAside()" style="margin-left: 10px" ng-show="cueExists('/check/new') || cueExists('/check/:id')">-->
+<!--Hilfe-->
+<!--</a>-->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="pull-left">
+            <h2 style="font-weight: 200;">Ansicht des Checks</h2>
+        </div>
+        <div class="row pull-right" ng-show="check.locked || check.assignedTo.length > 0">
+            <a href="/dashboard" class="btn btn-sm btn-danger">Zurück</a>
+        </div>
+    </div>
+</div>
+
+<div class="site-description-row">
+    Hier sehen Sie den bereits abgeschlossenen Check in der Übersicht. Zur weiteren Verwendung und Bearbeitung des Checks können Sie den Check auf dem Dashboard duplizieren.
+</div>
+<div ng-include="'partials/progress-track'"></div>
+
+
+<form role="form" name="kcForm" class="col-xs-12">
+    <div class="row form-horizontal editcheck">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-12">
+                    <label for="title" class="col-xs-3 editcheck-cols check-label-heading">Kurztitel des Checks</label>
+                    <div class="col-xs-9 editcheck-cols">
+                        <p id="title">{{ check.title }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label for="purpose" class="col-xs-3 editcheck-cols check-label-heading">Verwendungszweck</label>
+                    <div class="col-xs-9 editcheck-cols">
+                        <p id="purpose">{{ check.purpose }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label for="description" class="col-xs-3 editcheck-cols check-label-heading">Auftragsbeschreibung</label>
+                    <div class="col-xs-9 editcheck-cols">
+                        <p id="description">{{ check.description }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-show="check.keywords.length > 0">
+                <div class="col-sm-12">
+                    <label for="keywords" class="col-xs-3 editcheck-cols check-label-heading">Schlagwörter</label>
+                    <div class="col-xs-6 editcheck-cols">
+                        <div id="keywords">
+                            <span ng-repeat="k in check.keywords">
+                                {{ $last ? k : k + "," }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!--<div class="pull-right" style="padding-top: 7px">-->
+<!--<button ng-disabled="check.globalDirty" ng-hide="check.locked || check.assignedTo.length > 0"-->
+<!--class="btn btn-primary btn-sm sub pull-right"-->
+<!--style="margin-left: 10px" type="button"-->
+<!--ng-click="addCompetence(null, tabConfig.tabs[tabConfig.tabs.activeTab].phase)"><i-->
+<!--class="fa fa-lg fa-plus-square"> </i> Kompetenz hinzufügen-->
+<!--</button>-->
+<!--<span><button ng-show="!check.locked && !check.assignedTo.length" ng-disabled="check.globalDirty"-->
+<!--class="btn btn-danger btn-sm sub pull-right"-->
+<!--type="button" ng-click="openGenerator()">Assistent verwenden-->
+<!--</button></span>-->
+<!--</div>-->
+<div class="row">
+    <div class="col-sm-12">
+        <h3>Kompetenzbeschreibungen</h3>
+    </div>
+    <!--<div bs-tabs="tabs" ng-model="tabs.activeTab"></div>-->
+    <kc-tabs kc-tbs="tabConfig.tabs" ng-model="tabConfig.tabs.activeTab" check="check" subtemplate="edit"></kc-tabs>
+</div>

@@ -1,0 +1,31 @@
+<div class="modal sharemodal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="cancelComment()">&times;</button>
+                <h3>Kommentar verfassen</h3>
+            </div>
+            <div class="modal-body">
+                <p>Notieren Sie hier Erfahrungen und Begründungen, die zur Kompetenzeinschätzung geführt haben.</p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="form form-horizontal" name="commentForm" novalidate ng-submit="setNote()">
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <textarea autofocus type="text" name="comment" class="form-control" ng-model="comment" required>{{comment_modal.$scope.comment}}</textarea>
+                                </div>
+                            </div>
+                            <input type="submit" value="Ok" class="btn btn-success pull-right"/>
+                            <button ng-click="cancelComment()" class="btn btn-danger pull-right">Abbrechen</button>
+                            <div style="clear: both;"></div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>

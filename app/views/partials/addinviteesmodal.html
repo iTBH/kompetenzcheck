@@ -1,0 +1,53 @@
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <h3>Mit Auszubildendem verbinden</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-info" ng-hide="checkToBeShared.step > 1">
+                            <strong>Hinweise:</strong><br/>Sie möchten sich mit einem Auszubildenden verbinden, um ihm Kompetenz-Checks zuzuweisen. Dafür
+                            ist ein Schlüssel notwendig, den Sie vom Auszubildenden erhalten, wenn dieser sich registriert hat und Prüfen seiner Kompetenz
+                            zugestimmt hat. Tragen Sie diesen Schlüssel in das unten stehende Formular ein.
+                            <br/><br/>
+                            Der Schlüssel hat genau 16 Zeichen in der Form von <strong>ZoG75HbsKv90/J2g</strong>.
+                        </div>
+
+                        <form class="form" name="form" ng-submit="saveNewToken(form)" novalidate role="form">
+                            <div class="form-group" ng-class="{ 'has-success': form.newToken.$valid && submitted, 'has-error': form.newToken.$invalid && submitted }">
+                                <label for="newToken">Schlüssel des Auszubildenden</label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="newToken"
+                                        name="newToken"
+                                        placeholder="Tragen Sie hier den Schlüssel des Auszubildenden ein."
+                                        ng-model="inviteesModel.newToken"
+                                        ng-minlength="16"
+                                        ng-maxlength="16"
+                                        required
+                                        mongoose-error />
+                                <p class="help-block" ng-show="(form.newToken.$error.minlength || form.newToken.$error.maxlength || form.role.$error.required) && submitted">
+                                    Der Schlüssel muss eine Länge von 16 Zeichen aufweisen.
+                                </p>
+                                <p class="help-block" ng-show="form.newToken.$error.mongoose">
+                                    {{ errors.notoken }}
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <div class="controls">
+                                    <button class="btn pull-right" style="margin-left: 10px" ng-click="$hide()">Abbrechen</button>
+                                    <button class="btn btn-success pull-right" type="submit">Eintragen</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

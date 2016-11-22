@@ -1,0 +1,31 @@
+<div>
+    <!-- Tabreiter; jedes Pane inkludiert das Subtemplate -->
+    <ul class="nav nav-tabs">
+        <li ng-repeat="tab in tabs" ng-class="{active: $index == active, 'no-click': check.count[tab.phase] == 0}">
+            <a data-toggle="tab" ng-click="check.count[tab.phase] == 0 ? '' : setActive($index, $event)" data-index="{{$index}}">
+                {{ tab.title }}
+                <span ng-if="subtemplate == 'externalassess'">
+                        <span ng-if="tab.count > 0 ">
+                            <span class="badge pull-right">{{ tab.count }}</span>
+                        </span>
+                        <span ng-if="check.count[tab.phase] == 0">
+                            <span class="badge pull-right">0</span>
+                        </span>
+                        <span ng-if="tab.count == 0 && check.count[tab.phase] != 0">
+                         <i class="fa fa-fw fa-check pull-right"></i>
+                        </span>
+                </span>
+                <span ng-if="subtemplate == 'edit'">
+                        <span class="badge pull-right">{{ check.count[tab.phase] }}</span>
+                </span>
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div ng-repeat="tab in tabs"
+             class="tab-pane"
+             ng-class="[$index == active ? 'active' : '']"
+             ng-include="'partials/tab-' + subtemplate + '.html'">
+        </div>
+    </div>
+</div>

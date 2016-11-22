@@ -1,0 +1,355 @@
+<div ng-include="'partials/header'"></div>
+<div ng-include="'partials/main-navigation'"></div>
+<form class="ui form">
+    <div class="row">
+        <div class="col-sm-offset-7 col-sm-5 pull-right text-right">
+            <select ng-change="updateResultView()" ng-show="countExternalEstimator == 3" ng-model="selectedName" ng-options="x for x in externalEstimator">
+            </select>
+
+            <a ng-click="generatePDF()" class="print-btn btn btn-danger">Als PDF speichern</a>
+            <a class="btn btn-info help-aside-btn" ng-show="cueExists('/resultview/'+{{check._id}}+'/')"
+               ng-click="showHelpAside('Hilfetext_Auswertungsgespraech.html')">Hilfe</a>
+        </div>
+    </div>
+    <div class="result-table" id="result-table">
+        <div id="print-container">
+            <div class="row">
+                <div class="col-sm-7 headline-result-table">
+                    <h2>Auswertung des Checks</h2>
+                </div>
+            </div>
+            <div class="row" id="title-row">
+                <div class="col-sm-12">
+                    <p>
+                        Hier sehen Sie die Auswertung des durchgeführten Kompetenz-Checks. Führen Sie auf Grundlage der Ergebnisse z. B. ein Auswertungsgespräch. Die Hilfefunktion unterstützt Sie
+                        dabei.
+                    </p>
+                </div>
+                <div class="col-sm-12" style="padding: 0;">
+                    <div ng-if="check.title">
+                        <label class="col-xs-3"><b>Kurztitel des Checks</b></label>
+                        <div class="col-xs-9">
+                            <p>{{ check.title }}</p>
+                        </div>
+                    </div>
+
+                    <div ng-if="check.purpose">
+                        <label class="col-xs-3"><b>Verwendungszweck</b></label>
+
+                        <div class="col-xs-9">
+                            <p id="purpose">{{ check.purpose }}</p>
+                        </div>
+                    </div>
+
+                    <div ng-if="check.description">
+                        <label class="col-xs-3"><b>Auftragsbeschreibung</b></label>
+                        <div class="col-xs-9">
+                            <p>{{ check.description }}</p>
+                        </div>
+                    </div>
+
+                    <div ng-if="check.keywords">
+                        <label for="keywords" class="col-xs-3"><b>Schlagwörter</b></label>
+                        <div id="keywords" class="col-xs-9">
+                    <span ng-repeat="k in check.keywords" class="keyword-container">
+                        {{ k }}
+                    </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="sum-table">
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-sm-12">
+                    <h2 style="margin-bottom:0;">Prozessansicht des Checks</h2>
+                    <p id="process-text" style="margin-bottom:0;">
+                        Die Prozessansicht zeigt Ihnen alle im Check durchgeführten Einschätzungen im Durchschnitt pro Kompetenzdimension an. Nutzen Sie die Prozessansicht für einen ersten Überblick
+                        und
+                        als Einstieg in die Auswertung des Checks.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="imageWrapper">
+                        <div class="section section1">
+                            <div class="category category1">
+                                <img src="../../images/resultview/green.png" class="score score_4" ng-class="(beginningSelfS<4) ? 'transparent' : ''">
+                                <img src="../../images/resultview/green.png" class="score score_3" ng-class="(beginningSelfS<3) ? 'transparent' : ''">
+                                <img src="../../images/resultview/green.png" class="score score_2" ng-class="(beginningSelfS<2) ? 'transparent' : ''">
+                                <img src="../../images/resultview/ich_grün.png" class="score score_1" ng-class="(beginningSelfS<1) ? 'transparent' : ''">
+                            </div>
+                            <div class="category category2">
+                                <img src="../../images/resultview/light_green.png" class="score score_4" ng-class="(beginningExtS<4) ? 'transparent' : ''">
+                                <img src="../../images/resultview/light_green.png" class="score score_3" ng-class="(beginningExtS<3) ? 'transparent' : ''">
+                                <img src="../../images/resultview/light_green.png" class="score score_2" ng-class="(beginningExtS<2) ? 'transparent' : ''">
+                                <img src="../../images/resultview/andere_green.png" class="score score_1" ng-class="(beginningExtS<1) ? 'transparent' : ''">
+                            </div>
+                            <div class="category category3">
+                                <img src="../../images/resultview/blue.png" class="score score_4" ng-class="(beginningSelfF<4) ? 'transparent' : ''">
+                                <img src="../../images/resultview/blue.png" class="score score_3" ng-class="(beginningSelfF<3) ? 'transparent' : ''">
+                                <img src="../../images/resultview/blue.png" class="score score_2" ng-class="(beginningSelfF<2) ? 'transparent' : ''">
+                                <img src="../../images/resultview/ich_blue.png" class="score score_1" ng-class="(beginningSelfF<1) ? 'transparent' : ''">
+                            </div>
+                            <div class="category category4">
+                                <img src="../../images/resultview/light_blue.png" class="score score_4" ng-class="(beginningExtF<4) ? 'transparent' : ''">
+                                <img src="../../images/resultview/light_blue.png" class="score score_3" ng-class="(beginningExtF<3) ? 'transparent' : ''">
+                                <img src="../../images/resultview/light_blue.png" class="score score_2" ng-class="(beginningExtF<2) ? 'transparent' : ''">
+                                <img src="../../images/resultview/andere_blue.png" class="score score_1" ng-class="(beginningExtF<1) ? 'transparent' : ''">
+                            </div>
+                        </div>
+                        <div class="section section2">
+                            <div class="category category1">
+                                <img src="../../images/resultview/green.png" class="score score_4" ng-class="(planningSelfS<4) ? 'transparent' : ''">
+                                <img src="../../images/resultview/green.png" class="score score_3" ng-class="(planningSelfS<3) ? 'transparent' : ''">
+                                <img src="../../images/resultview/green.png" class="score score_2" ng-class="(planningSelfS<2) ? 'transparent' : ''">
+                                <img src="../../images/resultview/ich_grün.png" class="score score_1" ng-class="(planningSelfS<1) ? 'transparent' : ''">
+                            </div>
+                            <div class="category category2">
+                                <img src="../../images/resultview/light_green.png" class="score score_4" ng-class="(planningExtS<4) ? 'transparent' : ''">
+                                <img src="../../images/resultview/light_green.png" class="score score_3" ng-class="(planningExtS<3) ? 'transparent' : ''">
+                                <img src="../../images/resultview/light_green.png" class="score score_2" ng-class="(planningExtS<2) ? 'transparent' : ''">
+                                <img src="../../images/resultview/andere_green.png" class="score score_1" ng-class="(planningExtS<1) ? 'transparent' : ''">
+                            </div>
+                            <div class="category category3">
+                                <img src="../../images/resultview/blue.png" class="score score_4" ng-class="(planningSelfF<4) ? 'transparent' : ''">
+                                <img src="../../images/resultview/blue.png" class="score score_3" ng-class="(planningSelfF<3) ? 'transparent' : ''">
+                                <img src="../../images/resultview/blue.png" class="score score_2" ng-class="(planningSelfF<2) ? 'transparent' : ''">
+                                <img src="../../images/resultview/ich_blue.png" class="score score_1" ng-class="(planningSelfF<1) ? 'transparent' : ''">
+                            </div>
+                            <div class="category category4">
+                                <img src="../../images/resultview/light_blue.png" class="score score_1" ng-class="(planningExtF<4) ? 'transparent' : ''">
+                                <img src="../../images/resultview/light_blue.png" class="score score_3" ng-class="(planningExtF<3) ? 'transparent' : ''">
+                                <img src="../../images/resultview/light_blue.png" class="score score_2" ng-class="(planningExtF<2) ? 'transparent' : ''">
+                                <img src="../../images/resultview/andere_blue.png" class="score score_1" ng-class="(planningExtF<1) ? 'transparent' : ''">
+                            </div>
+                        </div>
+                        <div class="section section3">
+                            <div class="category category1">
+                                <img src="../../images/resultview/green.png" class="score score_4" ng-class="(operationSelfS<4) ? 'transparent' : ''">
+                                <img src="../../images/resultview/green.png" class="score score_3" ng-class="(operationSelfS<3) ? 'transparent' : ''">
+                                <img src="../../images/resultview/green.png" class="score score_2" ng-class="(operationSelfS<2) ? 'transparent' : ''">
+                                <img src="../../images/resultview/ich_grün.png" class="score score_1" ng-class="(operationSelfS<1) ? 'transparent' : ''">
+                            </div>
+                            <div class="category category2">
+                                <img src="../../images/resultview/light_green.png" class="score score_4" ng-class="(operationExtS<4) ? 'transparent' : ''">
+                                <img src="../../images/resultview/light_green.png" class="score score_3" ng-class="(operationExtS<3) ? 'transparent' : ''">
+                                <img src="../../images/resultview/light_green.png" class="score score_2" ng-class="(operationExtS<2) ? 'transparent' : ''">
+                                <img src="../../images/resultview/andere_green.png" class="score score_1" ng-class="(operationExtS<1) ? 'transparent' : ''">
+                            </div>
+                            <div class="category category3">
+                                <img src="../../images/resultview/blue.png" class="score score_4" ng-class="(operationSelfF<4) ? 'transparent' : ''">
+                                <img src="../../images/resultview/blue.png" class="score score_3" ng-class="(operationSelfF<3) ? 'transparent' : ''">
+                                <img src="../../images/resultview/blue.png" class="score score_2" ng-class="(operationSelfF<2) ? 'transparent' : ''">
+                                <img src="../../images/resultview/ich_blue.png" class="score score_1" ng-class="(operationSelfF<1) ? 'transparent' : ''">
+                            </div>
+                            <div class="category category4">
+                                <img src="../../images/resultview/light_blue.png" class="score score_1" ng-class="(operationExtF<4) ? 'transparent' : ''">
+                                <img src="../../images/resultview/light_blue.png" class="score score_3" ng-class="(operationExtF<3) ? 'transparent' : ''">
+                                <img src="../../images/resultview/light_blue.png" class="score score_2" ng-class="(operationExtF<2) ? 'transparent' : ''">
+                                <img src="../../images/resultview/andere_blue.png" class="score score_1" ng-class="(operationExtF<1) ? 'transparent' : ''">
+                            </div>
+                        </div>
+                        <div class="section section4">
+                            <div class="category category1">
+                                <img src="../../images/resultview/green.png" class="score score_4" ng-class="(endingSelfS<4) ? 'transparent' : ''">
+                                <img src="../../images/resultview/green.png" class="score score_3" ng-class="(endingSelfS<3) ? 'transparent' : ''">
+                                <img src="../../images/resultview/green.png" class="score score_2" ng-class="(endingSelfS<2) ? 'transparent' : ''">
+                                <img src="../../images/resultview/ich_grün.png" class="score score_1" ng-class="(endingSelfS<1) ? 'transparent' : ''">
+                            </div>
+                            <div class="category category2">
+                                <img src="../../images/resultview/light_green.png" class="score score_4" ng-class="(endingExtS<4) ? 'transparent' : ''">
+                                <img src="../../images/resultview/light_green.png" class="score score_3" ng-class="(endingExtS<3) ? 'transparent' : ''">
+                                <img src="../../images/resultview/light_green.png" class="score score_2" ng-class="(endingExtS<2) ? 'transparent' : ''">
+                                <img src="../../images/resultview/andere_green.png" class="score score_1" ng-class="(endingExtS<1) ? 'transparent' : ''">
+                            </div>
+                            <div class="category category3">
+                                <img src="../../images/resultview/blue.png" class="score score_4" ng-class="(endingSelfF<4) ? 'transparent' : ''">
+                                <img src="../../images/resultview/blue.png" class="score score_3" ng-class="(endingSelfF<3) ? 'transparent' : ''">
+                                <img src="../../images/resultview/blue.png" class="score score_2" ng-class="(endingSelfF<2) ? 'transparent' : ''">
+                                <img src="../../images/resultview/ich_blue.png" class="score score_1" ng-class="(endingSelfF<1) ? 'transparent' : ''">
+                            </div>
+                            <div class="category category4">
+                                <img src="../../images/resultview/light_blue.png" class="score score_1" ng-class="(endingExtF<4) ? 'transparent' : ''">
+                                <img src="../../images/resultview/light_blue.png" class="score score_3" ng-class="(endingExtF<3) ? 'transparent' : ''">
+                                <img src="../../images/resultview/light_blue.png" class="score score_2" ng-class="(endingExtF<2) ? 'transparent' : ''">
+                                <img src="../../images/resultview/andere_blue.png" class="score score_1" ng-class="(endingExtF<1) ? 'transparent' : ''">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px;">
+            <div class="col-sm-12">
+                <h2 style="margin-bottom:0;">Detailansicht des Checks</h2>
+                <p>
+                    Hier sehen Sie die detaillierte Darstellung der Einschätzungen pro Prozessphase, Kompetenzdimension und mit Ihren Kommentaren.
+                </p>
+            </div>
+            <!-- Durchläuft die verschiedenen Tabs-->
+            <div ng-repeat="t in tabs">
+                <div class="result-box-header col-xs-12">
+                    <h4 id="{{t.title}}">{{t.title}}</h4>
+                </div>
+                <!--Personalkompetenzen-->
+                <div ng-repeat="phase in allPersonalResults track by $index">
+                    <div ng-if="phase.phase == t.phase" class="col-xs-6">
+                        <div class="{{t.phase}}-result-box result-box">
+                            <div ng-repeat="r in phase.results | orderBy:'-type' track by $index">
+                                <div ng-if="r.result.phase == t.phase">
+                                    <div class="title-box row" ng-if="$first">
+                                        <div class="col-xs-1">
+                                            <img ng-if="r.result.type == 'own'" src="../../images/resultview/{{r.result.cat}}.svg" class="category category"/>
+                                        </div>
+                                        <div class="col-xs-11"><b>{{r.result.statement}}</b></div>
+                                    </div>
+                                    <div class="sub-title" ng-if="r.type == 'own' && $index == 0">
+                                        <b>Ich: </b> Meine Selbsteinschätzung/en
+                                    </div>
+                                    <div class="sub-title" ng-if="r.type == 'ext' && phase.results[$index-1].type == 'own'">
+                                        <p ng-if="countExternalAssesments == 1">
+                                            <b>Andere/r: </b> Fremdeinschätzung/en von
+                                            {{r.result.invitee.firstname != "" ? r.result.invitee.firstname : ""}} {{ r.result.invitee.lastname != "" ? r.result.invitee.lastname : ""}}
+                                            {{r.result.invitee.firstname == "" && r.result.invitee.lastname == "" ? r.result.invitee.mail : ""}}</p>
+                                        <p ng-if="countExternalAssesments > 1"><b>Andere/r: </b> Fremdeinschätzung/en von Anderen und anderen Personen</p>
+                                    </div>
+                                    <div class="rating-box row">
+                                        <div class="col-xs-1">
+                                            <img ng-if="r.result.type == 'own'" src="../../images/resultview/Zahlen_KWST-{{$index+1}}.svg" class="index"/>
+                                        </div>
+                                        <div class="col-xs-11">
+                                            <div ng-class="r.result.rating == 0 || r.result.rating == null ? '' : 'active'" class="col-xs-3 rating-img {{r.result.type}} {{r.result.cat}}">
+                                                <img ng-if="r.result.rating > 0" src="../../images/stars/1Stars.png" class=""/>
+                                                <img ng-if="r.result.rating == 0 || r.result.rating == null" src="../../images/stars/0Stars.png" class=""/>
+                                            </div>
+                                            <div ng-class="r.result.rating < 2 || r.result.rating == null ? '' : 'active'" class="col-xs-3 rating-img {{r.result.type}} {{r.result.cat}}">
+                                                <img ng-if="r.result.rating >= 2" src="../../images/stars/2Stars.png" class=""/>
+                                                <img ng-if="r.result.rating < 2 || r.result.rating == null" src="../../images/stars/0Stars.png" class=""/>
+                                            </div>
+                                            <div ng-class="r.result.rating < 3 || r.result.rating == null ? '' : 'active'" class="col-xs-3 rating-img {{r.result.type}} {{r.result.cat}}">
+                                                <img ng-if="r.result.rating >= 3" src="../../images/stars/3Stars.png" class=""/>
+                                                <img ng-if="r.result.rating < 3 || r.result.rating == null" src="../../images/stars/0Stars.png" class=""/>
+                                            </div>
+                                            <div ng-class="r.result.rating < 4 || r.result.rating == null ? '' : 'active'" class="col-xs-3 rating-img {{r.result.type}} {{r.result.cat}}">
+                                                <img ng-if="r.result.rating >= 4" src="../../images/stars/4Stars.png" class=""/>
+                                                <img ng-if="r.result.rating < 4 || r.result.rating == null" src="../../images/stars/0Stars.png" class=""/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="comment-box row" ng-if="r.result.comment !== undefined">
+                                        <div class="col-xs-11 col-xs-offset-1">
+                                            <span class="comment">Kommentar: {{r.result.comment}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Fachkompetenzen-->
+                <div ng-repeat="phase in allSubjectResults track by $index">
+                    <div ng-if="phase.phase == t.phase" class="col-xs-6">
+                        <div class="{{t.phase}}-result-box result-box">
+                            <div ng-repeat="r in phase.results | orderBy:'-type' track by $index">
+                                <div ng-if="r.result.phase == t.phase">
+                                    <div class="title-box row" ng-if="$first">
+                                        <div class="col-xs-1">
+                                            <img cng-if="r.result.type == 'own'" src="../../images/resultview/{{r.result.cat}}.svg" class="category category"/>
+                                        </div>
+                                        <div class="col-xs-11"><b>{{r.result.statement}}</b></div>
+                                    </div>
+                                    <div class="sub-title" ng-if="r.type == 'own' && $index == 0">
+                                        <b>Ich: </b> Meine Selbsteinschätzung/en
+                                    </div>
+                                    <div class="sub-title" ng-if="r.type == 'ext' && phase.results[$index-1].type == 'own'">
+                                        <p ng-if="countExternalAssesments == 1">
+                                            <b>Andere/r: </b> Fremdeinschätzung/en von
+                                            {{r.result.invitee.firstname != "" ? r.result.invitee.firstname : ""}} {{ r.result.invitee.lastname != "" ? r.result.invitee.lastname : ""}}
+                                            {{r.result.invitee.firstname == "" && r.result.invitee.lastname == "" ? r.result.invitee.mail : ""}}</p>
+                                        <p ng-if="countExternalAssesments > 1"><b>Andere/r: </b> Fremdeinschätzung/en von Anderen und anderen Personen</p>
+                                    </div>
+                                    <div class="rating-box row">
+                                        <div class="col-xs-1">
+                                            <img ng-if="r.result.type == 'own'" src="../../images/resultview/Zahlen_KWST-{{$index+1}}.svg" class="index"/>
+                                        </div>
+                                        <div class="col-xs-11">
+                                            <div ng-class="r.result.rating == 0 || r.result.rating == null ? '' : 'active'" class="col-xs-3 rating-img {{r.result.type}} {{r.result.cat}}">
+                                                <img ng-if="r.result.rating >= 1" src="../../images/stars/1Stars.png" class=""/>
+                                                <img ng-if="r.result.rating == 0  || r.result.rating == null" src="../../images/stars/0Stars.png" class=""/>
+                                            </div>
+                                            <div ng-class="r.result.rating < 2 || r.result.rating == null ? '' : 'active'" class="col-xs-3 rating-img {{r.result.type}} {{r.result.cat}}">
+                                                <img ng-if="r.result.rating >= 2" src="../../images/stars/2Stars.png" class=""/>
+                                                <img ng-if="r.result.rating < 2  || r.result.rating == null" src="../../images/stars/0Stars.png" class=""/>
+                                            </div>
+                                            <div ng-class="r.result.rating < 3 || r.result.rating == null ? '' : 'active'" class="col-xs-3 rating-img {{r.result.type}} {{r.result.cat}}">
+                                                <img ng-if="r.result.rating >= 3" src="../../images/stars/3Stars.png" class=""/>
+                                                <img ng-if="r.result.rating < 3  || r.result.rating == null" src="../../images/stars/0Stars.png" class=""/>
+                                            </div>
+                                            <div ng-class="r.result.rating < 4 || r.result.rating == null ? '' : 'active'" class="col-xs-3 rating-img {{r.result.type}} {{r.result.cat}}">
+                                                <img ng-if="r.result.rating >= 4" src="../../images/stars/4Stars.png" class=""/>
+                                                <img ng-if="r.result.rating < 4  || r.result.rating == null" src="../../images/stars/0Stars.png" class=""/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="comment-box row" ng-if="r.result.comment !== undefined">
+                                        <div class="col-xs-11 col-xs-offset-1">
+                                            <span class="comment">Kommentar: {{r.result.comment}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<!--<table class="result-table table col-xs-12"-->
+<!--style="background-color:white;">-->
+<!--<tr class="">-->
+<!--<td><h3>Kompetenzen</h3></td>-->
+
+<!--<td><h3>Selbsteinschätzungen</h3></td>-->
+
+<!--<td><h3>Fremdeinschätzungen</h3></td>-->
+<!--</tr>-->
+<!--&lt;!&ndash;| unique:'statement'&ndash;&gt;-->
+<!--&lt;!&ndash;{{allOwnResults | json}}&ndash;&gt;-->
+
+<!--<tr class="" ng-repeat="o in allOwnResults | unique:'statement'">-->
+
+<!--<td>-->
+<!--<div class="" data-ng-model="statement">-->
+<!--{{o.statement}}-->
+<!--</div>-->
+<!--</td>-->
+<!--<td class="text-center">-->
+<!--<div ng-repeat="o1 in allOwnResults">-->
+<!--<div class="text-left rating" ng-if="o1.id == o.id && o1.rating !== undefined">-->
+<!--<img src="../../images/stars/{{o1.rating}}Stars.png" class="ratingImg"/>-->
+<!--</div>-->
+<!--<div class="comment" ng-if="o1.id == o.id">-->
+<!--<span>{{o1.comment}}</span>-->
+<!--</div>-->
+<!--</div>-->
+<!--</td>-->
+<!--<td>-->
+<!--<div class="" ng-repeat="e in allExtResults">-->
+<!--<div class="text-left rating" ng-if="e.id == o.id">-->
+<!--<img src="../../images/stars/{{e.rating}}Stars.png" class="ratingImg"/>-->
+<!--</div>-->
+<!--<div class="comment" ng-show="e.comment" ng-if="(e.id == o.id)">-->
+<!--<span>{{e.comment}}</span>-->
+<!--</div>-->
+<!--</div>-->
+<!--</td>-->
+<!--</tr>-->
+
+<!--</table>-->
+<!--</div>-->
+
+<!--<a class="btn btn-danger print-btn" onclick="javascript:window.print();returnfalse" > PDF Erstellen </a>-->
+

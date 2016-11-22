@@ -1,0 +1,12 @@
+<div>
+    <!-- wird in jeden Tab gebunden und ist flexibel für jede Phase -->
+    <div class="row" ng-show="check.count[tab.phase] == 0">
+        <div class="col-xs-12">
+            <div style="margin: 15px auto; width: 95%" class="alert alert-info">
+                <p><strong>Hinweis</strong>: Für diese Arbeitsprozessphase sind keine Kompetenzbeschreibungen vorhanden.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Rendert die Kompetenzbeschreibungen -->
+    <kc-assess-ex ng-show="'check.count[tab.phase] > 0'" check="check" phase="{{ tab.phase }}" tabs="tabs"></kc-assess-ex>
+</div>

@@ -1,0 +1,42 @@
+<div>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="form-group">
+                <h4>Kurztitel des Auftrags</h4>
+
+                <p>{{ check.title }}</p>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <h4>Auftragsbeschreibung</h4>
+
+                <p>{{ check.description }}</p>
+                </span>
+            </div>
+        </div>
+    </div>
+    <h4>Kompetenzen</h4>
+
+    <div ng-repeat="p in phases">
+        <div ng-repeat="c in check.phrases | filter: {phase: p}">
+            <h5 ng-show="$first">{{ p == 'beginning' ? 'Auftragsanalyse' : p == 'planning' ? 'Planung' : p == 'operation' ? 'Durchführung' : 'Abschluss' }}</h5>
+            <p>
+            <span ng-switch on="c.cat">
+                <span ng-switch-when="f">
+                    <span class="fa-stack">
+                        <i class="fa fa-square-o fa-stack-2x"></i>
+                        <i class="fa fa-wrench fa-stack-1x"></i>
+                    </span>
+                </span>
+                <span ng-switch-when="s">
+                    <span class="fa-stack">
+                        <i class="fa fa-square-o fa-stack-2x"></i>
+                        <i class="fa fa-users fa-stack-1x"></i>
+                    </span>
+                </span>
+            </span>
+                Ich kann {{ c.statement }}.</p>
+        </div>
+    </div>
+</div>

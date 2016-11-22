@@ -1,0 +1,95 @@
+<h1>Changelog</h1>
+
+<h3>2015-02-10</h3>
+<ul>
+    <li>Aktuelle Visualisierungsdummies für die Auswertung</li>
+    <li>Neuer Formulierungsassistent für den Beruf Elektroniker Energie- und Gebäudesysteme</li>
+</ul>
+
+<h3>2014-09-15</h3>
+<ul>
+    <li>Helper fuer die Darstellung der Aktionsmoeglichkeiten im View erstellt und optimiert</li>
+        <li>Subdokumente fuer Invitations eingefuehrt</li>
+        <li>serverseitige Methoden daraufhin optimiert</li>
+        <li>Kennzeichnung von Einladungen zu Fremdeinschaetzungen als abgeschlossen und Auswertung im Dashboard zum Beginnen der Auswertung</li>
+</ul>
+
+<h3>2014-09-14</h3>
+<ul>
+    <li>Methode zum Ablehnen zugewiesener Checks implementiert.</li>
+</ul>
+
+
+<h3>2014-09-10</h3>
+<ul>
+    <li>Neue Seiten für "Lernziele" und "Partner" angelegt</li>
+    <li>Druckfunktion für Checks</li>
+    <li>Anzeige des Benutzernamens unter dem Beruf</li>
+    <li>Einige hardgecodete Benutzer auf der Partnerseite</li>
+    <li>Diese stehen beim Zuweisen unter "Partner" zur Auswahl</li>
+    <li>Zuweisen per Partner; Check wird ins Profil der Person kopiert, sofern diese vorhanden ist. Sie erhält noch keine Mail. Problem: Wenn Sie nicht vorhanden ist, gibt es eine Fehlermeldung.</li>
+    <li>User, der Check zugewiesen bekommen hat, muss diesen explizit annehmen oder ablehnen; annehmen funktioniert schon</li>
+    <li>Statusupdates für beide User - Zuweisender und Empfänger - werden geschrieben.</li>
+    <li>viele kleine Logikdinge im Dashboard zur Anzeige von Aktionsmöglichkeiten auf Basis verschiedener Zustände</li>
+</ul>
+
+<h3>2014-09-08</h3>
+<ul>
+    <li>Statusmeldungen für begonnene und abgeschlossene Fremdeinschätzung</li>
+</ul>
+
+<h3>2014-09-05</h3>
+<ul>
+    <li>Beide Dashboards überarbeitet</li>
+    <li>Ereignisse werden in die DB geschrieben und in den Statusupdates ausgewertet.</li>
+    <li>Optische Korrektur des Formulierungsformulars</li>
+    <li>Einbau von Info-Bubbles mit provisorischen Texten</li>
+</ul>
+
+<h3>2014-09-04</h3>
+<ul>
+    <li>Korrektes Wegspeichern der Daten beim Einladen zur Fremdeinschätzung</li>
+    <li>HTML-Dummy für die Übersicht der Lernenden</li>
+</ul>
+
+<h3>2014-09-03</h3>
+<ul>
+    <li>Enthaltung in der Fremdeinschätzung hinzugefügt</li>
+    <li>Kompetenzbeschreibungen in Fremdeinschätzungen verwenden den Vornamen des Einladenden</li>
+    <li>Spinner zur Anzeige von Serverkommunikation</li>
+    <li>Zwischenspeichern von Bewertungen in der Fremdeinschätzung; komplette Auslagerung von Fremdeinschätzungen in eine eigene Collection</li>
+</ul>
+
+
+<h3>2014-09-01</h3>
+<ul>
+    <li>Überarbeitung des Modals zum Zuweisen von Checks</li>
+    <li>Template-Caching eingerichtet für schnellere Response-Zeiten im Browser</li>
+    <li>Modal für das Importieren von Checks via Checknummer</li>
+    <li>Navigation ausgeblendet, wenn nicht eingeloggt</li>
+    <li>Anmeldung und Registrierung überarbeitet</li>
+</ul>
+
+<h3>2014-08-28</h3>
+<ul>
+    <li>Checks können Usern über die Mailadresse zugewiesen werden, mit der sie registriert sind.</li>
+    <li>Ansatz einer Historie für Selbst- und Fremdeinschätzungen im Dashboard</li>
+    <li>kleinere Fixes und weitere Umbau der Anwendung auf Services mit Restangular</li>
+    <li>Abfrage der Userinformationen in die run()-Methode verlegt</li>
+    <li>Überarbeitung der Registrierung, keine Rollen mehr, dafür ein Allgemeines Profil</li>
+    <li>Ändern der Berufsbezeichnung möglich</li>
+</ul>
+
+<h3>2014-08-27</h3>
+<ul>
+    <li>Eingabe eines Verwendungszwecks möglich</li>
+    <li>Anzeige des Verwendungszwecks im Dashboard</li>
+    <li>größeres Eingabefeld für die Auftragsbeschreibung</li>
+    <li>Einrichtung dieses Changelogs</li>
+    <li>Anzeigefehler des Formulars beim Eingeben von Kompetenzbeschreibungen korrigiert</li>
+    <li>Kompletter Umbau auf Restangular</li>
+    <li>Skinny Controller durch Auslagerung in den neuen CheckService (sieht man nicht im Frontend...)</li>
+    <li>Starten von Selbsteinschätzungen aus der Editieransicht möglich</li>
+</ul>
+
+

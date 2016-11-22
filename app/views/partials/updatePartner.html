@@ -1,0 +1,43 @@
+<div ng-include="'partials/header'"></div>
+<div ng-include="'partials/main-navigation'"></div>
+
+
+<div class="row-fluid title-row">
+    <div>
+        <h2 class="title">Partner/Partnerin bearbeiten</h2>
+    </div>
+</div>
+
+<div class="row-fluid entry-container list-view" ng-init="loadPartner()()">
+    <div class="row-fluid">
+        <div class="col-sm-6">
+            <form class="form-horizontal tags" novalidate="novalidate" ng-submit="savePartner()">
+                <input type="hidden" value="" ng-model="partnerId" name="partnerId"/>
+                <input type="hidden" value="" ng-model="username" name="username"/>
+                <div class="form-group">
+                    <label class="required" for="newPartnerFirstname">Vorname</label>
+                    <input class="form-control" placeholder="Vorname" type="text" id="newPartnerFirstname" name="newPartnerFirstname"
+                           required="required" ng-model="partnerFirstname"/>
+                </div>
+                <div class="form-group">
+                    <label class="required" for="newPartnerLastname">Nachname</label>
+                    <input class="form-control" placeholder="Nachname" type="text" id="newPartnerLastname" name="newPartnerLastname"
+                           required="required" ng-model="partnerLastname"/>
+                </div>
+                <div class="form-group">
+                    <label class="required" for="newPartnerEmail">E-Mail-Adresse</label>
+                    <input id="newPartnerEmail" placeholder="E-Mail-Adresse" name="newPartnerEmail" required="required" class="form-control" ng-model="partnerEmail"/>
+                </div>
+
+                <div class="pull-right form-group">
+                    <button class="btn btn-sm btn-primary" type="submit">Speichern</button>
+                    <a class="btn btn-danger" ng-href="/partners">
+                        Abbrechen
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

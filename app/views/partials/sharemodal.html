@@ -1,0 +1,20 @@
+<div class="modal sharemodal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <h3>Kompetenz-Check zuweisen</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="kc-sharemodal-tabs" ng-model="sharemodaltabs.activeTab" bs-tabs="sharemodaltabs"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button ng-click="$hide()" class="btn">Abbrechen</button>
+            </div>
+        </div>
+    </div>
+</div>

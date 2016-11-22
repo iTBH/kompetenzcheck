@@ -1,0 +1,60 @@
+<div ng-include="'partials/header'"></div>
+<div ng-include="'partials/main-navigation'"></div>
+
+<div class="row pull-right">
+    <a ng-show="runs.length>1" ng-disabled="(!kcForm.$valid || check.globalDirty)" class="btn btn-primary btn-sm"
+       href=""
+       ng-click="saveAssessment()">Selbsteinschätzung abschließen</a>
+    <a ng-show="runs.length<=1" ng-disabled="(!kcForm.$valid || check.globalDirty || check.totalOpen != 0) && check.runs.length == 1" class="btn btn-primary btn-sm"
+       href=""
+       ng-click="saveAssessment()">Selbsteinschätzung abschließen</a>
+    <a class="btn btn-danger btn-sm" href="" ng-click="cancelAssessment()">Abbrechen</a>
+    <button class="btn btn-info btn-sm help-aside-btn" ng-show="true" ng-click="showHelpAside('Hilfetext_Selbsteinschaetzung.html')">Hilfe</button>
+</div>
+
+<h2>{{model.view_title}}</h2>
+<div class="site-description-row">
+    Schätzen Sie hier auf Grundlage Ihrer Vorerfahrungen oder aktuellen Erlebnisse ein, wie gut Sie die beschriebenen Kompetenzen beherrschen.
+</div>
+<div ng-include="'partials/progress-track'"></div>
+<form role="form" name="kcForm">
+    <div class="row">
+        <div ng-if="check.title" class="check-information-row">
+            <label class="col-xs-3 editcheck-cols check-label-heading">Kurztitel des Checks</label>
+            <div class="col-xs-9 editcheck-cols">
+                <span>{{ check.title }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div ng-if="check.purpose" class="check-information-row">
+            <label class="col-xs-3 editcheck-cols check-label-heading">Verwendungszweck</label>
+
+            <div class="col-xs-9 editcheck-cols">
+                <span id="purpose">{{ check.purpose }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div ng-if="check.description" class="check-information-row">
+            <label class="col-xs-3 editcheck-cols check-label-heading">Auftragsbeschreibung</label>
+            <div class="col-xs-9 editcheck-cols">
+                <span>{{ check.description }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div ng-if="check.keywords" class="check-information-row">
+            <label for="keywords" class="col-xs-3 editcheck-cols check-label-heading">Schlagwörter</label>
+            <div class="col-xs-9 editcheck-cols" id="keywords">
+            <span ng-repeat="k in check.keywords">
+                {{ $last ? k : k + "," }}
+            </span>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="row">
+    <kc-tabs kc-tbs="tabConfig.tabs" ng-model="tabConfig.tabs.activeTab" check="check" subtemplate="assess"></kc-tabs>
+</div>

@@ -1,0 +1,257 @@
+<div ng-include="'partials/header'"></div>
+<div ng-include="'partials/main-navigation'"></div>
+<div class="row">
+    <div class="pull-left">
+        <h2 style="font-weight: 200;" ng-hide="getNumberOfChecks() == 0">Checks im Überblick</h2>
+    </div>
+    <div class="pull-right">
+        <a class="btn btn-sm btn-primary e2e-create" ng-href="check/new"><i class="glyphicon glyphicon-plus"></i> Check erstellen</a>
+        <a class="btn btn-sm btn-primary e2e-import" g-href=""
+           ng-click="openImportModal()" bs-tooltip="infotooltip['import']"><i class="glyphicon glyphicon-import"></i> Check importieren</a>
+        <button class="btn btn-info btn-sm help-aside-btn" ng-show="true" ng-click="showHelpAside('Hilfetext_Dashboard.html')">
+            Hilfe
+        </button>
+    </div>
+</div>
+
+<div ng-show="getNumberOfChecks() > 0" class="row">
+    <hr/>
+    <form class="form-inline">
+        <div class="kc-filter">
+            <div class="filter-element-keyword">
+                <select type="hidden" class="select-keyword form-control" ui-select2 multiple
+                        data-placeholder="Nach Schlagwörtern suchen" name="keywords" id="selectKeyword" data-ng-model="query.keywords">
+                    <option value=""></option>
+                    <option ng-repeat="k in allKeywords" value="{{k.name}}">{{k.name}}</option>
+                </select>
+                <div class="labels"></div>
+            </div>
+
+            <div class="filter-element-partner">
+                <select type="hidden" data-ng-model="query.addressees" name="Partner" data-placeholder="Nach Partnern und Partnerinnen suchen"
+                        ui-select2
+                        multiple class="select-partner form-control" id="selectPartner">
+                    <option value=""></option>
+                    <option ng-repeat="adr in uniqueNames" value="{{adr}}">{{adr}}</option>
+                </select>
+                <div class="labels"></div>
+            </div>
+            <div class="col-md-4 filter-element-check">
+                <label for="show-complete-checks">
+                    <input type="checkbox" name="showCompleteChecks" value="show" id="show-complete-checks"
+                           data-ng-model="complete">
+                    auch abgeschlossene Checks anzeigen </label>
+            </div>
+        </div>
+    </form>
+
+    <div class="row kc-table-th">
+        <div class="col-xs-7" style="margin-right: 62px;"><h4>Checks im Detail</h4></div>
+        <div class="col-xs-4"><h4>Aktionsmöglichkeiten</h4></div>
+    </div>
+</div>
+
+<!--<div class="col-xs-2 kc-facetten-navi" style="border: solid 1px;">-->
+<!--<ul>-->
+<!--<li class="filter-title"><span>Checks</span>-->
+<!--<ul class="nav nav-pills nav-stacked">-->
+<!--<li ng-repeat="t in checks | orderBy:predicate"><a href="#">{{ t.title }}</a></li>-->
+<!--</ul>-->
+<!--</li>-->
+<!--<li class="filter-title" style="margin-top: 10px"><span>Partner</span>-->
+<!--<ul class="nav nav-pills nav-stacked">-->
+<!--<li ng-repeat="p in partners"><a href="#">{{ p.firstname }}</a></li>-->
+<!--</ul>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+<div class="row kc-dashboard" ng-repeat="c in checks | byAll:query | orderBy:predicate" ng-hide="ifCheckCompleted(c) && !complete">
+    <div class="col-sm-7 check-details">
+        <div class="arrow-right pull-right"><img src="images/arrow-right.png"/></div>
+        <div class="pull-right kc-admin-actions">
+            <div class="pull-right" ng-hide="ifUserHasToDecideOnImport(c)">
+
+                <a ng-show="c.closed && !c.anonymize" class="btn btn-default" uib-tooltip="{{infotooltip['evaluation']}}" href="/resultview/{{c._id}}"><i class="fa fa-lg fa-tasks"></i></a>
+
+                <!--<a class="btn btn-default" title="PDF" href="/PDFExport/{{c._id}}"><i class="fa fa-lg fa-file-pdf-o"></i></a>-->
+
+                <a class="btn btn-default" ng-show="ifNotLocked(c) && ifNotAssignedTo(c)" uib-tooltip="{{infotooltip['edit']}}"
+                   href="check/{{ c._id }}"><i class="fa fa-lg fa-edit"></i></a>
+
+                <a class="btn btn-default" ng-show="ifLocked(c) || ifAssignedTo(c)" uib-tooltip="{{infotooltip['view']}}"
+                   href="check-view/{{ c._id }}"><i class="fa fa-fw fa-eye"></i></a>
+
+                <a class="btn btn-default" uib-tooltip="{{infotooltip['duplicate']}}" href="" ng-click="duplicateCheck(c)"><i
+                        class="fa fa-lg fa-copy"></i></a>
+
+                <a class="btn btn-default" uib-tooltip="{{infotooltip['delete']}}" href="" ng-click="removeCheck(c)"><i
+                        class="fa fa-trash-o fa-lg"></i></a>
+
+                <a class="pull-right btn btn-info btn-sm help-aside-btn" ng-show="cueExists('/dashboard')"
+                   ng-click="showHelpAside('Hilfetext_Dashboard_Check.html')"
+                   style="margin-left:10px; width:39px">Hilfe</a>
+            </div>
+
+        </div>
+
+        <!--<h5 class="assigned-to partners" name="partners" ng-repeat="u in c.updates" ng-show="u.addressee"> Für:-->
+        <!--{{u.addressee}}</h5>-->
+
+        <h5 class="check-title"><span class="title">Titel des Checks:</span> {{ c.title }}</h5>
+
+        <p class="check-purpose">
+            <span class="title">Verwendungszweck:</span><br>{{ c.purpose }}
+        </p>
+
+        <p class="check-description">
+            <span class="title">Auftragsbeschreibung:</span><br>{{ c.description }}
+        </p>
+
+        <ul class="updates">
+
+            <li class="alert" ng-repeat="u in c.updates">
+                <!--ng-class="{ 'alert-warning': u.perspective == 'me', 'alert-info': u.perspective == 'they' }"-->
+                <span class="pull-left badge" bs-tooltip="u.date | date:'HH:mm \' Uhr\''" data-animation="am-flip-x">{{ u.date | date:'dd.MM.yyyy' }}</span>
+
+                <p ng-bind-html="getEventText(u)"></p>
+                <a ng-show="$first" onclick="jQuery(this).closest('.updates').toggleClass('open');" class="pull-right">
+                    <i class="icon-open fa fa-lg fa-chevron-down"></i>
+                    <i class="icon-close fa fa-lg fa-chevron-left"></i>
+                </a>
+            </li>
+        </ul>
+
+        <span class="keyword-container" ng-repeat="key in c.keywords" value="{{key}}">
+            {{key}}
+          </span>
+
+    </div>
+    <div class="col-sm-4 kc-actionslot" style="border: solid 1px;">
+        <div class="arrow-right"><img src="images/arrow-right.png"/></div>
+        <div class="kc-actionslot-container">
+            <ul class="kc-possible-actions">
+                <!-- Import akzeptieren -->
+                <li class="alert kc-recommendation"
+                    ng-show="ifUserHasToDecideOnImport(c)">
+                    <a ng-click="acceptAssignment(c)">
+                        <div uib-tooltip="{{infotooltip['accept']}}" class="action-box-element">
+                            <span class="fa fa-3x fa-plus-square"></span>
+                            <span>Zugewiesenen Check annehmen</span>
+                        </div>
+                    </a>
+                </li>
+                <!-- Import ablehnen -->
+                <li class="alert kc-recommendation"
+                    ng-show="ifUserHasToDecideOnImport(c)">
+                    <a ng-click="rejectAssignment(c)">
+                        <div uib-tooltip="{{infotooltip['reject']}}" class="action-box-element">
+                            <span class="fa fa-3x fa-ban"></span>
+                            <span>Zugewiesenen Check ablehnen</span>
+                        </div>
+                    </a>
+                </li>
+                <!-- Selbsteinschätzung vornehmen -->
+                <li class="alert kc-recommendation"
+                    ng-show="ifNotClosed(c) && ifNotAssignedTo(c)"
+                    ng-hide="ifUserHasToDecideOnImport(c) || ifClosed(c) || ifTwoPersonalRunsDone(c)">
+                    <a href="assess/{{ c._id }}">
+                        <div uib-tooltip="{{infotooltip['firstself']}}" ng-show="c.runs.length == 0" class="action-box-element">
+                            <span class="fa fa-3x fa-dot-circle-o"></span>
+                            <span>Selbsteinschätzung durchführen</span>
+                        </div>
+                        <div uib-tooltip="{{infotooltip['otherself']}}" ng-show="c.runs.length > 0" class="action-box-element">
+                            <span class="fa fa-3x fa-dot-circle-o"></span>
+                            <span>Weitere Selbsteinschätzung durchführen</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="alert kc-recommendation"
+                    ng-show="ifNotClosed(c) && ifNotAssignedTo(c) && ifTwoPersonalRunsDone(c)">
+                    <a href="assess/{{ c._id }}">
+                        <div ng-show="c.runs.length > 1" class="action-box-element">
+                            <span class="fa fa-3x fa-dot-circle-o"></span>
+                            <span>Selbsteinschätzung bearbeiten</span>
+                        </div>
+                    </a>
+                </li>
+                <!-- Zur Fremdeinschätzung einladen -->
+                <li class="alert kc-recommendation" ng-show="ifLocked(c) && ifNotClosed(c) && c.invitations.length < 2">
+                    <a href="" ng-click="openInviteModal(c)">
+                        <!--<i class="fa fa-lg fa-thumbs-up"></i>-->
+                        <div uib-tooltip="{{infotooltip['firstinviteexass']}}" ng-show="c.invitations.length == 0" class="action-box-element">
+                            <span class="fa fa-3x fa-envelope-square"></span>
+                            <span>Jemanden zu einer Fremdeinschätzung einladen</span>
+                        </div>
+                        <div ng-show="c.invitations.length > 0" class="action-box-element">
+                            <span class="fa fa-3x fa-envelope-square"></span>
+                            <span>Eine weitere Person zu einer Fremdeinschätzung einladen</span>
+                        </div>
+                    </a>
+                </li>
+                <!-- Check zuweisen -->
+                <li class="alert kc-recommendation" ng-show="ifNotLocked(c) && !(!c.accepted && c.assignedFrom)">
+                    <a href="" ng-click="openShareModal(c)">
+                        <div uib-tooltip="{{infotooltip['assigncheck']}}" class="action-box-element">
+                            <span class="fa fa-3x fa-envelope-square"></span>
+                            <span>Check zuweisen</span>
+                        </div>
+                    </a>
+                </li>
+                <!-- Einschätzungen abschließen -->
+                <li class="alert kc-recommendation"
+                    ng-show="ifLocked(c) && ifNotClosed(c) && ifAtLeastOneRun(c)">
+                    <a href="" ng-click="stopRunning(c)">
+                        <i class="fa fa-lg fa-bolt"></i>
+                        <span><i bs-tooltip="infotooltip['stoprunning']"
+                                 class="fa fa-3x fa-lock"></i>Alle Einschätzungen abschließen: Auswertung beginnen </span>
+                    </a>
+                </li>
+                <!-- Zur Auswertung -->
+                <li class="alert kc-recommendation" ng-show="c.closed && !c.anonymize">
+                    <a href="resultview/{{ c._id }}">
+                        <div uib-tooltip="{{infotooltip['goevaluate']}}"  class="action-box-element">
+                            <span class="fa fa-2x fa-bar-chart-o"></span>
+                            <span>Check-Auswertung betrachten</span>
+                        </div>
+                    </a>
+                </li>
+                <!--<li class="alert kc-recommendation" ng-show="c.closed">-->
+                <!--<a href="" >-->
+                <!--<i class="fa fa-2x fa-clock-o"></i>-->
+                <!--<span><i bs-tooltip=""-->
+                <!--class=""></i>Auf das Abschlussgespräch vorbereiten</span>-->
+                <!--</a>-->
+                <!--</li>-->
+                <!--<li class="alert kc-recommendation" ng-show="c.closed">-->
+                <!--<a href="" >-->
+                <!--<i class="fa fa-2x fa-graduation-cap"></i>-->
+                <!--<span><i bs-tooltip=""-->
+                <!--class=""></i>Abschlussgespräch geführt (anonymisieren).</span>-->
+                <!--</a>-->
+                <!--</li>-->
+                <li class="alert kc-recommendation" ng-show="c.closed && !c.anonymize">
+                    <a href="" ng-click="anonymizeCheck(c)">
+                        <div uib-tooltip="{{infotooltip['finish']}}" class="action-box-element">
+                            <span class="fa fa-2x fa-graduation-cap"></span>
+                            <span>Auswertungsgespräch geführt: Check beenden</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div style="clear: both;" ng-show="getNumberOfChecks() == 0">
+    <div class="row" style=" margin-top: 105px;">
+        <div class="col-xs-9">
+            <h3>Was ist der Kompetenzcheck und wofür kann ich ihn nutzen?</h3>
+
+            <p>Willkommen im Kompetenz-Check der Kompetenzwerkstatt - Mein Beruf. Der Kompetenz-Check begleitet Sie in der
+                Erfassung und Förderung von Handlungskompetenzen in betrieblichen Lern- und Arbeitsprozessen. Durch die
+                Gegenüberstellung von Selbst- und Fremdeinschätzung werden eigene Kompetenzen bewusst gemacht und mit
+                individuellen Entwicklungszielen verknüpft. Legen Sie einen Kompetenz-Check an, schätzen Sie Ihre Stärken ein,
+                oder geben Sie einer weiteren Person Feedback im Arbeitsprozess.</p>
+        </div>
+    </div>
+</div>

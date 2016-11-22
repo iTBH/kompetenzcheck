@@ -1,0 +1,44 @@
+<div class="col-sm-12">
+    <ul class="nav nav-tabs">
+        <li ng-repeat="tab in tabs" ng-class="{active: $index == active, 'no-click': check.count[tab.phase] == 0 && page != 'check'}">
+            <a data-toggle="tab" ng-click="check.count[tab.phase] == 0 && subtemplate != 'edit' ? '' : setActive($index, $event)" data-index="{{$index}}">
+                {{ tab.title }}
+                <span ng-if="subtemplate == 'assess'">
+                        <!--<span>-->
+                    <!--<span class="badge pull-right" id="{{tab}}">{{ tab.count }}</span>-->
+                    <!--</span>-->
+                        <span ng-if="tab.count > 0 ">
+                            <span class="badge pull-right">{{ tab.count }}</span>
+                        </span>
+                        <span ng-if="check.count[tab.phase] == 0">
+                            <span class="badge pull-right">0</span>
+                        </span>
+                        <span ng-if="tab.count == 0 && check.count[tab.phase] != 0">
+                         <i class="fa fa-fw fa-check pull-right"></i>
+                        </span>
+                    </span>
+
+                <span ng-if="subtemplate == 'edit'">
+                        <span class="badge pull-right">{{ check.count[tab.phase] }}</span>
+                    </span>
+                <span ng-if="subtemplate == 'edit'">
+                        <button uib-tooltip="{{infotooltip['add_competence']}}"
+                                tooltip-placement="left"
+                                ng-disabled="check.globalDirty" ng-hide="check.locked || check.assignedTo.length > 0"
+                                class="btn btn-primary btn-sm pull-right"
+                                style="margin-right: 10px" type="button"
+                                ng-click="addCompetence($index, null, tab.phase)">
+                                <i class="fa fa-lg fa-plus-square"> </i>
+                        </button>
+                </span>
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div ng-repeat="tab in tabs"
+             class="tab-pane"
+             ng-class="[$index == active ? 'active' : '']"
+             ng-include="'partials/tab-' + subtemplate + '.html'">
+        </div>
+    </div>
+</div>

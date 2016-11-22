@@ -1,0 +1,104 @@
+<div ng-include="'partials/header'"></div>
+<div ng-include="'partials/main-navigation'"></div>
+<div class="partners">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="pull-left">
+                <h2>Check-Partner und Partnerinnen</h2>
+            </div>
+            <div class="pull-right">
+                <button class="btn btn-info btn-sm help-aside-btn" ng-show="true" ng-click="showHelpAside('Hilfetext_Partner_und_Partnerinnen.html')">
+                    Hilfe
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row site-description-row">
+        <div class="col-sm-12">
+            <p>Hier können Sie neue Kompetenz-Checkpartner und -Partnerinnen anlegen, die Angaben vorhandener Partner und Partnerinnen bearbeiten oder löschen.
+                Als Partner und Partnerin gelten Personen,
+                denen Sie einen Check zuweisen möchten bzw. von denen Sie bereits einen Check zugewiesen bekommen haben, oder eine Einladung zu einer
+                Fremdeinschätzung zusenden möchten bzw. bereits erhalten
+                haben.</p>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-xs-5">
+            <h3>Neuer Partner/Partnerin</h3>
+        </div>
+
+        <div class="col-xs-7">
+            <h3>Vorhandene Partner/Partnerinnen bearbeiten</h3>
+        </div>
+
+    </div>
+
+    <div class="row" style="">
+        <div class="col-xs-5" id="partnerColLeft">
+            <form novalidate="novalidate" ng-submit="savePartner()">
+                <div class="form-inline keyword-form form-horizontal tags">
+                    <div class="row" style="">
+                        <label for="partnerFirstname" class="col-xs-4">Vorname</label>
+                        <div class="col-xs-6">
+                            <input type="text" placeholder="Vorname" name="partnerFirstname" class="form-control full-width" id="partnerFirstname" required
+                                   ng-model="partnerFirstname"/>
+                        </div>
+                    </div>
+                    <div class="row" style="">
+                        <label for="partnerLastname" class="col-xs-4">Nachname</label>
+                        <div class="col-xs-6">
+                            <input type="text" placeholder="Nachname" name="partnerLastname" class="form-control full-width" id="partnerLastname" required
+                                   ng-model="partnerLastname"/>
+                        </div>
+                    </div>
+                    <div class="row" style="">
+                        <label for="email" class="col-xs-4">E-Mail-Adresse</label>
+                        <div class="col-xs-6">
+                            <input name="email" placeholder="E-Mail-Adresse" type="text" class="form-control full-width" id="email" required ng-model="partnerEmail"/>
+                        </div>
+                    </div>
+                    <div class="row" style="">
+                        <div class="col-xs-10">
+                            <input type="submit" value="Speichern" class="btn btn-sm btn-primary pull-right"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-xs-7" id="partnerColRight">
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-hover table-striped partner-table">
+                        <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>E-Mail-Adresse</td>
+                            <td>Aktion</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="partner in partners | orderBy:predicate">
+                            <td>
+                                {{ partner.firstname + " " + partner.lastname}}
+                            </td>
+
+                            <td>
+                                {{partner.email}}
+                            </td>
+                            <td>
+                                <div class="tag actions">
+                                    <a ng-href="/updatePartner/{{partner._id}}"><i uib-tooltip="{{infotooltip['edit']}}" class="fa fa-pencil-square-o" aria-hidden="true"></i></a> |
+                                    <a href="" class="" ng-click="removePartner(partner._id)"><i uib-tooltip="{{infotooltip['delete']}}" class="fa fa-trash-o fa-lg"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

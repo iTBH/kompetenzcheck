@@ -1,0 +1,160 @@
+<div ng-include="'partials/header'"></div>
+<div ng-include="'partials/main-navigation'"></div>
+<!--<a class="pull-right btn btn-info btn-sm help-aside-btn" ng-click="showHelpAside()" style="margin-left: 10px" ng-show="cueExists('/check/new') || cueExists('/check/:id')">-->
+<!--Hilfe-->
+<!--</a>-->
+<div class="row" ng-show="!check.locked && !check.assignedTo.length">
+    <div class="col-sm-12">
+        <div class="pull-left">
+            <h2>Check {{view_title}}</h2>
+        </div>
+        <div class="pull-right">
+            <button ng-disabled="!kcForm.$valid || !sharable || check.globalDirty" class="btn btn-primary btn-sm"
+                    ng-click="saveCheck()">Checkerstellung abschließen
+            </button>
+            <a class="btn btn-danger btn-sm" href="" ng-click="cancelCheck()">Abbrechen</a>
+
+            <button class=" btn btn-info btn-sm help-aside-btn" ng-show="true" ng-click="showHelpAside('Hilfetext_Check_erstellen.html')">Hilfe</button>
+        </div>
+    </div>
+</div>
+<div class="row pull-right" ng-show="check.locked || check.assignedTo.length > 0">
+    <!--<a ng-show="!check.locked && !check.assignedTo.length" ng-disabled="!kcForm.$valid || !sharable || check.globalDirty"-->
+    <!--class="btn btn-primary btn-sm pull-right" style="margin-left: 10px; background-color: #E7A123"-->
+    <!--ng-click="assess(check._id || 'new')">Selbsteinschätzung starten</a>-->
+    <!--<a ng-show="!check.locked && !check.assignedTo.length" ng-disabled="!kcForm.$valid || !sharable || check.globalDirty"-->
+    <!--class="btn btn-primary btn-sm pull-right" style="margin-left: 10px; background-color: #689901"-->
+    <!--ng-click="openShareModal(check)">Check zuweisen</a>-->
+    <a href="/dashboard" class="btn btn-sm btn-danger">Zurück</a>
+    <a title="Check drucken"
+       href="print/{{ check._id }}" target="_blank"
+       class="btn btn-primary btn-sm"><i class="fa fa-fw fa-print"></i> Drucken</a>
+</div>
+
+<div class="site-description-row">
+    Legen Sie hier einen Kompetenz-Check an. Dieser umfasst eine ausführliche Beschreibung des Arbeitsauftrags und zugehörige Kompetenzbeschreibungen.
+</div>
+<div ng-include="'partials/progress-track'"></div>
+
+
+<form role="form" name="kcForm" class="col-xs-12">
+    <div class="row form-horizontal editcheck">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-12">
+                    <label for="title" class="col-xs-3 editcheck-cols check-label-heading">Kurztitel des Checks <i bs-tooltip="infotooltip['title']" class="fa fa-question-circle"
+                                                                                                                   aria-hidden="true"></i></label>
+
+                    <div class="col-xs-9 editcheck-cols">
+                        <input ng-disabled="check.globalDirty" ng-show="!check.locked && !check.assignedTo.length" required
+                               class="form-control"
+                               name="inputTitle" id="title" type="text" ng-required="true" ng-model="check.title"
+                               placeholder="Wie lautet der Arbeitsauftrag, der dem Check zugrunde liegt? "/>
+
+                        <p ng-show="check.locked || check.assignedTo.length > 0">{{ check.title }}</p>
+                        <span ng-show="kcForm.inputTitle.$dirty && kcForm.inputTitle.$invalid" class="error help-inline">
+                    Eingabe erforderlich.
+                </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label for="purpose" class="col-xs-3 editcheck-cols check-label-heading">Verwendungszweck <i bs-tooltip="infotooltip['usage']" class="fa fa-question-circle" aria-hidden="true"></i></label>
+                    <div class="col-xs-9 editcheck-cols">
+                        <input
+                                ng-disabled="check.globalDirty"
+                                ng-show="!check.locked && !check.assignedTo.length"
+                                class="form-control"
+                                name="inputPurpose"
+                                id="purpose"
+                                type="text"
+                                ng-model="check.purpose"
+                                placeholder="Mit welchem Ziel wird der Check durchgeführt? "/>
+
+                        <p ng-show="check.locked || check.assignedTo.length > 0">{{ check.purpose }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label for="description" class="col-xs-3 editcheck-cols check-label-heading">Auftragsbeschreibung <i bs-tooltip="infotooltip['description']" class="fa fa-question-circle"
+                                                                                                                         aria-hidden="true"></i></label>
+                    <div class="col-xs-9 editcheck-cols">
+                <textarea
+                        ng-disabled="check.globalDirty"
+                        ng-show="!check.locked && !check.assignedTo.length"
+                        required="required"
+                        class="span12 form-control"
+                        name="inputDescription"
+                        id="description"
+                        ng-required="true"
+                        ng-model="check.description"
+                        placeholder="Beschreiben Sie hier den Arbeitsauftrag ausführlich."
+                        rows="3">
+                </textarea>
+                        <p ng-show="check.locked || check.assignedTo.length > 0">{{ check.description }}</p>
+                        <span ng-show="kcForm.inputDescription.$dirty && kcForm.inputDescription.$invalid"
+                              class="error help-inline">
+                    Eingabe erforderlich.
+                </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label for="keywords" class="col-xs-3 editcheck-cols check-label-heading">Schlagwörter</label>
+                    <div class="col-xs-6 editcheck-cols">
+                        <div ng-show="!check.locked && !check.assignedTo.length">
+                            <select ng-disabled="check.globalDirty"
+                                    data-placeholder="Schlagwort hinzufügen..."
+                                    multiple="multiple"
+                                    class="select-partner form-control"
+                                    ng-show="!check.locked && !check.assignedTo.length"
+                                    name="keywords"
+                                    id="keywords"
+                                    ng-model="check.keywords">
+                                <option ng-repeat="k in allKeywords" on-finish-render="ngKeywordsReady" selected="selected"
+                                        value="{{k.name}}">{{k.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div ng-show="check.locked || check.assignedTo.length">
+                            <span ng-repeat="k in check.keywords">
+                                {{ $last ? k : k + "," }}
+                            </span>
+                        </div>
+                    </div>
+                    <!--<div class="col-xs-3 editcheck-cols" ng-show="!check.locked && !check.assignedTo.length">-->
+                    <!--<div class="col-xs-7">-->
+                    <!--<label for="vorlage">Als Vorlage speichern</label>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-1">-->
+                    <!--<input type="checkbox" class="form-control" name="vorlage" id="vorlage" ng-model="vorlage" on-finish-render="ngKeywordsReady"/>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!--<div class="pull-right" style="padding-top: 7px">-->
+<!--<button ng-disabled="check.globalDirty" ng-hide="check.locked || check.assignedTo.length > 0"-->
+<!--class="btn btn-primary btn-sm sub pull-right"-->
+<!--style="margin-left: 10px" type="button"-->
+<!--ng-click="addCompetence(null, tabConfig.tabs[tabConfig.tabs.activeTab].phase)"><i-->
+<!--class="fa fa-lg fa-plus-square"> </i> Kompetenz hinzufügen-->
+<!--</button>-->
+<!--<span><button ng-show="!check.locked && !check.assignedTo.length" ng-disabled="check.globalDirty"-->
+<!--class="btn btn-danger btn-sm sub pull-right"-->
+<!--type="button" ng-click="openGenerator()">Assistent verwenden-->
+<!--</button></span>-->
+<!--</div>-->
+<div class="row">
+    <div class="col-sm-12">
+        <h3>Kompetenzbeschreibungen</h3>
+    </div>
+    <!--<div bs-tabs="tabs" ng-model="tabs.activeTab"></div>-->
+    <kc-tabs kc-tbs="tabConfig.tabs" ng-model="tabConfig.tabs.activeTab" check="check" subtemplate="edit"></kc-tabs>
+</div>
