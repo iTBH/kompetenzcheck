@@ -33,12 +33,14 @@ angular.module('desktopApp')
         }
 
         $scope.$on('ngKeywordsReady', function () {
+
             $('#keywords').select2({
                 theme: "default",
                 multiple: true,
                 placeholder: "Schlagwort hinzufügen...",
                 minimumResultsForSearch: 1,
                 tags: true,
+                results: $scope.check.keywords,
                 createTag: function (tag) {
                     return {
                         id: tag.term,
@@ -111,7 +113,6 @@ angular.module('desktopApp')
                 // Das Array kommt in einem Objekt vom Server. Hier wird
                 // es aufgeteilt
                 $scope.check = check;
-
 
                 /**
                  * Hilfe anzeigen

@@ -16,7 +16,11 @@
                     class="btn btn-danger action btn-sm pull-right"><i class="fa fa-fw fa-sliders"></i></button>
             <!--<span style="margin-right: 20px; font-size: 18px"-->
             <!--class="badge badge-primary pull-right">{{ c.rating }}</span>-->
-            <div class="pull-right show-rating-container">
+            <div class="pull-right" style="margin-top: -7px;" ng-click="assessCompetence(c)">
+                <img ng-show="{{c.noRating}}" src="images/stars/no-stars-active.png" style="height: 27px;padding-right: 10px;">
+                <img ng-show="{{!c.noRating}}" src="images/stars/no-stars.png" style="height: 27px;padding-right: 10px;">
+            </div>
+            <div class="pull-right show-rating-container" ng-click="assessCompetence(c)">
                 <input class="show-rating" on-finish-count-ex-ratings="ngExCountingReady"
                        data-min="0" data-max="4" data-step="1" data-stars=4
                        data-ng-value="{{c.rating}}"/>

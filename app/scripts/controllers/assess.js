@@ -185,15 +185,12 @@ angular.module('desktopApp')
                 var wrappedQueryResult = angular.element(".rating-stars");
                 angular.forEach(wrappedQueryResult, function (run1, key1) {
                     angular.element(run1).attr('data-content', "");
-
                 });
 
                 wrappedQueryResult = angular.element(".rating-container");
                 angular.forEach(wrappedQueryResult, function (run1, key1) {
-                    // if (!run1.querySelector('.pseudo-clickable')) {
-                    //     var temp = $compile('<div class="pseudo-clickable" ng-click="assessCompetence(c, c.rating)">XXX</div>')(scope);
-                    //     angular.element(run1).prepend(temp);
-                    // }
+                    var temp = $compile('<div style="opacity: 0" class="pseudo-clickable" ng-click="clickButton($event.target); $event.stopPropagation();">A</div>')(scope);
+                    angular.element(run1).prepend(temp);
                     angular.element(run1).attr('data-content', "");
                 });
             });

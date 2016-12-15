@@ -157,15 +157,15 @@ angular.module('desktopApp')
                             CheckService.duplicateCheck(new_check)
                                 .then(
                                     function (response) {
-
                                         Flash.addMessage({kindof: 'success', text: response.message});
                                         var c_id = response.data._id;
-                                        window.location = "check/" + c_id;
 
                                         CheckService.getChecks()
                                             .then(
                                                 function (checks) {
                                                     $scope.checks = checks;
+                                                    window.location = "check/" + c_id;
+
                                                 },
                                                 function (err) {
                                                     Flash.addMessage({kindof: 'danger', text: 'Es ist ein Fehler aufgetreten.'});

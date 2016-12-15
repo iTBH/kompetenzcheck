@@ -272,7 +272,7 @@ angular.module('desktopApp')
 
         }
     }
-}).directive('onFinishCountExRatings', function ($timeout) {
+}).directive('onFinishCountExRatings', function ($timeout, $compile) {
     return {
         restrict: 'A',
         link: function (scope, element, attr) {
@@ -290,6 +290,8 @@ angular.module('desktopApp')
 
                 wrappedQueryResult = angular.element(".rating-container");
                 angular.forEach(wrappedQueryResult, function (run1, key1) {
+                    var temp = $compile('<div style="opacity: 0" class="pseudo-clickable" ng-click="clickButton($event.target); $event.stopPropagation();">A</div>')(scope);
+                    angular.element(run1).prepend(temp);
                     angular.element(run1).attr('data-content', "");
                 });
             });

@@ -1,6 +1,6 @@
-<div ng-repeat="c in check.runs[0].phrases | filter:{phase: phase }">
+<div class="assess-page" ng-repeat="c in check.runs[0].phrases | filter:{phase: phase }">
     <div ng-if="!c.dirty">
-        <div style="padding: 10px 15px" class="check-row" ng-click="assessCompetence(c, c.rating)">
+        <div style="padding: 10px 15px" class="check-row">
             <span ng-switch on="c.cat">
                 <span ng-switch-when="f"><span class="fa-stack fa-lg pull-left">
                                             <i class="fa fa-square-o fa-stack-2x"></i>
@@ -13,10 +13,10 @@
             </span>
             <div ng-if="secondRun.phrases">
                 <div ng-repeat="r in secondRun.phrases" ng-if="c.id == r.id" ng-init="c.rating = r.rating">
-                    <button ng-disabled="check.globalDirty" title="Kompetenz einschätzen" ng-click="assessCompetence(c, r.rating)"
+                    <button ng-disabled="check.globalDirty" title="Kompetenz einschätzen"
                             class="btn btn-danger action btn-sm pull-right"><i class="fa fa-fw fa-sliders"></i></button>
                     <!--<span style="margin-right: 20px; font-size: 18px" class="badge badge-primary pull-right">{{ c.rating }}</span>-->
-                    <div class="pull-right show-rating-container">
+                    <div class="pull-right show-rating-container" ng-click="assessCompetence(c, c.rating)">
                         <input class="show-rating" on-finish-count-ratings="ngCountingReady"
                                data-min="0" data-max="4" data-step="1" data-stars=4
                                data-ng-value="{{c.rating}}"/>
@@ -27,7 +27,7 @@
                 <button ng-disabled="check.globalDirty" title="Kompetenz einschätzen" ng-click="assessCompetence(c, c.rating)"
                         class="btn btn-danger action btn-sm pull-right"><i class="fa fa-fw fa-sliders"></i></button>
                 <!--<span style="margin-right: 20px; font-size: 18px" class="badge badge-primary pull-right">{{ c.rating }}</span>-->
-                <div class="pull-right show-rating-container">
+                <div class="pull-right show-rating-container" ng-click="assessCompetence(c, c.rating)">
                     <input class="show-rating" on-finish-count-ratings="ngCountingReady"
                            data-min="0" data-max="4" data-step="1" data-stars=4
                            data-ng-value="{{c.rating}}"/>

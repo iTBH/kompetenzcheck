@@ -10,7 +10,7 @@ angular.module('desktopApp')
             templateUrl: 'partials/kcAssess.html',
             restrict: 'EA',
             replace: true,
-            controller: function ($scope, $element, $attrs, $transclude, $modal, Help, $location, $routeParams) {
+            controller: function ($scope, $element, $attrs, $transclude, $modal, Help, $location, $routeParams, $timeout) {
                 $scope.xhrloader = AssessService.getSingleCheck($routeParams.id)
                     .then(function (check) {
                         $scope.secondRun = check.runs[1];
@@ -102,6 +102,7 @@ angular.module('desktopApp')
                  * @param c
                  */
                 $scope.assessCompetence = function (c, cRating) {
+
                     if (cRating == null) {
                         c.rating = 0;
                     } else {
@@ -200,6 +201,12 @@ angular.module('desktopApp')
                     $scope.check.globalDirty = false;
                 };
 
+                $scope.clickButton = function (elem, $event) {
+                    $timeout(function () {
+                        angular.element(elem).parent().parent().parent().trigger('click');
+                    }, 0);
+                };
+
                 // Die Funktionen *extendCheckForRun* und *countTotalOpen*
                 // müssen in der folgenden Reihenfolge definiert und aufgerufen werden!
 
@@ -255,4 +262,5 @@ angular.module('desktopApp')
             }
         };
 
-    }]);
+    }])
+;

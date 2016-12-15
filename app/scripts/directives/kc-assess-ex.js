@@ -11,7 +11,7 @@ angular.module('desktopApp')
             templateUrl: 'partials/kcAssessEx.html',
             restrict: 'EA',
             replace: true,
-            controller: function ($scope, $element, $attrs, $transclude, $location, $modal, Help, $routeParams) {
+            controller: function ($scope, $element, $attrs, $transclude, $location, $modal, Help, $routeParams, $timeout) {
                 // Globale zur Überwachung, ob alle Formulierungen behandelt wurden.
                 $scope.check.totalOpen = 0;
 
@@ -252,6 +252,12 @@ angular.module('desktopApp')
                     $scope.countTotalOpen();
 
                 });
+
+                $scope.clickButton = function (elem, $event) {
+                    $timeout(function () {
+                        angular.element(elem).parent().parent().parent().trigger('click');
+                    }, 0);
+                };
 
                 $scope.resetStars = function (c) {
                     $('.rating').rating('clear');
