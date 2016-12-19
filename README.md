@@ -19,7 +19,7 @@ Beispiel: WEB.DE
 ```
 
 Anschließend öffnen Sie die Eingabeaufforderung, navigieren in ihr ausgewähltes Verzeichnis und starten das Dockerprojekt mit den folgenden Befehlen:
-```sh
+```
 C:\Users\Benutzer>cd kompetenzcheck
 C:\Users\Benutzer\kompetenzcheck>docker-compose up -d
 ```
