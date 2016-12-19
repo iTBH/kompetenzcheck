@@ -5,10 +5,12 @@ services:
     image: itbh/kompetenzcheck
     ports:
       - 80:80
-    env_file:
-      - .env
     environment:
       - MONGO_HOST=mongo
+      - SMTP_HOST=smtp.example.com
+      - SMTP_PORT=587
+      - SMTP_EMAIL=mail@example.com
+      - SMTP_PASSWORD=secret
     links:
       - mongo
 
