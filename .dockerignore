@@ -1,7 +1,6 @@
 .git
 .gitignore
 .env
-LICENSE
 VERSION
 README.md
 docker-compose.yml
