@@ -24,3 +24,7 @@ C:\Users\Benutzer>cd kompetenzcheck
 C:\Users\Benutzer\kompetenzcheck>docker-compose up -d
 ```
 Nach einigen Sekunden können Sie nun das Kompetenzcheck-Tool im Browser unter der Adresse http://127.0.0.1/ erreichen.
+
+## Notes
+
+Diese Datei wurde am 09.02.2017 geändert, um den automatischen Build bei DockerHub zu testen.
