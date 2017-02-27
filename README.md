@@ -25,6 +25,6 @@ C:\Users\Benutzer\kompetenzcheck>docker-compose up -d
 ```
 Nach einigen Sekunden können Sie nun das Kompetenzcheck-Tool im Browser unter der Adresse http://127.0.0.1/ erreichen.
 
-## Notes
+## Lizenz
 
-Diese Datei wurde am 09.02.2017 geändert, um den automatischen Build bei DockerHub zu testen.
+(c) 2017 Institut für Technische Bildung und Hochschuldidaktik (ITBH) an der TU Hamburg. MIT Lizenz
