@@ -1,0 +1,20 @@
+/*-------------------
+        Bullseye
+--------------------*/
+
+/* Unfilled Bullseye */
+.ui.bullseye.rating .icon:before {
+  content: '\f140';
+}
+/* Active Bullseye */
+.ui.bullseye.rating .active.icon:before {
+  content: '\f140';
+}
+
+/* Partial */
+.ui.bullseye.rating .partial.icon:before {
+  content: '\f140';
+}
+.ui.bullseye.rating .partial.icon {
+  content: '\f140';
+}

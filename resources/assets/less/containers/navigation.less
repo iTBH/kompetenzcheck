@@ -1,0 +1,68 @@
+body > .pusher > .content-wrapper > .navigation {
+    display: block;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: @navWidth;
+    border-top: 3px solid @navBorderAccentColor;
+    z-index: 1;
+
+    .mobile {
+        display: none;
+    }
+
+    a {
+        display: block;
+        background-color: @navItemBackgroundColor;
+        color: @navItemColor;
+        font-size: @navItemFontSize;
+        padding: 17px 20px;
+        border-bottom: 1px dotted @navItemColor;
+
+        &.active {
+            background-color: @navItemActiveBackgroundColor;
+            color: @navItemActiveColor;
+            border-bottom: 1px solid transparent;
+        }
+
+    }
+}
+
+@media (max-width: 1200px) {
+    body > .pusher > .content-wrapper > .navigation {
+        width: 60px;
+
+        .ui.list {
+            .mobile {
+                display: block;
+                width: 60px;
+            }
+
+            .mobile.opened {
+                width: @navWidth;
+
+                a {
+                    text-align: right;
+                }
+            }
+
+            div:not(.mobile) {
+                display: none;
+            }
+        }
+    }
+}
+
+body > .pusher > .content-wrapper > .navigation {
+    .topnavigation {
+        display: none;
+    }
+}
+
+@media (max-width: 660px) {
+    body > .pusher > .content-wrapper > .navigation {
+        .topnavigation {
+            display: block;
+        }
+    }
+}

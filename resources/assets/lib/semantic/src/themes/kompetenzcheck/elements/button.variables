@@ -1,0 +1,14 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+/*-------------------
+      Variations
+--------------------*/
+
+/* Ordinality */
+@primaryColor: #00a2b1;
+@primaryTextColor: white;
+
+@secondaryColor: #394e62;
+@secondaryTextColor: white;

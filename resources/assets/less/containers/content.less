@@ -1,0 +1,27 @@
+body > .pusher > .content-wrapper > .content {
+    background-color: @contentBackgroundColor;
+    -webkit-box-shadow: @shadowPrimary;
+    -moz-box-shadow: @shadowPrimary;
+    box-shadow: @shadowPrimary;
+    padding: 30px 40px !important;
+}
+
+body > .pusher > .content-wrapper > .content.small {
+    width: 500px;
+}
+
+@media (max-width: 1615px) {
+    .navigation + .ui.container.content {
+        margin-left: (@navWidth + 30) !important;
+        margin-right: 30px !important;
+        width: auto;
+        max-width: 1127px !important;
+    }
+}
+
+@media (max-width: 1200px) {
+    .navigation + .ui.container.content {
+        width: auto;
+        margin: 0 30px 0 90px !important
+    }
+}

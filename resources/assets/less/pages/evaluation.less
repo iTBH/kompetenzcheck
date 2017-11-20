@@ -1,0 +1,126 @@
+.evaluation-container, .pdf-evaluation-container {
+  h4 {
+    margin-bottom: 25px;
+  }
+  .result-box {
+    border: 1px solid #eeeeee;
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 50%;
+
+    .run-phrase-row {
+      border-top: 1px solid #eeeeee;
+      padding: 5px 0;
+    }
+
+    .rating-container {
+      height: 120px;
+      border-bottom: double 6px rgb(190, 190, 190);
+      border-right: 1px solid black;
+      border-left: 1px solid black;
+      width: 440px;
+      margin-top: 10px;
+
+      .rating-box {
+        height: 110px;
+        width: 100%;
+        background-image: url(/images/evaluation/stars.png);
+        background-repeat: no-repeat;
+        background-position: left bottom;
+        background-size: cover;
+        .rating {
+          height: 100%;
+          background-image: url(/images/evaluation/stars.png);
+          background-position: left top;
+          background-size: 440px 220px;
+
+          &.rating-1 {
+            width: 25%;
+          }
+          &.rating-2 {
+            width: 50%
+          }
+          &.rating-3 {
+            width: 75%;
+          }
+          &.rating-4 {
+            width: 100%;
+          }
+
+          .border {
+            width: 100%;
+            height: 120px;
+
+            &.own-subject-competence {
+              border-bottom: 6px solid rgb(0, 90, 144);
+            }
+            &.ext-subject-competence {
+              border-bottom: 6px solid rgb(118, 158, 204);
+            }
+            &.own-personal-competence {
+              border-bottom: 6px solid rgb(135, 183, 64);
+            }
+            &.ext-personal-competence {
+              border-bottom: 6px solid rgb(195, 220, 165);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1075px) {
+  .evaluation-container {
+    .result-box {
+      .run-phrase-row {
+        min-height: 530px;
+        .rating-container {
+          transform: rotate(90deg);
+          position: relative;
+          left: 0;
+          transform-origin: 0 100%;
+          top: -110px;
+
+        }
+        div.comment {
+          margin-top: 340px;
+        }
+      }
+    }
+  }
+}
+
+// PDF
+.pdf-evaluation-container {
+  padding: 15px;
+
+  h4 {
+    margin: 15px 0 25px 0;
+  }
+
+  .result-table {
+    tr td {
+      padding-bottom: 10px;
+      padding-top: 10px;
+    }
+  }
+
+  .process-view {
+    overflow-x: hidden;
+  }
+
+  .result-box {
+    float: left;
+    width: 470px;
+    display: block;
+    margin-bottom: 0;
+  }
+
+  .page_break {
+    clear: both;
+    padding: 0 !important;
+    page-break-before: always;
+    height: 0;
+  }
+}

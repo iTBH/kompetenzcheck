@@ -1,0 +1,13 @@
+/*******************************
+             Menu
+*******************************/
+
+/*--------------
+     Types
+---------------*/
+
+/* Secondary */
+@secondaryActiveItemBackground: #00a2b1;
+@secondaryActiveItemColor: white;
+@secondaryActiveHoverItemBackground: #00a2b1;
+@secondaryActiveHoverItemColor: white;

@@ -1,0 +1,137 @@
+.process-view table {
+  width: 100%;
+  border-collapse: collapse;
+
+  td {
+    border: 2px solid #eee;
+    padding: 5px;
+    position: relative;
+  }
+
+  // Header row
+  tr:first-child {
+    td {
+      border-top: 0;
+      border-right-color: black;
+      text-align: center;
+      padding-bottom: 15px;
+    }
+  }
+
+  // Content row
+  tr {
+    td:first-child {
+      border-left: 0;
+      border-right-color: black;
+    }
+
+    td:nth-child(2n + 1) {
+      border-right-color: black;
+    }
+  }
+
+  // Footer row
+  tr:last-child {
+    td {
+      border-bottom: 0;
+      font-size: 12px;
+      line-height: 1.2;
+      text-align: center;
+      position: relative;
+    }
+  }
+}
+
+.process-view {
+  white-space: nowrap;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+
+  .stars {
+    height: 50px;
+    width: 50px;    background-image: url(/images/evaluation/stars.png);
+    background-position: left top;
+    background-size: 200px 100px;
+    float: left;
+    margin-right: 5px;
+
+    &.stars-1 {
+      background-position: 0 0;
+    }
+    &.stars-2 {
+      background-position: -50px 0;
+    }
+    &.stars-3 {
+      background-position: -100px 0;
+    }
+    &.stars-4 {
+      background-position: -150px 0;
+    }
+  }
+
+  .star-text {
+    line-height: 1.5;
+    font-size: 11px;
+  }
+
+  .bar {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    width: 15px;
+    height: calc(100% + 2px);
+    overflow: hidden;
+
+    span {
+      transform: rotateZ(-90deg);
+      display: block;
+      position: absolute;
+      bottom: -5px;
+      left: 6px;
+      color: white;
+      transform-origin: 0;
+      font-size: 12px;
+    }
+  }
+
+  .bar-light {
+    opacity: 0.8;
+  }
+
+  .bar-right {
+    left: auto;
+    right: 20px;
+  }
+
+  .bar-green {
+    background-color: rgb(135, 183, 64);
+  }
+
+  .bar-light-green {
+    background-color: rgb(195, 220, 165);
+  }
+
+  .bar-blue {
+    background-color: rgb(0, 90, 144);
+  }
+
+  .bar-light-blue {
+    background-color: rgb(118, 158, 204);
+  }
+
+  .comp-icon {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 0;
+  }
+
+  .comp-left {
+    left: 13px;
+  }
+
+  .comp-right {
+    right: 13px;
+  }
+
+}

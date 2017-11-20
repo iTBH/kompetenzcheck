@@ -1,0 +1,115 @@
+.assessment {
+  .statement {
+    margin-bottom: 15px;
+  }
+
+  .rating-text.rating-1 {
+    color: white;
+    background-color: #0294a3;
+  }
+  .rating-text.rating-2 {
+    color: white;
+    background-color: #02a4c2;
+  }
+  .rating-text.rating-3 {
+    color: white;
+    background-color: #046b8d;
+  }
+  .rating-text.rating-4 {
+    color: white;
+    background-color: #2c3e50;
+  }
+}
+
+.ui.bullseye.rating > .icon {
+  background-image: @star-sprite !important;
+  background-repeat: no-repeat;
+  transition: none;
+
+  &:before {
+    content: '';
+  }
+  &.selected,
+  &.active {
+    &:before {
+      content: '';
+    }
+  }
+}
+
+.ui.bullseye.colossal.rating {
+  font-size: 8rem;
+
+  & > .icon {
+    height: 110px;
+    width: 110px;
+    background-size: 440px;
+
+    &:nth-child(1) {
+      background-position: 0 -108px;
+    }
+    &:nth-child(2) {
+      background-position: -111px -108px;
+    }
+    &:nth-child(3) {
+      background-position: -219px -108px;
+    }
+    &:nth-child(4) {
+      background-position: -328px -108px;
+    }
+
+    &.selected,
+    &.active {
+      &:nth-child(1) {
+        background-position: 0 0;
+      }
+      &:nth-child(2) {
+        background-position: -111px 0;
+      }
+      &:nth-child(3) {
+        background-position: -219px 0;
+      }
+      &:nth-child(4) {
+        background-position: -328px 0;
+      }
+    }
+  }
+}
+
+.ui.bullseye.massive.rating {
+
+  & > .icon {
+    height: 27.5px;
+    width: 27.5px;
+    background-size: 110px;
+
+    &:nth-child(1) {
+      background-position: 0 -27px;
+    }
+    &:nth-child(2) {
+      background-position: -27.75px -27px;
+    }
+    &:nth-child(3) {
+      background-position: -54.75px -27px;
+    }
+    &:nth-child(4) {
+      background-position: -82px -27px;
+    }
+
+    &.selected,
+    &.active {
+      &:nth-child(1) {
+        background-position: 0 0;
+      }
+      &:nth-child(2) {
+        background-position: -27.75px 0;
+      }
+      &:nth-child(3) {
+        background-position: -54.75px 0;
+      }
+      &:nth-child(4) {
+        background-position: -82px 0;
+      }
+    }
+  }
+}
