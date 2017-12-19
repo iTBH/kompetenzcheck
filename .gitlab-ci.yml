@@ -65,7 +65,7 @@ stop_review:
     variables:
         GIT_STRATEGY: none
     script:
-        - sudo docker stop ${CI_PROJECT_PATH_SLUG}-${CI_ENVIRONMENT_SLUG} || true
+        - sudo docker-compose -p ${CI_PROJECT_PATH_SLUG}-${CI_ENVIRONMENT_SLUG} -f ./docker/docker-compose.yml down
     when: manual
     environment:
         name: review/${CI_COMMIT_REF_NAME}
