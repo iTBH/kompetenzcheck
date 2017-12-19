@@ -33,4 +33,6 @@ RUN chown -R www-data:www-data /var/www/html
 RUN chmod +x /var/www/html/entrypoint.sh
 RUN chmod +x /var/www/html/wait-for-it.sh
 
+EXPOSE 80
+
 ENTRYPOINT /var/www/html/entrypoint.sh
