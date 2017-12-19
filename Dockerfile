@@ -1,4 +1,4 @@
-FROM php:fpm
+FROM php:7.1-fpm
 
 # Install php extensions
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \
@@ -32,5 +32,7 @@ RUN npm install \
 RUN chown -R www-data:www-data /var/www/html
 RUN chmod +x /var/www/html/entrypoint.sh
 RUN chmod +x /var/www/html/wait-for-it.sh
+
+EXPOSE 80
 
 ENTRYPOINT /var/www/html/entrypoint.sh

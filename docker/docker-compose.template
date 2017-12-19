@@ -15,7 +15,7 @@ services:
       - DB_CONNECTION=mysql
       - DB_HOST=db
       - DB_PORT=3306
-      - DB_DATABASE=kc
+      - DB_DATABASE=portfolio
       - DB_USERNAME=${DB_USERNAME}
       - DB_PASSWORD=${DB_PASSWORD}
 
@@ -35,7 +35,7 @@ services:
       - MAIL_PASSWORD=null
       - MAIL_ENCRYPTION=null
       - MAIL_FROM_ADDRESS=nobody@tuhh.de
-      - MAIL_FROM_NAME='Kompetenzcheck ${CI_ENVIRONMENT_SLUG}'
+      - MAIL_FROM_NAME='Ausbildungsportfolio ${CI_ENVIRONMENT_SLUG}'
 
   db:
     image: docker.rz.tu-harburg.de:5000/docker/mariadb:latest
@@ -43,7 +43,7 @@ services:
       - "3306"
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_DATABASE=kc
+      - MYSQL_DATABASE=portfolio
       - MYSQL_USER=${DB_USERNAME}
       - MYSQL_PASSWORD=${DB_PASSWORD}
 
