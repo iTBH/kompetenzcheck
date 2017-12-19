@@ -1,4 +1,4 @@
-FROM php:fpm
+FROM php:7.1-fpm
 
 # Install php extensions
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \
