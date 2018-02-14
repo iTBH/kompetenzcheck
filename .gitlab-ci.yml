@@ -97,7 +97,7 @@ deploy to production:
         - deploy
     environment:
         name: production
-        url: http://laurana01.rz.tu-harburg.de/
+        url: https://kompetenzcheck.rz.tuhh.de/
     only:
         - master
     when: manual
