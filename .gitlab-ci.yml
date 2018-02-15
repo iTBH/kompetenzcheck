@@ -88,7 +88,7 @@ deploy to registry:
     only:
         - master
 
-deploy to production:
+.deploy to production:
     stage: production
     script:
         - ssh fizban.rz.tu-harburg.de -p 2222 "sudo docker pull ${CONTAINER_RELEASE_IMAGE}"
