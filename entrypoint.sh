@@ -14,6 +14,7 @@ chown -R www-data:www-data /var/www/html
 php artisan key:generate
 php artisan storage:link
 php artisan migrate
+php artisan db:seed
 
 php-fpm &
 caddy
