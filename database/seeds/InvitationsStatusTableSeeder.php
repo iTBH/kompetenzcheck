@@ -11,9 +11,11 @@ class InvitationsStatusTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('invitations_status')->insert([
-            'name' => 'Eingeladen',
-            'default' => true
-        ]);
+        if (DB::table('invitations_status')->where('name', 'Eingeladen')->get()->count() == 0) {
+            DB::table('invitations_status')->insert([
+                'name' => 'Eingeladen',
+                'default' => true
+            ]);
+        }
     }
 }
