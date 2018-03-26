@@ -11,14 +11,17 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('categories')->insert([
-            'name' => 'Personale Kompetenz',
-            'icon' => 'users'
-        ]);
-
-        DB::table('categories')->insert([
-            'name' => 'Fachkompetenz',
-            'icon' => 'settings'
-        ]);
+        if (DB::table('categories')->where('name', 'Personale Kompetenz')->get()->count() == 0) {
+            DB::table('categories')->insert([
+                'name' => 'Personale Kompetenz',
+                'icon' => 'users'
+            ]);
+        }
+        if (DB::table('categories')->where('name', 'Fachkompetenz')->get()->count() == 0) {
+            DB::table('categories')->insert([
+                'name' => 'Fachkompetenz',
+                'icon' => 'settings'
+            ]);
+        }
     }
 }
