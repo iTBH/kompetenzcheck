@@ -185,7 +185,8 @@ return [
          */
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
-        ],
+        Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
+    ],
 
     /*
     |--------------------------------------------------------------------------
