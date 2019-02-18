@@ -7,9 +7,7 @@
     </a>
 </div>
 <div class="ui bottom attached tab active segment" data-tab="mail">
-    Check per Mail zuweisen<br/>
-    <br/>
-    Sie können einer Person einen Kompetenz-Check per Mail zuweisen. Wenn diese Person schon registriert ist, wird der Check in ihren Account importiert.<br/>
+    Weisen Sie den Check einer Person per E-Mail zu, indem Sie die gewünschte E-Mail-Adresse des Check-Partners bzw. der Check-Partnerin auswählen.<br/>
     <br/>
     <form class="ui form" method="POST">
         {{ csrf_field() }}
@@ -21,13 +19,14 @@
             </div>
         </div>
     </form>
+    <div class="text-right">
+        <button type="button" class="ui primary button modal-save-btn"><i class="save icon"></i> Check zuweisen</button>
+    </div>
 </div>
 <div class="ui bottom attached tab segment" data-tab="number">
-    Check per Checknummer zuweisen<br/>
+    Weisen Sie den Check einer Person per Checknummer zu, indem Sie die generierte Nummer mit ihrem Check-Partner oder Ihrer Check-Partnerinnen teilen.<br/>
     <br/>
-    Sie können Checks mit Personen teilen, in dem Sie Ihnen die Checknummer mitteilen. Der Check kann damit in ein eigenes Account importiert werden.<br/>
-    <br/>
-    <form class="ui form" method="POST">
+    <form class="ui form no-save" method="POST">
         {{ csrf_field() }}
         <div class="inline fields">
             <div class="sixteen wide field">
