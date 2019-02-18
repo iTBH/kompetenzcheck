@@ -18,7 +18,7 @@
         <div class="inline fields">
             <div class="sixteen wide field">
                 <label for="statement" class="four wide field">Der/Die Lernende:</label>
-                <input name="statement" id="statement" value="@isset($statement) {{ $statement }} @endisset" placeholder="führt eine auftragsspezifische Handlung fachgerecht durch"/>
+                <input name="statement" id="statement" value="@isset($statement) {{ $statement }} @endisset" placeholder="Führt komplexe Handlungen fachgerecht durch."/>
             </div>
         </div>
         <input type="hidden" name="tab" value="{{ $tab }}"/>
