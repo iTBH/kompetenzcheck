@@ -1,8 +1,14 @@
 <div class="ep header">
     <div class="ui grid">
-        <h1 class="thirteen wide column">
-            {{ $title }}@if (isset($subtitle))_<span class="small">{{ $subtitle }}</span>@endif
-        </h1>
+        <div class="thirteen wide column mb-1">
+            <h1>
+                {{ $title }}@if (isset($subtitle))_<span class="small">{{ $subtitle }}</span>@endif
+            </h1>
+            @if(isset($titletext))
+                <p>{{$titletext}}</p>
+            @endif
+        </div>
+
         <div class="three wide right aligned column">
             @if(isset($edit))
                 <a href="{{ $edit }}" class="ui small icon button"

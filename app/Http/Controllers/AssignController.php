@@ -24,7 +24,7 @@ class AssignController extends Controller
 
         return response()->json([
             'modal' => [
-                'header' => '<h1>Kompetenz-Check zuweisen</h1>',
+                'header' => '<h1>Check zuweisen</h1>',
                 'content' => view('checks.assign.index', ['check' => $check, 'partners' => $partner])->render(),
                 'actions' => view('checks.assign.actions.actions')->render()
             ]

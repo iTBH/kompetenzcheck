@@ -193,7 +193,7 @@ class ForeignAssessmentController extends Controller
 
         return response()->json([
             'modal' => [
-                'header' => '<h1>Kompetenz bewerten</h1>',
+                'header' => '<h1>Kompetenz einschätzen</h1>',
                 'content' => view('foreign_assessment.dialog',
                     [
                         'check' => $check,
@@ -240,6 +240,11 @@ class ForeignAssessmentController extends Controller
 
     public function complete(Request $request, $check, Run $run)
     {
+        if(!$run->runPhrases->count()) {
+            session()->flash('status', ['message' => 'Die Fremdeinschätzung konnte nicht abgeschlossen werden.<br /><ul><li>Bitte geben Sie mindestens eine Einschätzung ab.</li></ul>', 'level' => 'error']);
+            return redirect()->back();
+        }
+
         $run->update([
             'end' => Carbon::now()
         ]);
@@ -251,6 +256,8 @@ class ForeignAssessmentController extends Controller
             }
         }
 
-        return redirect(route('dashboard.index'))->with(['message' => 'Fremdeinschätzung erfolgreich gespeichert.', 'level' => 'success']);
+        session()->flash('status', ['message' => 'Ihre Fremdeinschätzung wurde erfolgreich abgeschlossen.', 'level' => 'success']);
+
+        return redirect()->back();
     }
 }

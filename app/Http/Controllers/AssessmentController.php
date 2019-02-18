@@ -97,7 +97,7 @@ class AssessmentController extends Controller
 
         return response()->json([
             'modal' => [
-                'header' => '<h1>Kompetenz bewerten</h1>',
+                'header' => '<h1>Kompetenz einschätzen</h1>',
                 'content' => view('assessment.dialog',
                     [
                         'check' => $check,
@@ -144,11 +144,16 @@ class AssessmentController extends Controller
 
     public function save(Check $check, Request $request)
     {
-        if( $check->id && $request->only('run') ) {
+        $phrasesCount = (new RunPhrase)->where('run_id', $request->get('run'))->count();
+
+        if( $check->id && $request->only('run') && $phrasesCount) {
             (new Run)->find($request->get('run'))->update([
                 'end' => Carbon::now()
             ]);
             session()->flash('status', ['message' => 'Die Einschätzung wurde erfolgreich abgeschlossen.', 'level' => 'success']);
+        } elseif(!$phrasesCount) {
+            session()->flash('status', ['message' => 'Die Einschätzung konnte nicht abgeschlossen werden.<br /><ul><li>Bitte geben Sie mindestens eine Einschätzung ab.</li></ul>', 'level' => 'error']);
+            return redirect()->back();
         } else {
             session()->flash('status', ['message' => 'Die Einschätzung konnte nicht abgeschlossen werden.', 'level' => 'error']);
         }

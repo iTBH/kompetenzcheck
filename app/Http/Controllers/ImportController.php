@@ -15,7 +15,7 @@ class ImportController extends Controller
     {
         return response()->json([
             'modal' => [
-                'header' => '<h1>Kompetenz-Check importieren</h1>',
+                'header' => '<h1>Check importieren</h1>',
                 'content' => view('import.index')->render(),
                 'actions' => view('import.actions.create')->render()
             ]
