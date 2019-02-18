@@ -9,7 +9,6 @@
     </div>
 @else
     <div class="text-center">
-
         <h2 class="green colored">Sie haben noch keinen Check erstellt</h2>
         <p>Erstellen Sie hier einen Check oder rufen Sie die Hilfefunktion auf, um mehr über Checks zu erfahren.</p>
         <a href="{{ route('check.create') }}" class="ui big primary button">
