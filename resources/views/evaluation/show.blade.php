@@ -1,13 +1,14 @@
 @extends('layouts.app')
 
-@section('title', 'Auswertung des Checks')
+@section('title', 'Check Auswertung')
 
 @section('content')
     @include('partials.flash')
     @include('partials.modal')
 
     @include('partials.content-header', [
-        'title' => 'Auswertung des Checks',
+        'title' => 'Check Auswertung',
+        'titletext' => 'Hier sehen Sie die Auswertung des durchgeführten Checks. Führen Sie auf Grundlage der Ergebnisse z. B. ein Auswertungsgespräch. Die Hilfefunktion unterstützt Sie dabei.',
         'divider' => true,
         'help' => Config::get('help.evaluation'),
         'custombutton' => route('check.evaluation.download',[$check->id]),
@@ -18,9 +19,6 @@
     ])
 
     <div class="evaluation-container">
-        <p>
-            Hier sehen Sie die Auswertung des durchgeführten Kompetenz-Checks. Führen Sie auf Grundlage der Ergebnisse z. B. ein Auswertungsgespräch. Die Hilfefunktion unterstützt Sie dabei.
-        </p>
         <div class="ui stackable middle aligned grid">
             <div class="row">
                 <div class="four wide column">
@@ -59,12 +57,10 @@
                 </div>
             @endif
         </div>
-        <div class="ui divider"></div>
+        <div class="ui divider dotted"></div>
         <h2 class="green colored">Prozessansicht des Checks</h2>
         <p>
-            Die Prozessansicht zeigt Ihnen alle im Check durchgeführten Einschätzungen im Durchschnitt pro Kompetenzdimension an. Nutzen Sie die Prozessansicht für einen ersten Überblick und als
-            Einstieg
-            in die Auswertung des Checks.
+            Die Prozessansicht zeigt Ihnen alle im Check durchgeführten Selbst- und Fremdeinschätzungen im Durchschnitt pro Kompetenzdimension an.
         </p>
         <div class="process-view">
             @php ($colWidth = (int)(100 / ($check->phasesChecks->count() + 1) / 2))
@@ -186,7 +182,7 @@
                                 <img class="comp-icon comp-left" src="{{url('\images\s-green.svg')}}">
                                 <img class="comp-icon comp-right" src="{{url('\images\s-light-green.svg')}}"><br/>
                                 Personale<br/>
-                                Kompezent
+                                Kompezenz
                             </td>
                             <td>
                                 <br/>

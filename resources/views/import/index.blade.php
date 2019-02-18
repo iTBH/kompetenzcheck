@@ -1,5 +1,5 @@
 <p>
-Sie können einen Kompetenz-Check importieren, der von einer anderen Person erstellt wurde. <br />Dazu brauchen Sie die so genannte Checknummer.
+    Importieren Sie einen Check, indem Sie die jeweilige Checknummer eingeben.
 </p>
 <form class="ui form" method="POST">
     {{ csrf_field() }}

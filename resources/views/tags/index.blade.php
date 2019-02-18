@@ -11,9 +11,7 @@
         'help' => Config::get('help.tags'),
     ])
     <p>
-        Hier können Sie neue Schlagwörter hinzufügen oder bestehende bearbeiten. Schlagwörter unterstützen Sie dabei, Checks nach bestimmten, von Ihnen vergebenen Begriffen zu sortieren, z. B. durch das Schlagwort Vorlage.<br />
-        <br />
-        Sie können einem Check beliebig viele Schlagwörter hinzufügen.
+        Hier können Sie Schlagwörter hinzufügen, bearbeiten oder löschen.
     </p>
     <div class="ui divider dotted"></div>
     <div class="ui divider hidden"></div>
