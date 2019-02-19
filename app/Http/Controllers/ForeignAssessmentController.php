@@ -146,7 +146,7 @@ class ForeignAssessmentController extends Controller
         ]);
 
         // Create Run!
-        $this->_findOrCreateRunForInvitation($invitation, $check);
+//        $this->_findOrCreateRunForInvitation($invitation, $check);
 
         $mail = (new ForeignAssessment($invitation));
         Mail::to($request->get('email'))->send($mail);
