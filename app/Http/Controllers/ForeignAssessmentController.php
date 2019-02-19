@@ -77,7 +77,8 @@ class ForeignAssessmentController extends Controller
             ['check_id', '=', $check->id],
             ['invitation_id', '=', $invitation->id],
             ['type', '=', 'they']
-        ])/*->whereNull('end')*/->first();
+        ])/*->whereNull('end')*/
+        ->first();
 
         // if the run is not present, create it
         if (!$run) {
@@ -94,7 +95,12 @@ class ForeignAssessmentController extends Controller
 
     public function save(Check $check, Request $request)
     {
-        // ToDo: Validation
+        $existingInvitations = $check->invitations;
+        if ($existingInvitations->count() == 2) {
+            session()->flash('status', ['message' => 'Es wurden bereits zwei Einladungen verschickt', 'level' => 'error']);
+            return response()->json(['message' => 'Es wurden bereits zwei Einladungen verschickt.', 'level' => 'error']);
+        }
+
         $this->validate($request, [
             'email' => 'required|email',
             'firstname' => 'required',
