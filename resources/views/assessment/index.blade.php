@@ -8,12 +8,15 @@
 
     @include('partials.content-header', [
         'title' => 'Selbsteinschätzung',
-        'titletext' => 'Schätzen Sie auf Grundlage Ihrer Vorerfahrungen oder aktuellen Erlebnisse ein, wie gut Sie die beschriebenen Kompetenzen beherrschen.',
         'divider' => false,
         'help' => Config::get('help.assessment_own'),
     ])
 
     <div class="ui divider"></div>
+
+    <p>
+        Schätzen Sie hier auf Grundlage Ihrer Vorerfahrungen oder aktuellen Erlebnisse ein, wie gut Sie die beschriebenen Kompetenzen beherrschen.
+    </p>
 
     <form class="ui form" method="POST" action="{{ route('assessment.save', ['check' => $check, 'run' => $run]) }}">
         {{ csrf_field() }}
@@ -55,7 +58,8 @@
         </div>
 
         <div class="ui divider"></div>
-        <h2 style="display: inline-block;" class="green colored">Kompetenzbeschreibungen</h2><h2 style="display: inline-block;"><i class="help circle outline icon" data-content="Fügen Sie hier Kompetenzen hinzu. Sie können die Kompetenzen bis zu vier Phasen (Reitern) zuordnen, um Lern- bzw. Arbeitsprozesse abzubilden oder das Kompetenzprofil zu gliedern."></i></h2>        <div class="tabular-menu">
+        <h2 class="green colored">Kompetenzbeschreibungen</h2>
+        <div class="tabular-menu">
             <?php $tabs = ['1' => ' active', '2' => '', '3' => '', '4' => '']; ?>
             <div class="ui top attached tabular menu">
                 @foreach( $tabs as $_index => $_class )
@@ -89,8 +93,8 @@
         </div>
         <div class="ui divider"></div>
         <div class="fields">
-            <div class="sixteen wide field text-right">
-                <button type="submit" class="ui primary button">Speichern</button>
+            <div class="sixteen wide field">
+                <button type="submit" class="ui primary button right floated">Einschätzung abschließen</button>
             </div>
         </div>
 

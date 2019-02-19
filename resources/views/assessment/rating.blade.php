@@ -7,10 +7,8 @@
     <div class="phrase">
         <i class="{{ $category->icon }} icon"></i> Der/Die Lernende {{ $statement }}
 
-        <span>
-        <a href="javascript:void(0)" class="assessment-rating-btn ui small icon button" data-phrase="{{ $_phrase->id }}" data-check="{{ $check->id }}" data-run="{{ $run->id }}"
-           data-runphrase="@isset($run_phrase){{$run_phrase->id }}@endisset"><i class="edit icon"></i></a>
         <div class="ui massive bullseye rating disabled" style="float: right;" data-rating="{{isset($run_phrase) ? $run_phrase->rating : 0}}"></div>
-        </span>
+        <a href="javascript:void(0)" class="assessment-rating-btn small ui icon button" data-phrase="{{ $_phrase->id }}" data-check="{{ $check->id }}" data-run="{{ $run->id }}"
+           data-runphrase="@isset($run_phrase){{$run_phrase->id }}@endisset">einschätzen</a>
     </div>
 </div>
