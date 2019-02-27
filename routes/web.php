@@ -88,3 +88,22 @@ Route::resource('/foreign_assessment', 'ForeignAssessmentController', ['only' =>
 Route::get('/foreign_assessment/{url_hash}', ['as' => 'foreign.assessment.execute', 'uses' => 'ForeignAssessmentController@index']);
 Route::get('/foreign_assessment/complete/{check}/{run}', ['as' => 'foreign.assessment.complete', 'uses' => 'ForeignAssessmentController@complete']);
 Route::get('check/{check}/evaluation/download', ['as' => 'check.evaluation.download', 'uses' => 'EvaluationController@download']);
+
+
+/** Admin - Routes */
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
+
+    Route::group(['prefix' => 'users', 'middleware' => ['auth', 'admin']], function () {
+        Route::get('/', ['as' => 'admin.users.index', 'uses' => 'AdminController@users']);
+        Route::post('/', ['as' => 'admin.user.store', 'uses' => 'AdminController@userStore']);
+        Route::get('/create', ['as' => 'admin.user.create', 'uses' => 'AdminController@userCreate']);
+        Route::put('/{user}', ['as' => 'admin.user.update', 'uses' => 'AdminController@userUpdate']);
+        Route::delete('/{user}', ['as' => 'admin.user.destroy', 'uses' => 'AdminController@userDestroy']);
+        Route::get('/{user}/edit', ['as' => 'admin.user.edit', 'uses' => 'AdminController@userEdit']);
+    });
+
+    Route::group(['prefix' => 'config', 'middleware' => ['auth', 'admin']], function () {
+        Route::get('/', ['as' => 'admin.config.index', 'uses' => 'AdminController@config']);
+        Route::post('/', ['as' => 'admin.config.store', 'uses' => 'AdminController@saveConfig']);
+    });
+});

@@ -10,9 +10,9 @@
         'edit' => route('profile.edit'),
         'help' => Config::get('help.profile.personal'),
     ])
-    <p>Hier kannst Du Deine Benutzerdaten verwalten.</p>
+    <p>Hier können Sie Ihre Benutzerdaten verwalten und Ihr Passwort ändern.</p>
     <div class="ui divider dotted"></div>
-    @include('profile.partials.tabs')
+    {{--@include('profile.partials.tabs')--}}
     <div class="ui middle aligned grid">
         <div class="row">
             <div class="four wide column">
@@ -87,12 +87,12 @@
             </div>
         </div>
         {{--<div class="row">--}}
-            {{--<div class="four wide column">--}}
-                {{--<label>Ausbildungszeit</label>--}}
-            {{--</div>--}}
-            {{--<div class="six wide column">--}}
-                {{--{{ $user->training_date_from }} bis {{ $user->training_date_to }}--}}
-            {{--</div>--}}
+        {{--<div class="four wide column">--}}
+        {{--<label>Ausbildungszeit</label>--}}
+        {{--</div>--}}
+        {{--<div class="six wide column">--}}
+        {{--{{ $user->training_date_from }} bis {{ $user->training_date_to }}--}}
+        {{--</div>--}}
         {{--</div>--}}
     </div>
 @endsection
