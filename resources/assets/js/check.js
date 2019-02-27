@@ -107,7 +107,7 @@ window.check = {
                     var button = $('a[data-phrase="' + data['phrase'] + '"][data-check="' + data['check'] + '"][data-run="' + data['run'] + '"]');
 
                     button.attr('data-runphrase', response.runphrase);
-                    $(button.next())
+                    $(button.prev())
                         .rating('disable', true)
                         .rating('set rating', data['rating']);
                 }
@@ -131,7 +131,7 @@ window.check = {
                     var button = $('a[data-phrase="' + data['phrase'] + '"][data-check="' + data['check'] + '"][data-run="' + data['run'] + '"]');
 
                     button.attr('data-runphrase', response.runphrase);
-                    $(button.next())
+                    $(button.prev())
                         .rating('disable', true)
                         .rating('set rating', data['rating']);
                 }
