@@ -5,6 +5,7 @@ services:
     image: '${CI_PROJECT_PATH_SLUG}:${CI_COMMIT_REF_SLUG}'
     labels:
       ONLINE_JOURNALCTL: 'true'
+      ONLINE_JOURNALCTL_TOKEN: '${ONLINE_JOURNALCTL_TOKEN}'
     build:
       context: ../
       dockerfile: ./Dockerfile
