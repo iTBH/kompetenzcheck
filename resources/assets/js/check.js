@@ -147,9 +147,6 @@ window.check = {
                 url: 'check/' + data['check'] + '/foreign_assessment/invite',
                 data: data,
                 success: function (response) {
-                    if (response.level === 'error') {
-                        location.reload();
-                    }
                     $('.ui.bottom.attached.active').append(response.view);
                     $('.ui.modal').modal('hide');
                 },

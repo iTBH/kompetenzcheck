@@ -77,8 +77,7 @@ class ForeignAssessmentController extends Controller
             ['check_id', '=', $check->id],
             ['invitation_id', '=', $invitation->id],
             ['type', '=', 'they']
-        ])/*->whereNull('end')*/
-        ->first();
+        ])/*->whereNull('end')*/->first();
 
         // if the run is not present, create it
         if (!$run) {
@@ -95,12 +94,7 @@ class ForeignAssessmentController extends Controller
 
     public function save(Check $check, Request $request)
     {
-        $existingInvitations = $check->invitations;
-        if ($existingInvitations->count() == 2) {
-            session()->flash('status', ['message' => 'Es wurden bereits zwei Einladungen verschickt', 'level' => 'error']);
-            return response()->json(['message' => 'Es wurden bereits zwei Einladungen verschickt.', 'level' => 'error']);
-        }
-
+        // ToDo: Validation
         $this->validate($request, [
             'email' => 'required|email',
             'firstname' => 'required',
@@ -146,7 +140,7 @@ class ForeignAssessmentController extends Controller
         ]);
 
         // Create Run!
-//        $this->_findOrCreateRunForInvitation($invitation, $check);
+        $this->_findOrCreateRunForInvitation($invitation, $check);
 
         $mail = (new ForeignAssessment($invitation));
         Mail::to($request->get('email'))->send($mail);
