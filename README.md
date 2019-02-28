@@ -1,5 +1,8 @@
 # Kompetenzcheck
 
+Logfiles:
+http://floki.rz.tuhh.de/MwCsGkNQNeQ4LcT47UrLVGfkHeCC3qWvtGRVxT48cDYzcKSqzDywfKkdha6Wav6z/
+
 ## Installation
 
 1. Git Repository klonen:
