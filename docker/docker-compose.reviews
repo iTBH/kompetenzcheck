@@ -3,6 +3,8 @@ version: '2'
 services:
   app:
     image: '${CI_PROJECT_PATH_SLUG}:${CI_COMMIT_REF_SLUG}'
+    labels:
+      ONLINE_JOURNALCTL: 'true'
     build:
       context: ../
       dockerfile: ./Dockerfile
@@ -37,7 +39,7 @@ services:
       REDIS_PORT: '6379'
 
       MAIL_DRIVER: 'smtp'
-      MAIL_HOST: 'floki.rz.tu-harburg.de'
+      MAIL_HOST: 'floki.rz.tuhh.de'
       MAIL_PORT: '25'
       MAIL_USERNAME: 'null'
       MAIL_PASSWORD: 'null'
