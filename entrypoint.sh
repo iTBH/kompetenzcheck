@@ -1,7 +1,9 @@
 #!/bin/sh
 /var/www/html/wait-for-it.sh db:3306 -t 60
 
-touch /var/www/html/storage/laravel.log
+#touch /var/www/html/storage/laravel.log
+ln -sfT /dev/stdout /var/www/html/storage/laravel.log;
+
 if [ ! -f /var/www/html/.env ]; then
     echo "APP_KEY=" > /var/www/html/.env
 fi
