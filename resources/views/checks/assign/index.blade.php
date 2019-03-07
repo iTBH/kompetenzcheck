@@ -7,7 +7,9 @@
     </a>
 </div>
 <div class="ui bottom attached tab active segment" data-tab="mail">
-    Weisen Sie den Check einer Person per E-Mail zu, indem Sie die gewünschte E-Mail-Adresse des Check-Partners bzw. der Check-Partnerin auswählen.<br/>
+    Sie können einem Check-Partner bzw. einer Check-Partnerin einen Check per Mail zuweisen. Dafür müssen Sie diese Person mit ihrer E-Mail-Adresse auf der Seite <b>Partner und Partnerinnen</b>
+    anlegen. Wenn diese Person schon registriert ist, wird der Check in ihren Account importiert.
+    <br/>
     <br/>
     <form class="ui form" method="POST">
         {{ csrf_field() }}
