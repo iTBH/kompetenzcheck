@@ -1,10 +1,10 @@
 <div class="topnavigation">
     @if (Auth::check())
         <?php
-        $userImg = Auth::user()->hasMedia('picture') ? Auth::user()->getFirstMediaUrl('picture') : null;
-        if (is_null($userImg)) {
+
+
             $userImg = asset('images/user.png');
-        }
+
         ?>
         <div class="item">
             <a href="{{ route('profile.index') }}"><img src="{{$userImg}}" style="max-width: 45px; max-height: 45px; border-radius: 500rem;"></a>
