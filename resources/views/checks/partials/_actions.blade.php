@@ -56,7 +56,7 @@
         @endif
     <!-- Fremdeinschätzung einladen -->
         @if(!$check->getLockedStatus() && $check->runs()->where('type', 'me')->whereNotNull('end')->count() > 0 && $check->runs->where('type', 'they')->count() < 2)
-            <a href="#" class="ui icon button check-foreign-assessment-btn" data-url="{{route('foreign_assessment.invite', $check->id)}}"
+            <a href="#" class="ui icon button check-foreign-assessment-btn" data-url="{{route('foreign_assessment.invite', $check->id, false)}}"
                data-content="Laden Sie Jemanden dazu ein, Ihren Kompetenzstand einzuschätzen.">
                 @if($check->runs->where('type', 'they')->count() == 0)
                     <i class="mail outline icon"></i> Jemanden zu einer Fremdeinschätzung einladen
@@ -67,7 +67,7 @@
         @endif
         @if($check->runs()->whereNotNull('end')->count() == 0 && !$check->getLockedStatus())
         <!-- Check zuweisen -->
-            <a href="#" class="ui icon button check-assign-btn" data-url="{{route('check.assign.index', $check->id)}}" data-content="Weisen Sie den Check einer anderen Person zu.">
+            <a href="#" class="ui icon button check-assign-btn" data-url="{{route('check.assign.index', $check->id, false)}}" data-content="Weisen Sie den Check einer anderen Person zu.">
                 <i class="mail outline icon"></i> Check zuweisen
             </a>
         @endif
