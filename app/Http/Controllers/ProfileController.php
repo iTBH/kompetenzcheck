@@ -28,7 +28,9 @@ class ProfileController extends Controller
 
         $user = Auth::user();
         if (($request->has('picture_delete') && boolval($request->get('picture_delete'))) || $request->hasFile('picture')) {
-            $user->getFirstMedia('picture')->delete();
+            if ($user->getFirstMedia('picture')) {
+                $user->getFirstMedia('picture')->delete();
+            }
         }
 
         if ($request->hasFile('picture')) {
