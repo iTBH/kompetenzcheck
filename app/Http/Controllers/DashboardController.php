@@ -14,7 +14,7 @@ class DashboardController extends Controller
     public function index()
     {
         return view('dashboard.index', [
-            'checks' => Auth::user()->checks()->orderBy('created_at', 'DESC')->get()
+            'checks' => Auth::user()->checks()->orderBy('created_at', 'DESC')->paginate(10)
         ]);
     }
 }
