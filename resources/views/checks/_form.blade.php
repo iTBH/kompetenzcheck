@@ -37,7 +37,9 @@
 </div>
 
 <div class="ui divider"></div>
-<h2 class="green colored">Kompetenzbeschreibungen</h2>
+<div class="mb-1">
+    <h2 class="green colored d-inline">Kompetenzbeschreibungen</h2><i class="help circle outline icon" data-content="Folgt"></i>
+</div>
 <div class="tabular-menu">
     <?php $tabs = ['1' => ' active', '2' => '', '3' => '', '4' => '']; ?>
     <div class="ui top attached tabular menu">
@@ -85,6 +87,6 @@
 <div class="ui divider"></div>
 <div class="fields">
     <div class="sixteen wide field">
-        <button type="submit" class="ui primary button">Speichern</button>
+        <button type="submit" class="ui primary button right floated">Speichern</button>
     </div>
 </div>
