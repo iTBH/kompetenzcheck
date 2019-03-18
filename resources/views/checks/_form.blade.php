@@ -1,7 +1,7 @@
 <div class="fields">
     <div class="sixteen wide field">
         <label for="title">Kurztitel des Checks: <i class="help circle outline icon"
-                                                    data-content="Vergeben Sie einen möglichst aussagekräftigen und für Dritte nachvollziehbaren Titel."></i></label>
+                                                    data-content="Wie lautet der Arbeitsauftrag, der dem Check zugrunde liegt? Vergeben Sie einen möglichst prägnanten Check-Titel."></i></label>
         <input type="text" name="title" id="title" value="{{ old('title', $check->title) }}"/>
     </div>
 </div>
@@ -9,7 +9,7 @@
 <div class="fields">
     <div class="sixteen wide field">
         <label for="purpose">Verwendungszweck: <i class="help circle outline icon"
-                                                  data-content="Halten Sie fest, zu welchem Zweck bzw. mit welchem Ziel der Check durchgeführt werden soll."></i></label>
+                                                  data-content="Mit welchem Ziel wird der Check durchgeführt? z.B. Kompetenzentwicklung in einer Veranstaltung."></i></label>
         <input type="text" name="purpose" id="purpose" value="{{ old('purpose', $check->purpose) }}"/>
     </div>
 </div>
@@ -17,7 +17,7 @@
 <div class="fields">
     <div class="sixteen wide field">
         <label for="description">Auftragsbeschreibung: <i class="help circle outline icon"
-                                                          data-content="Beschreiben Sie den Kontext bzw. den Arbeitsauftrag, zu dem der Check durchgeführt werden soll für Dritte nachvollziehbar."></i></label>
+                                                          data-content="Beschreiben Sie den Arbeitsauftrag ausführlich:{{-- Rahmenbedingungen (z.B. Mitarbeiter, Ort, Zeitraum), Anforderungen/Vorschriften, Arbeitsgegenstände, zu erstellende (Teil)Produkte.--}} Es muss deutlich werden, in welchem Zusammenhang die Kompetenzebeschreiung gecheckt werden soll."></i></label>
         <textarea name="description" id="description">{{ old('description', $check->description) }}</textarea>
     </div>
 </div>
@@ -37,21 +37,21 @@
 </div>
 
 <div class="ui divider"></div>
-<h2 style="display: inline-block;" class="green colored">Kompetenzbeschreibungen</h2><h2 style="display: inline-block;"><i class="help circle outline icon" data-content="Fügen Sie hier Kompetenzen hinzu. Sie können die Kompetenzen bis zu vier Phasen (Reitern) zuordnen, um Lern- bzw. Arbeitsprozesse abzubilden oder das Kompetenzprofil zu gliedern."></i></h2>
+<h2 style="display: inline-block;" class="green colored">Kompetenzbeschreibungen</h2>
 <div class="tabular-menu">
     <?php $tabs = ['1' => ' active', '2' => '', '3' => '', '4' => '']; ?>
     <div class="ui top attached tabular menu">
         @foreach( $tabs as $_index => $_class )
             <a class="item{{ $_class }} one-fourth" data-tab="{{ $_index  }}">
                 <input value="@isset($phases[$_index]['phase']){{ $phases[$_index]['phase']->name }}@else{{old('phase')[$_index]}}@endisset" name="phase[{{$_index}}]"
-                       placeholder="Titel hinzufügen">
+                       placeholder="Bereich {{ $_index }}">
             </a>
         @endforeach
     </div>
     <?php $phrases = old('phrase'); ?>
     @foreach( $tabs as $_index => $_class )
         <div class="ui bottom attached{{ $_class }} tab segment" data-tab="{{ $_index }}">
-            <a href="javascript:void(0)" class="ui icon add-phrase-btn" style="font-size: 100px; color: blue; font-weight: bold;">
+            <a href="javascript:void(0)" class="ui icon add-phrase-btn plus">
                 +
             </a>
             <a href="javascript:void(0)" class="ui small icon button add-phrase-btn">

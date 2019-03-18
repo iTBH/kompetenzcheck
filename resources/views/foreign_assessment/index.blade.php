@@ -88,6 +88,7 @@
         <div class="fields">
             <div class="sixteen wide field">
                 <button type="submit" class="ui secondary button right floated">Einschätzung abschließen</button>
+                <button type="submit" class="ui primary button right floated">Einschätzung abschließen</button>
             </div>
         </div>
 

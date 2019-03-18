@@ -1,6 +1,6 @@
 <form class="ui form assessment dialog">
     {{ csrf_field() }}
-    <div class="statement"><h4>@if($phrase->getCategory()) <i class="{{ $phrase->getCategory()->icon }} icon"></i>@endif Der/Die Lernende {{ $phrase->statement }}</h4></div>
+    <div class="statement">@if($phrase->getCategory()) <i class="{{ $phrase->getCategory()->icon }} icon"></i>@endif Der/Die Lernende {{ $phrase->statement }}</div>
 
     <div class="field">
         <label>Niveaustufen:</label>
