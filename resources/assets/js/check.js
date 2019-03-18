@@ -43,6 +43,7 @@ window.check = {
                 success: function (response) {
                     $('.ui.bottom.attached.active').append(response.view);
                     $('.ui.modal').modal('hide');
+                    $('[data-content]').popup({ position: 'top center' });
                 },
                 error: function (data) {
                     // var errors =
@@ -73,6 +74,7 @@ window.check = {
                     }
 
                     $('.ui.modal').modal('hide');
+                    $('[data-content]').popup({ position: 'top center' });
                 },
                 error: function (data) {
                     // var errors =
