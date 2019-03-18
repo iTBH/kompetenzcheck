@@ -1,13 +1,12 @@
-<h5 class="green colored d-inline">
+<h5 class="green colored">
     Aktionsmöglichkeiten
 </h5>
-<i class="help circle outline icon" data-content="Folgt"></i>
 
 <!-- Help -->
 {{--<a target="_blank" href="{{ config('help.check') }}" class="help-button ui small secondary button" style="margin-left: 40px">Hilfe</a>--}}
 
 <!-- Divider -->
-<div class="ui divider hidden"></div>
+<div class="ui divider dotted"></div>
 
 <!-- Dynamic Buttons -->
 <div class="dynamic button">
