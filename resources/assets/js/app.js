@@ -1,5 +1,4 @@
 require('./bootstrap');
-
 require('../lib/semantic/dist/semantic.min.js');
 
 require('./translate');
@@ -242,4 +241,33 @@ $(function () {
             _ele.siblings('div').css('display', 'none');
         }
     });
+
+
+    /** color selector - Iro */
+    if ($('.color_select_element').length > 0) {
+
+        // each input element
+        $('.color_select_element').each(function () {
+            // sibling div for iro initialization
+            var _input = $('.' + $(this).attr('id'));
+
+            // get the default color if available
+            var defaultColor = _input.val();
+
+            // id of the iro element
+            var id = '#' + $(this).attr('id');
+
+            // initialize the iro colorpicker
+            var ciColorpicker = new iro.ColorPicker(id, {
+                color: defaultColor
+            });
+
+            ciColorpicker.on('color:change', function (color, changes) {
+                var input = $('.' + $(ciColorpicker.el).attr('id'));
+                if (input.val() !== color.hexString) {
+                    input.val(color.hexString);
+                }
+            });
+        });
+    }
 });
