@@ -78,10 +78,11 @@ class AssignController extends Controller
             Mail::to($partner->email)->send($email);
             session()->flash('status', ['message' => 'Check wurde zugewiesen.', 'level' => 'success']);
 
-            return;
+            return redirect()->back();
         }
 
         session()->flash('status', ['message' => 'Check konnte nicht zugewiesen werden. Versuchen Sie es erneut.', 'level' => 'error']);
+        return redirect()->back();
     }
 
     public function allow(Check $check)

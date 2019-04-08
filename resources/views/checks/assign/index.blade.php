@@ -9,7 +9,7 @@
 <div class="ui bottom attached tab active segment" data-tab="mail">
     Weisen Sie den Check einer Person per E-Mail zu, indem Sie die gewünschte E-Mail-Adresse des Check-Partners bzw. der Check-Partnerin auswählen.<br/>
     <br/>
-    <form class="ui form" method="POST">
+    <form class="ui form" method="POST" action="{{route('check.assign.store')}}">
         {{ csrf_field() }}
         <div class="inline fields">
             <div class="sixteen wide field">
@@ -18,10 +18,10 @@
                 <input name="check-id" type="hidden" value="{{$check->id}}">
             </div>
         </div>
+        <div class="text-right">
+            <button type="submit" class="ui primary button modal-submit-btn"><i class="save icon"></i> Check zuweisen</button>
+        </div>
     </form>
-    <div class="text-right">
-        <button type="button" class="ui primary button modal-save-btn"><i class="save icon"></i> Check zuweisen</button>
-    </div>
 </div>
 <div class="ui bottom attached tab segment" data-tab="number">
     Weisen Sie den Check einer Person per Checknummer zu, indem Sie die generierte Nummer mit ihrem Check-Partner oder Ihrer Check-Partnerinnen teilen.<br/>
