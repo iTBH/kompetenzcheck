@@ -72,7 +72,7 @@ class Check extends Model
                 return "Ich habe den Check dupliziert";
                 break;
             case 'assigned':
-                return "Ich habe den Check zugewiesen bekommen";
+                return "Ich habe den Check importiert";
                 break;
             case 'import':
                 return "Ich habe den Check importiert";
