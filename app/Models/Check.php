@@ -74,7 +74,7 @@ class Check extends Model
             case 'assigned':
                 return "Ich habe den Check zugewiesen bekommen";
                 break;
-            case 'imported':
+            case 'import':
                 return "Ich habe den Check importiert";
                 break;
         }
