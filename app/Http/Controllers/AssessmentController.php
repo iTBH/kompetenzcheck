@@ -13,13 +13,13 @@ class AssessmentController extends Controller
 {
     public function index(Check $check)
     {
-        if( !$check->id ) {
+        if (!$check->id) {
             session()->flash('status', ['message' => 'Der gewählte Check existiert nicht.', 'level' => 'error']);
             return redirect(route('dashboard.index'));
         }
 
         $locked = $check->getLockedStatus();
-        if($locked) {
+        if ($locked) {
             $locked = Carbon::createFromFormat('Y-m-d', $locked);
             session()->flash('status', ['message' => 'Der Check wurde bereits am ' . $locked->format('d.m.Y') . ' abgeschlossen.', 'level' => 'error']);
             return redirect(route('dashboard.index'));
@@ -146,13 +146,13 @@ class AssessmentController extends Controller
     {
         $phrasesCount = (new RunPhrase)->where('run_id', $request->get('run'))->count();
 
-        if( $check->id && $request->only('run') && $phrasesCount) {
+        if ($check->id && $request->only('run') && $check->phrases->count() == $phrasesCount) {
             (new Run)->find($request->get('run'))->update([
                 'end' => Carbon::now()
             ]);
             session()->flash('status', ['message' => 'Die Einschätzung wurde erfolgreich abgeschlossen.', 'level' => 'success']);
-        } elseif(!$phrasesCount) {
-            session()->flash('status', ['message' => 'Die Einschätzung konnte nicht abgeschlossen werden.<br /><ul><li>Bitte geben Sie mindestens eine Einschätzung ab.</li></ul>', 'level' => 'error']);
+        } elseif ($check->phrases->count() != $phrasesCount) {
+            session()->flash('status', ['message' => 'Es wurden noch nicht alle Kompetenzen eingeschätzt. ', 'level' => 'error']);
             return redirect()->back();
         } else {
             session()->flash('status', ['message' => 'Die Einschätzung konnte nicht abgeschlossen werden.', 'level' => 'error']);

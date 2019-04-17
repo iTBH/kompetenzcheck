@@ -7,7 +7,7 @@
     @include('partials.modal')
 
     @include('partials.content-header', [
-        'title' => 'Fremdeinschätzung von ' . $check->user->name,
+        'title' => 'Fremdeinschätzung_' . $check->user->name,
         'titletext' => 'Schätzen Sie hier auf Grundlage Ihrer Vorerfahrungen oder aktuellen Erlebnisse ein, wie gut Sie / Er die beschriebenen Kompetenzen beherrscht.',
         'divider' => false,
         'help' => Config::get('help.assessment_they'),
@@ -50,7 +50,7 @@
         <div class="ui divider"></div>
 
         <div class="mb-1">
-            <h2 class="green colored d-inline">Kompetenzbeschreibungen</h2><i class="help circle outline icon" data-content="Folgt"></i>
+            <h2 class="green colored d-inline">Kompetenzbeschreibungen</h2>
         </div>
 
         <div class="tabular-menu">
@@ -87,7 +87,6 @@
         </div>
         <div class="fields">
             <div class="sixteen wide field">
-                <button type="submit" class="ui secondary button right floated">Einschätzung abschließen</button>
                 <button type="submit" class="ui primary button right floated">Einschätzung abschließen</button>
             </div>
         </div>

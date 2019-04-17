@@ -1,5 +1,6 @@
 <h5 class="green colored">
-    Aktionsmöglichkeiten
+    Aktionsmöglichkeiten <i class="help circle outline icon"
+                           data-content="Wählen Sie hier weiterführende Aktionen für Ihren Check aus."></i>
 </h5>
 
 <!-- Help -->
@@ -12,10 +13,12 @@
 <div class="dynamic button">
     <!-- Zuweisung annehmen und ablehnen -->
     @if($check->allow_assignment == false && $check->created_by == 'assigned')
-        <a href="{{route('check.assign.allow', $check->id)}}" class="ui icon button" data-content="Importieren Sie den Ihnen zugewiesenen Check in Ihr Profil.">
+        <a href="{{route('check.assign.allow', $check->id)}}" class="ui icon button"
+           data-content="Importieren Sie den Ihnen zugewiesenen Check in Ihr Profil.">
             <i class="plus outline icon"></i> Check annehmen
         </a>
-        <a href="{{route('check.assign.decline', $check->id)}}" class="ui icon button" data-content="Lehnen Sie den zugewiesenen Check ab.">
+        <a href="{{route('check.assign.decline', $check->id)}}" class="ui icon button"
+           data-content="Lehnen Sie den zugewiesenen Check ab.">
             <i class="ban outline icon"></i> Check ablehnen
         </a>
     @elseif(!$check->getAnonymisedStatus())
@@ -40,7 +43,8 @@
         @endif
     <!-- Fremdeinschätzung einladen -->
         @if(!$check->getLockedStatus() && $check->runs()->where('type', 'me')->whereNotNull('end')->count() > 0 && $check->runs->where('type', 'they')->count() < 2)
-            <a href="#" class="ui icon button check-foreign-assessment-btn" data-url="{{route('foreign_assessment.invite', $check->id, false)}}"
+            <a href="#" class="ui icon button check-foreign-assessment-btn"
+               data-url="{{route('foreign_assessment.invite', $check->id, false)}}"
                data-content="Laden Sie Jemanden dazu ein, Ihren Kompetenzstand einzuschätzen.">
                 @if($check->runs->where('type', 'they')->count() == 0)
                     <i class="mail outline icon"></i> Jemanden zur Fremdeinschätzung einladen
@@ -51,7 +55,9 @@
         @endif
         @if($check->runs()->whereNotNull('end')->count() == 0 && !$check->getLockedStatus())
         <!-- Check zuweisen -->
-            <a href="#" class="ui icon button check-assign-btn" data-url="{{route('check.assign.index', $check->id, false)}}" data-content="Weisen Sie den Check einer anderen Person zu.">
+            <a href="#" class="ui icon button check-assign-btn"
+               data-url="{{route('check.assign.index', $check->id, false)}}"
+               data-content="Weisen Sie den Check einer anderen Person zu.">
                 <i class="mail outline icon"></i> Check zuweisen
             </a>
         @endif

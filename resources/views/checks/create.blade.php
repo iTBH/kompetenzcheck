@@ -6,7 +6,7 @@
     @include('partials.flash')
 
     @include('partials.content-header', [
-        'title' => 'Check erstellen',
+        'title' => 'Check_erstellen',
         'titletext' => 'Legen Sie hier einen Check an. Ein Check besteht aus der Beschreibung des Kontexts (Auftrag), dem Verwendungszweck und den Kompetenzbeschreibungen.',
         'divider' => false,
         'help' => Config::get('help.check_create'),

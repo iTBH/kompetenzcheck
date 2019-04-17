@@ -2,7 +2,7 @@
     <div class="fields">
         <div class="sixteen wide field">
             <label for="title">Kurztitel des Checks: <i class="help circle outline icon"
-                                                        data-content="Wie lautet der Arbeitsauftrag, der dem Check zugrunde liegt? Vergeben Sie einen möglichst prägnanten Check-Titel."></i></label>
+                                                        data-content="Vergeben Sie einen möglichst aussagekräftigen und für Dritte nachvollziehbaren Titel."></i></label>
             <input type="text" name="title" id="title" value="{{ old('title', $check->title) }}"/>
         </div>
     </div>
@@ -10,15 +10,18 @@
     <div class="fields">
         <div class="sixteen wide field">
             <label for="purpose">Verwendungszweck: <i class="help circle outline icon"
-                                                      data-content="Mit welchem Ziel wird der Check durchgeführt? z.B. Kompetenzentwicklung in einer Veranstaltung."></i></label>
+                                                      data-content="Halten Sie fest, zu welchem Zweck bzw. mit welchem Ziel der Check
+durchgeführt werden soll."></i></label>
             <input type="text" name="purpose" id="purpose" value="{{ old('purpose', $check->purpose) }}"/>
         </div>
     </div>
 
     <div class="fields">
         <div class="sixteen wide field">
-            <label for="description">Auftragsbeschreibung: <i class="help circle outline icon"
-                                                              data-content="Beschreiben Sie den Arbeitsauftrag ausführlich:{{-- Rahmenbedingungen (z.B. Mitarbeiter, Ort, Zeitraum), Anforderungen/Vorschriften, Arbeitsgegenstände, zu erstellende (Teil)Produkte.--}} Es muss deutlich werden, in welchem Zusammenhang die Kompetenzebeschreiung gecheckt werden soll."></i></label>
+            <label for="description">Auftragsbeschreibung:
+                <i class="help circle outline icon"
+                   data-content="Beschreiben Sie den Kontext bzw. den Arbeitsauftrag, zu dem der Check durchgeführt werden soll für Dritte nachvollziehbar."></i>
+            </label>
             <textarea name="description" id="description">{{ old('description', $check->description) }}</textarea>
         </div>
     </div>
@@ -26,7 +29,8 @@
     <div class="field">
         <label for="tags">Schlagwörter</label>
         <div id="tags" class="ui fluid multiple search selection dropdown" onkeypress="return event.keyCode != 13;">
-            <input name="tags" type="hidden" value="{{ $check->id ? implode(',', $check->tags->pluck('name')->toArray()) : old('tags') }}">
+            <input name="tags" type="hidden"
+                   value="{{ $check->id ? implode(',', $check->tags->pluck('name')->toArray()) : old('tags') }}">
             <i class="dropdown icon"></i>
             <div class="default text">Hinzufügen</div>
             <div class="menu">
@@ -38,14 +42,19 @@
     </div>
 
     <div class="ui divider"></div>
-    <h2 style="display: inline-block;" class="green colored">Kompetenzbeschreibungen</h2>
+    <h2 style="display: inline-block;" class="green colored">Kompetenzbeschreibungen</h2> <i
+            class="help circle outline icon"
+            data-content="Fügen Sie hier Kompetenzen hinzu. Sie können die Kompetenzen bis zu
+vier Phasen (Reitern) zuordnen, um Lern- bzw. Arbeitsprozesse abzubilden oder das
+Kompetenzprofil zu gliedern."></i>
     <div class="tabular-menu">
         <?php $tabs = ['1' => ' active', '2' => '', '3' => '', '4' => '']; ?>
         <div class="ui top attached tabular menu">
             @foreach( $tabs as $_index => $_class )
                 <a class="item{{ $_class }} one-fourth" data-tab="{{ $_index  }}">
-                    <input value="@isset($phases[$_index]['phase']){{ $phases[$_index]['phase']->name }}@else{{old('phase')[$_index]}}@endisset" name="phase[{{$_index}}]"
-                           placeholder="Bereich {{ $_index }}">
+                    <input value="@isset($phases[$_index]['phase']){{ $phases[$_index]['phase']->name }}@else{{old('phase')[$_index]}}@endisset"
+                           name="phase[{{$_index}}]"
+                           placeholder="Titel hinzufügen">
                 </a>
             @endforeach
         </div>
@@ -67,7 +76,8 @@
                         ])
                     @empty
                         <br/><br/>
-                        <strong>Hinweis:</strong> Fügen Sie an dieser Stellen neue Kompetenzbeschreibungen hinzu. Klicken Sie dafür auf den Plus-Button in der jeweiligen Prozessphase.
+                        <strong>Hinweis:</strong> Fügen Sie an dieser Stellen neue Kompetenzbeschreibungen hinzu.
+                        Klicken Sie dafür auf den Plus-Button in der jeweiligen Prozessphase.
                     @endforelse
                 @elseif($phrases)
                     @foreach( $phrases as $_phrase )

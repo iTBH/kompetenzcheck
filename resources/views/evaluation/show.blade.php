@@ -7,7 +7,7 @@
     @include('partials.modal')
 
     @include('partials.content-header', [
-        'title' => 'Check Auswertung',
+        'title' => 'Check_Auswertung',
         'titletext' => 'Hier sehen Sie die Auswertung des durchgeführten Checks. Führen Sie auf Grundlage der Ergebnisse z. B. ein Auswertungsgespräch. Die Hilfefunktion unterstützt Sie dabei.',
         'divider' => true,
         'help' => Config::get('help.evaluation'),
@@ -18,38 +18,32 @@
         'customtarget' => '_blank'
     ])
 
+    <h2 class="green colored">Beschreibung</h2>
+
     <div class="evaluation-container">
         <div class="ui stackable middle aligned grid">
             <div class="row">
-                <div class="four wide column">
-                    <label>Kurztitel des Checks</label>
-                </div>
-                <div class="six wide column">
+                <div class="sixteen wide column">
+                    <b>Kurztitel des Checks</b>
                     {{ $check->title }}
                 </div>
             </div>
             <div class="row">
-                <div class="four wide column">
-                    <label>Verwendungszweck</label>
-                </div>
-                <div class="six wide column">
+                <div class="sixteen wide column">
+                    <b>Verwendungszweck</b>
                     {{ $check->purpose }}
                 </div>
             </div>
             <div class="row">
-                <div class="four wide column">
-                    <label>Auftragsbeschreibung</label>
-                </div>
-                <div class="six wide column">
+                <div class="sixteen wide column">
+                    <b>Auftragsbeschreibung</b>
                     {{ $check->description }}
                 </div>
             </div>
             @if($check->tags->count() > 0)
                 <div class="row">
-                    <div class="four wide column">
-                        <label>Schlagwörter</label>
-                    </div>
-                    <div class="six wide column">
+                    <div class="sixteen wide column">
+                        <b>Schlagwörter</b>
                         @foreach($check->tags as $checkTag)
                             <a href="#" class="ui label">{{ $checkTag->name }}</a>
                         @endforeach
@@ -60,7 +54,8 @@
         <div class="ui divider dotted"></div>
         <h2 class="green colored">Prozessansicht des Checks</h2>
         <p>
-            Die Prozessansicht zeigt Ihnen alle im Check durchgeführten Selbst- und Fremdeinschätzungen im Durchschnitt pro Kompetenzdimension an.
+            Die Prozessansicht zeigt Ihnen alle im Check durchgeführten Selbst- und Fremdeinschätzungen im Durchschnitt
+            pro Kompetenzdimension an.
         </p>
         <div class="process-view">
             @php ($colWidth = (int)(100 / ($check->phasesChecks->count() + 1) / 2))
@@ -163,12 +158,20 @@
                                 @endforeach
                             @endforeach
                             <td>
-                                <div class="bar bar-green bar-left" style="height: calc((100% + 2px) * {{ $meCountP != 0 ? $meSumP / $meCountP : 0 }})"><span>Ich</span></div>
-                                <div class="bar bar-light-green bar-right" style="height: calc((100% + 2px) * {{ $theyCountP != 0 ? $theySumP / $theyCountP : 0 }})"><span>Andere/r</span></div>
+                                <div class="bar bar-green bar-left"
+                                     style="height: calc((100% + 2px) * {{ $meCountP != 0 ? $meSumP / $meCountP : 0 }})">
+                                    <span>Ich</span></div>
+                                <div class="bar bar-light-green bar-right"
+                                     style="height: calc((100% + 2px) * {{ $theyCountP != 0 ? $theySumP / $theyCountP : 0 }})">
+                                    <span>Andere/r</span></div>
                             </td>
                             <td>
-                                <div class="bar bar-blue bar-left" style="height: calc((100% + 2px) * {{ $meCountF != 0 ? $meSumF / $meCountF : 0 }})"><span>Ich</span></div>
-                                <div class="bar bar-light-blue bar-right" style="height: calc((100% + 2px) * {{ $theyCountF != 0 ? $theySumF / $theyCountF : 0 }})"><span>Andere/r</span></div>
+                                <div class="bar bar-blue bar-left"
+                                     style="height: calc((100% + 2px) * {{ $meCountF != 0 ? $meSumF / $meCountF : 0 }})">
+                                    <span>Ich</span></div>
+                                <div class="bar bar-light-blue bar-right"
+                                     style="height: calc((100% + 2px) * {{ $theyCountF != 0 ? $theySumF / $theyCountF : 0 }})">
+                                    <span>Andere/r</span></div>
                             </td>
                         @endif
                     @endforeach
@@ -200,7 +203,8 @@
         <div class="ui divider"></div>
         <h2 class="green colored">Detailansicht des Checks</h2>
         <p>
-            Hier sehen Sie die detaillierte Darstellung der Einschätzungen pro Prozessphase, Kompetenzdimension und mit Ihren Kommentaren.
+            Hier sehen Sie die detaillierte Darstellung der Einschätzungen pro Prozessphase, Kompetenzdimension und mit
+            Ihren Kommentaren.
         </p>
         @foreach($check->phasesChecks as $phase)
             @if($phase->phrases->count() > 0)

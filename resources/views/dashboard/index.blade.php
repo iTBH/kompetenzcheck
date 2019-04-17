@@ -8,8 +8,8 @@
     @include('partials.flash')
 
     @include('partials.content-header', [
-        'title' => 'Checks im Überblick',
-        'titletext' => 'Ihre Checks im Überblick: Hier erstellen, verwalten und führen Sie Checks durch',
+        'title' => ' Checks_Überblick',
+        'titletext' => 'Ihre Checks im Überblick: Hier erstellen, verwalten und führen Sie Checks durch.',
         'divider' => true,
 
         'create' => route('check.create'),

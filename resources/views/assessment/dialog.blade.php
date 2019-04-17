@@ -6,12 +6,12 @@
         <label>Niveaustufen:</label>
     </div>
     <div class="ui colossal bullseye rating" data-rating="{{ $runphrase->rating }}"></div>
-    {{--<br/>--}}
-    {{--<div class="ui label rating-text rating-no" style="@if(!$runphrase->rating || $runphrase->rating == 0 ) display:block; @else display: none; @endif">Es wurde noch keine Einschätzund durchgeführt.</div>--}}
-    {{--<div class="ui label rating-text rating-1" style="@if($runphrase->rating == 1) display:block; @else display: none; @endif">Ich kann das noch nicht und brauche umfassende Unterstützung.</div>--}}
-    {{--<div class="ui label rating-text rating-2" style="@if($runphrase->rating == 2) display:block; @else display: none; @endif">Ich kann das erst ein bischen und brauche noch relativ viel Unterstützung.</div>--}}
-    {{--<div class="ui label rating-text rating-3" style="@if($runphrase->rating == 3) display:block; @else display: none; @endif">Ich kann das schon relativ gut und brauche nur noch wenig Unterstützung.</div>--}}
-    {{--<div class="ui label rating-text rating-4" style="@if($runphrase->rating == 4) display:block; @else display: none; @endif">Ich kann das sehr gut und brauche keine weitere Unterstützung</div>--}}
+    <br/>
+    <div class="ui label rating-text rating-no" style="@if(!$runphrase->rating || $runphrase->rating == 0 ) display:block; @else display: none; @endif">Es wurde noch keine Einschätzund durchgeführt.</div>
+    <div class="ui label rating-text rating-1" style="@if($runphrase->rating == 1) display:block; @else display: none; @endif">Ich kann das noch nicht und brauche umfassende Unterstützung.</div>
+    <div class="ui label rating-text rating-2" style="@if($runphrase->rating == 2) display:block; @else display: none; @endif">Ich kann das erst ein bischen und brauche noch relativ viel Unterstützung.</div>
+    <div class="ui label rating-text rating-3" style="@if($runphrase->rating == 3) display:block; @else display: none; @endif">Ich kann das schon relativ gut und brauche nur noch wenig Unterstützung.</div>
+    <div class="ui label rating-text rating-4" style="@if($runphrase->rating == 4) display:block; @else display: none; @endif">Ich kann das sehr gut und brauche keine weitere Unterstützung</div>
     <br/><br/><br/>
     <div class="fields">
         <div class="sixteen wide field">

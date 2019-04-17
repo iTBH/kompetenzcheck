@@ -50,7 +50,7 @@
 
         <div class="ui divider"></div>
         <div class="mb-1">
-            <h2 class="green colored d-inline">Kompetenzbeschreibungen</h2><i class="help circle outline icon" data-content="Folgt"></i>
+            <h2 class="green colored d-inline">Kompetenzbeschreibungen</h2>
         </div>
         <div class="tabular-menu">
             <?php $tabs = ['1' => ' active', '2' => '', '3' => '', '4' => '']; ?>
@@ -86,7 +86,7 @@
         </div>
         <div class="fields">
             <div class="sixteen wide field">
-                <button type="submit" class="ui secondary button right floated">Einschätzung abschließen</button>
+                <button type="submit" class="ui primary button right floated">Einschätzung abschließen</button>
             </div>
         </div>
 
