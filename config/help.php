@@ -1,6 +1,6 @@
 <?php
 
-$url = 'https://fizban05.rz.tu-harburg.de/itbh/kompetenzcheck';
+$url = 'https://fizban05.rz.tu-harburg.de/itbh/kompetenzcheck/kompetenzcheck-hilfe/';
 
 return [
     'support' => $url . '/',
