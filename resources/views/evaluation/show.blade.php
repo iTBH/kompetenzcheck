@@ -24,19 +24,19 @@
         <div class="ui stackable middle aligned grid">
             <div class="row">
                 <div class="sixteen wide column">
-                    <b>Kurztitel des Checks</b>
+                    <b>Kurztitel des Checks:</b>
                     {{ $check->title }}
                 </div>
             </div>
             <div class="row">
                 <div class="sixteen wide column">
-                    <b>Verwendungszweck</b>
+                    <b>Verwendungszweck:</b>
                     {{ $check->purpose }}
                 </div>
             </div>
             <div class="row">
                 <div class="sixteen wide column">
-                    <b>Auftragsbeschreibung</b>
+                    <b>Auftragsbeschreibung:</b>
                     {{ $check->description }}
                 </div>
             </div>
@@ -185,7 +185,7 @@
                                 <img class="comp-icon comp-left" src="{{url('\images\s-green.svg')}}">
                                 <img class="comp-icon comp-right" src="{{url('\images\s-light-green.svg')}}"><br/>
                                 Personale<br/>
-                                Kompezenz
+                                Kompetenz
                             </td>
                             <td>
                                 <br/>

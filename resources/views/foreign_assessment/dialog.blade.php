@@ -8,7 +8,7 @@
     <div class="ui colossal bullseye rating" data-rating="{{ $runphrase->rating }}"></div>
     <br/>
     <div class="ui label rating-text rating-no" style="@if(!$runphrase->rating || $runphrase->rating == 0 ) display:block; @else display: none; @endif">Ich kann das nicht einschätzen.</div>
-    <div class="ui label rating-text rating-1" style="@if($runphrase->rating == 1) display:block; @else display: none; @endif">Er/Sie kann das noch nicht und brauche umfassende Unterstützung.</div>
+    <div class="ui label rating-text rating-1" style="@if($runphrase->rating == 1) display:block; @else display: none; @endif">Er/Sie kann das noch nicht und braucht umfassende Unterstützung.</div>
     <div class="ui label rating-text rating-2" style="@if($runphrase->rating == 2) display:block; @else display: none; @endif">Er/Sie kann das erst ein bischen und braucht noch relativ viel Unterstützung.</div>
     <div class="ui label rating-text rating-3" style="@if($runphrase->rating == 3) display:block; @else display: none; @endif">Er/Sie kann das schon relativ gut und braucht nur noch wenig Unterstützung.</div>
     <div class="ui label rating-text rating-4" style="@if($runphrase->rating == 4) display:block; @else display: none; @endif">Er/Sie kann das sehr gut und braucht keine weitere Unterstützung</div>

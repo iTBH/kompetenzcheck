@@ -20,15 +20,15 @@
 
     <table class="result-table">
         <tr>
-            <td><b>Kurztitel des Checks</b></td>
+            <td><b>Kurztitel des Checks:</b></td>
             <td>{{ $check->title }}</td>
         </tr>
         <tr>
-            <td><b>Verwendungszweck</b></td>
+            <td><b>Verwendungszweck:</b></td>
             <td>{{ $check->purpose }}</td>
         </tr>
         <tr>
-            <td><b>Auftragsbeschreibung</b></td>
+            <td><b>Auftragsbeschreibung:</b></td>
             <td>{{ $check->description }}</td>
         </tr>
         @if($check->tags->count() > 0)
@@ -176,7 +176,7 @@
                             <img class="comp-icon comp-left" src="{{url('\images\s-green.svg')}}">
                             <img class="comp-icon comp-right" src="{{url('\images\s-light-green.svg')}}"><br/>
                             Personale<br/>
-                            Kompezent
+                            Kompetenz
                         </td>
                         <td>
                             <br/>

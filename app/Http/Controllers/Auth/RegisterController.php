@@ -109,7 +109,7 @@ class RegisterController extends Controller
     public function verify(Request $request, $token)
     {
         User::where('email_token', $token)->firstOrFail()->verified();
-        $request->session()->flash('status', ['message' => 'Deine E-Mail-Adresse wurde bestätigt.', 'level' => 'success']);
+        $request->session()->flash('status', ['message' => 'Ihre E-Mail-Adresse wurde bestätigt.', 'level' => 'success']);
         return redirect('login');
     }
 

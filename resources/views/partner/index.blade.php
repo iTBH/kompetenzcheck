@@ -86,9 +86,9 @@
                 </div>
             @else
                 <div class="cta-text">
-                    <h2 class="green colored">Du hast noch keine/n Partnerin/Partner hinterlegt.</h2>
+                    <h2 class="green colored">Sie haben noch keine Checkpartnerin bzw. keinen Checkpartner hinterlegt.</h2>
                     <p>
-                        Lege eine/n neuen Partnerin/Partner an oder klicke auf Hilfe um mehr über Partner und Partnerinnen zu erfahren.
+                        Fügen Sie eine neue Partnerin bzw. einen neuen Partner hinzu.
                     </p>
                 </div>
             @endif
