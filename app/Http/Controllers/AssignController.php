@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helper\ShareHelper;
 use App\Mail\AssignCheck;
+use App\Models\Assignment;
 use App\Models\Check;
 use App\Models\Partner;
 use App\Models\PhasesCheck;
@@ -77,6 +78,12 @@ class AssignController extends Controller
             $email = new AssignCheck($shareKey, $partner);
             Mail::to($partner->email)->send($email);
             session()->flash('status', ['message' => 'Check wurde zugewiesen.', 'level' => 'success']);
+
+            Assignment::create([
+                'check_id' => $check->id,
+                'assigned_to' => $user ? $user->email : $partner->email,
+                'assigned_by' => $check->user_id,
+            ]);
 
             return;
         }
