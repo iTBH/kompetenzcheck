@@ -173,15 +173,15 @@
                     @if($phase->phrases->count() > 0)
                         <td>
                             <br/>
-                            <img class="comp-icon comp-left" src="{{url('\images\s-green.svg')}}">
-                            <img class="comp-icon comp-right" src="{{url('\images\s-light-green.svg')}}"><br/>
+                            <img class="comp-icon comp-left" src="https://vignette.wikia.nocookie.net/diealdor/images/8/88/IconSmall_Gnome_Male.gif/revision/latest?cb=20180108052740">
+                            <img class="comp-icon comp-right" src="https://vignette.wikia.nocookie.net/diealdor/images/8/88/IconSmall_Gnome_Male.gif/revision/latest?cb=20180108052740"><br/>
                             Personale<br/>
                             Kompetenz
                         </td>
                         <td>
                             <br/>
-                            <img class="comp-icon comp-left" src="{{url('\images\f-blue.svg')}}">
-                            <img class="comp-icon comp-right" src="{{url('\images\f-light-blue.svg')}}"><br/>
+                            <img class="comp-icon comp-left" src="https://vignette.wikia.nocookie.net/diealdor/images/8/88/IconSmall_Gnome_Male.gif/revision/latest?cb=20180108052740">
+                            <img class="comp-icon comp-right" src="https://vignette.wikia.nocookie.net/diealdor/images/8/88/IconSmall_Gnome_Male.gif/revision/latest?cb=20180108052740"><br/>
                             Fach-<br/>
                             kompetenz
                         </td>
@@ -211,9 +211,9 @@
                                 @if($runPhrase->run->type == "me")
                                     <span class="count-column">
                                         @if($check->runs->sortBy('start')->first() == $runPhrase->run)
-                                            <img src="{{url('\images\evaluation\count-1.png')}}" alt="count">
+                                            <img src="https://vignette.wikia.nocookie.net/diealdor/images/8/88/IconSmall_Gnome_Male.gif/revision/latest?cb=20180108052740" alt="count">
                                         @elseif($check->runs->sortByDesc('start')->first() == $runPhrase->run)
-                                            <img src="{{url('\images\evaluation\count-2.png')}}" alt="count">
+                                            <img src="https://vignette.wikia.nocookie.net/diealdor/images/8/88/IconSmall_Gnome_Male.gif/revision/latest?cb=20180108052740" alt="count">
                                         @endif
                                         <b>Ich:</b> Meine Selbsteinschätzung
                                     </span>
