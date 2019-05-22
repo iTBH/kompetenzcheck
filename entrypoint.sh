@@ -20,6 +20,7 @@ php artisan storage:link
 php artisan migrate
 php artisan db:seed
 php artisan cache:clear
+php artisan view:clear
 
 php-fpm &
 caddy
