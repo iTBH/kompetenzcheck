@@ -18,7 +18,7 @@ class EvaluationController extends Controller
 
     public function download(Check $check)
     {
-        $css = url(mix('/css/app.css'));
+        $css = url(mix('/css/app.css'), [], true);
         try {
             $pdf = SnappyPdf::loadView('evaluation.pdf', ['check' => $check, 'css' => $css])->setOrientation('landscape');
             $name = str_replace(' ', '_', $check->name) . "_" . Carbon::now()->format('d_m_Y');
