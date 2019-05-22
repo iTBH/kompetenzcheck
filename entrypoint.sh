@@ -6,6 +6,7 @@ ln -sfT /dev/stdout /var/www/html/storage/laravel.log;
 
 if [ ! -f /var/www/html/.env ]; then
     echo "APP_KEY=" > /var/www/html/.env
+    echo "APP_URL=${APP_URL}" > /var/www/html/.env
 fi
 
 # `/var/www/html/storage/app/public/` ist ein Verzeichnis, welches beim Starten
