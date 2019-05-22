@@ -24,7 +24,7 @@ class EvaluationController extends Controller
             $name = str_replace(' ', '_', $check->name) . "_" . Carbon::now()->format('d_m_Y');
             return $pdf->download($name . '.pdf');
         } catch (\Exception $exception) {
-            dd($exception);
+            dd($exception, $css);
             session()->flash('status', ['message' => 'Das PDF kann gerade nicht erstellt werden', 'level' => 'error']);
             return redirect()->back();
         }
