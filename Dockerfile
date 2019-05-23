@@ -14,6 +14,8 @@ RUN npm install \
 	
 RUN chown -R www-data:www-data /var/www/html
 
+RUN usermod -aG tty www-data
+
 EXPOSE 80
 
 ENTRYPOINT /var/www/html/entrypoint.sh
