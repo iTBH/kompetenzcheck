@@ -41,11 +41,6 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
-$json = new \Monolog\Formatter\JsonFormatter();
-$stdouthandler = new \Monolog\Handler\StreamHandler('php://stdout', 'info');
-$stdouthandler->setFormatter($json);
-Log::pushHandler($stdouthandler);
-
 /*
 |--------------------------------------------------------------------------
 | Return The Application
