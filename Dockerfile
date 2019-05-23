@@ -7,12 +7,10 @@ COPY . /var/www/html
 RUN chmod +x /var/www/html/entrypoint.sh
 RUN chmod +x /var/www/html/wait-for-it.sh
 
-RUN su -s /bin/bash -c 'npm install && npm run dev && npm cache clean && composer install' www-data
-#USER www-data
-#RUN npm install \
-#	&& npm run dev \
-#	&& npm cache clean \
-#	&& composer install
+RUN npm install \
+	&& npm run dev \
+	&& npm cache clean \
+	&& composer install
 
 EXPOSE 80
 
