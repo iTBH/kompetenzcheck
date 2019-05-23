@@ -11,6 +11,8 @@ RUN npm install \
 	&& npm run dev \
 	&& npm cache clean \
 	&& composer install
+	
+RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 80
 
