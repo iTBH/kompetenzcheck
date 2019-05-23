@@ -1,7 +1,6 @@
-<!-- ToDo: History -->
 <?php $history = $check->history(); ?>
 <?php $last = array_first($history); ?>
-<div class="sixteen wide column">
+<div class="sixteen wide column history">
     <div class="ui accordion">
         <div class="title">
             <div class="ui label"><i class="dropdown icon"></i> Historie - {{ $last['date'] }}: {{$last['action']}} </div>

@@ -8,6 +8,7 @@
     @include('partials.favicon')
     <title>Kompetenzcheck | @yield('title')</title>
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro/dist/iro.min.js"></script>
     <script src="{{ mix('/js/app.js') }}" defer></script>
     <script>
         window.Laravel = {!! json_encode([
@@ -29,9 +30,9 @@
         @endif
         <div class="content ui container @yield('content-width')">
             @yield('content')
-            @include('partials.footer')
         </div>
     </div>
+    @include('partials.footer')
 </div>
 </body>
 </html>

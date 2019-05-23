@@ -77,7 +77,8 @@ class ForeignAssessmentController extends Controller
             ['check_id', '=', $check->id],
             ['invitation_id', '=', $invitation->id],
             ['type', '=', 'they']
-        ])/*->whereNull('end')*/->first();
+        ])/*->whereNull('end')*/
+        ->first();
 
         // if the run is not present, create it
         if (!$run) {
@@ -94,7 +95,12 @@ class ForeignAssessmentController extends Controller
 
     public function save(Check $check, Request $request)
     {
-        // ToDo: Validation
+        $existingInvitations = $check->invitations;
+        if ($existingInvitations->count() == 2) {
+            session()->flash('status', ['message' => 'Es wurden bereits zwei Einladungen verschickt', 'level' => 'error']);
+            return response()->json(['message' => 'Es wurden bereits zwei Einladungen verschickt.', 'level' => 'error']);
+        }
+
         $this->validate($request, [
             'email' => 'required|email',
             'firstname' => 'required',
@@ -140,7 +146,7 @@ class ForeignAssessmentController extends Controller
         ]);
 
         // Create Run!
-        $this->_findOrCreateRunForInvitation($invitation, $check);
+//        $this->_findOrCreateRunForInvitation($invitation, $check);
 
         $mail = (new ForeignAssessment($invitation));
         Mail::to($request->get('email'))->send($mail);
@@ -193,7 +199,7 @@ class ForeignAssessmentController extends Controller
 
         return response()->json([
             'modal' => [
-                'header' => '<h1>Kompetenz bewerten</h1>',
+                'header' => '<h1>Kompetenz einschätzen</h1>',
                 'content' => view('foreign_assessment.dialog',
                     [
                         'check' => $check,
@@ -240,6 +246,11 @@ class ForeignAssessmentController extends Controller
 
     public function complete(Request $request, $check, Run $run)
     {
+        if(!$run->runPhrases->count()) {
+            session()->flash('status', ['message' => 'Die Fremdeinschätzung konnte nicht abgeschlossen werden.<br /><ul><li>Bitte geben Sie mindestens eine Einschätzung ab.</li></ul>', 'level' => 'error']);
+            return redirect()->back();
+        }
+
         $run->update([
             'end' => Carbon::now()
         ]);
@@ -251,6 +262,8 @@ class ForeignAssessmentController extends Controller
             }
         }
 
-        return redirect(route('dashboard.index'))->with(['message' => 'Fremdeinschätzung erfolgreich gespeichert.', 'level' => 'success']);
+        session()->flash('status', ['message' => 'Ihre Fremdeinschätzung wurde erfolgreich abgeschlossen.', 'level' => 'success']);
+
+        return redirect()->back();
     }
 }

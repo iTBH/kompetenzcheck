@@ -49,6 +49,11 @@ class Check extends Model
         return $this->hasMany(Invitation::class, 'check_id', 'id');
     }
 
+    public function assignments()
+    {
+        return $this->hasMany(Assignment::class, 'check_id', 'id');
+    }
+
     public function delete()
     {
         $phasesChecks = $this->phasesChecks()->get();
@@ -72,9 +77,9 @@ class Check extends Model
                 return "Ich habe den Check dupliziert";
                 break;
             case 'assigned':
-                return "Ich habe den Check zugewiesen bekommen";
+                return "Ich habe den Check importiert";
                 break;
-            case 'imported':
+            case 'import':
                 return "Ich habe den Check importiert";
                 break;
         }
@@ -169,6 +174,15 @@ class Check extends Model
                 'date' => $date->format('d.m.Y'),
                 'time' => $date->format('H:i'),
                 'action' => "Ich habe " . $invitation->firstname . " " . $invitation->lastname . " zu einer Fremdeinschätzung eingeladen"];
+        }
+
+        foreach ($this->assignments as $assignment) {
+            $date = Carbon::createFromFormat('Y-m-d H:i:s', $assignment->created_at);
+            $history[] = [
+                'order-date' => $date,
+                'date' => $date->format('d.m.Y'),
+                'time' => $date->format('H:i'),
+                'action' => "Ich habe " . $assignment->assigned_to . " den Check zugewiesen"];
         }
 
         $history = collect($history)->sortByDesc(function ($temp, $key) {

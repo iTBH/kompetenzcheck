@@ -28,7 +28,7 @@ class EmailVerification extends Mailable
      */
     public function build()
     {
-        return $this->subject('Bitte bestätige deine E-Mail-Adresse')
+        return $this->subject('Bitte bestätigen Sie Ihre E-Mail-Adresse')
             ->markdown('emails.verification', ['user' => $this->user]);
     }
 }

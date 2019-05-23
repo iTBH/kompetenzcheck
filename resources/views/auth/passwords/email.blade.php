@@ -7,10 +7,8 @@
     @include('partials.flash')
     <h1>Passwort zurücksetzen</h1>
     <p>
-        Gib hier Deine E-Mail-Adresse, mit der
-        Du Dich registriert hast, ein. Du erhältst
-        dann eine E-Mail, mit der Du Dein Passwort
-        zurücksetzen kannst.
+        Geben Sie hier Ihre E-Mail-Adresse ein, mit der Sie sich registriert haben. Sie erhalten dann eine E-Mail, mit
+        der Sie Ihr Passwort zurücksetzen können.
     </p>
     <form class="ui form" method="POST" action="{{ route('password.email') }}">
         {{ csrf_field() }}

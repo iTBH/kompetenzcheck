@@ -167,8 +167,8 @@
             <div class="four wide column">
             </div>
             <div class="seven wide column text-right">
-                <a href="{{ route('profile.index') }}" type="submit" class="ui secondary button">Abbrechen</a>
                 <button type="submit" class="ui primary button">Speichern</button>
+                <a href="{{ route('profile.index') }}" type="submit" class="ui secondary button">Abbrechen</a>
             </div>
         </div>
     </div>

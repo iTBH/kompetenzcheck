@@ -8,48 +8,39 @@
 
     @include('partials.content-header', [
         'title' => 'Selbsteinschätzung',
+        'titletext' => 'Schätzen Sie hier auf Grundlage Ihrer Vorerfahrungen oder aktuellen Erlebnisse ein, wie gut Sie die beschriebenen Kompetenzen beherrschen.',
         'divider' => false,
         'help' => Config::get('help.assessment_own'),
     ])
 
     <div class="ui divider"></div>
 
-    <p>
-        Schätzen Sie hier auf Grundlage Ihrer Vorerfahrungen oder aktuellen Erlebnisse ein, wie gut Sie die beschriebenen Kompetenzen beherrschen.
-    </p>
+    <h2 class="green colored">Beschreibung</h2>
 
-    <form class="ui form" method="POST" action="{{ route('assessment.save', ['check' => $check, 'run' => $run]) }}">
+    <form class="ui form assessment" method="POST" action="{{ route('assessment.save', ['check' => $check, 'run' => $run]) }}">
         {{ csrf_field() }}
         <div class="ui middle aligned grid">
             <div class="row">
-                <div class="four wide column">
-                    <label>Kurztitel des Checks:</label>
-                </div>
-                <div class="six wide column">
+                <div class="sixteen wide column">
+                    <b>Kurztitel des Checks:</b>
                     {{ $check->title }}
                 </div>
             </div>
             <div class="row">
-                <div class="four wide column">
-                    <label>Verwendungszweck:</label>
-                </div>
-                <div class="six wide column">
+                <div class="sixteen wide column">
+                    <b>Verwendungszweck:</b>
                     {{ $check->purpose }}
                 </div>
             </div>
             <div class="row">
-                <div class="four wide column">
-                    <label>Auftragsbeschreibung:</label>
-                </div>
-                <div class="six wide column">
+                <div class="sixteen wide column">
+                    <b>Auftragsbeschreibung:</b>
                     {{ $check->description }}
                 </div>
             </div>
             <div class="row">
-                <div class="four wide column">
-                    <label>Schlagwörter:</label>
-                </div>
-                <div class="six wide column">
+                <div class="sixteen wide column">
+                    <b>Schlagwörter:</b>
                     @foreach($check->tags as $checkTag)
                         <a href="{{ route('tags.show', $checkTag->id) }}" class="ui label">{{ $checkTag->name }}</a>
                     @endforeach
@@ -58,7 +49,9 @@
         </div>
 
         <div class="ui divider"></div>
-        <h2 class="green colored">Kompetenzbeschreibungen</h2>
+        <div class="mb-1">
+            <h2 class="green colored d-inline">Kompetenzbeschreibungen</h2>
+        </div>
         <div class="tabular-menu">
             <?php $tabs = ['1' => ' active', '2' => '', '3' => '', '4' => '']; ?>
             <div class="ui top attached tabular menu">
@@ -91,7 +84,6 @@
                 @endisset
             @endforeach
         </div>
-        <div class="ui divider"></div>
         <div class="fields">
             <div class="sixteen wide field">
                 <button type="submit" class="ui primary button right floated">Einschätzung abschließen</button>

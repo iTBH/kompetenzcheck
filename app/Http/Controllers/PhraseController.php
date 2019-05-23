@@ -16,7 +16,7 @@ class PhraseController extends Controller
     {
         return response()->json([
             'modal' => [
-                'header' => '<h1>Kompetenzbeschreibung</h1>',
+                'header' => '<h1>Kompetenzbeschreibung hinzufügen</h1>',
                 'content' => view('checks.phrase.index', ['categories' => (new Category())->all(), 'tab' => request('tab')])->render(),
                 'actions' => view('checks.phrase.actions.actions')->render()
             ]
@@ -73,7 +73,7 @@ class PhraseController extends Controller
     {
         return response()->json([
             'modal' => [
-                'header' => '<h1>Kompetenzbeschreibung</h1>',
+                'header' => '<h1>Kompetenzbeschreibung bearbeiten</h1>',
                 'content' => view('checks.phrase.index', [
                     'categories' => (new Category())->all(),
                     'category' => $request->get('category'),

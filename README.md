@@ -21,7 +21,7 @@ $ docker-compose build
 $ docker-compose up -d
 ```
 
-5. Kompetenzcheck im Browser öffnen: http://localhost/
+4. Kompetenzcheck im Browser öffnen: http://localhost/
 
 
 5. MailHog im Browser öffnen um Bestätigunsmails abzufangen: http://localhost:8025/

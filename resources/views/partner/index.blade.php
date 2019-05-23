@@ -11,7 +11,7 @@
         'help' => Config::get('help.partner'),
     ])
     <p>
-        Hier können Sie neue Kompetenz-Checkpartner und -Partnerinnen anlegen, die Angaben vorhandener Partner und Partnerinnen bearbeiten oder löschen. Als Partner und Partnerin gelten Personen, denen Sie einen Check zuweisen möchten bzw. von denen Sie bereits einen Check zugewiesen bekommen haben, oder eine Einladung zu einer Fremdeinschätzung zusenden möchten bzw. bereits erhalten haben.
+        Hier können Sie Checkpartner und -Partnerinnen hinzufügen, bearbeiten oder löschen. Checkpartner und Checkpartnerinnen sind die Personen, mit denen Sie im Prozess einer Check-Durchführung via E-Mail zusammenarbeiten, z.B. Personen, denen Sie einen Check zuweisen möchten, von denen Sie einen Check zugewiesen bekommen haben, oder eine Einladung zur Fremdeinschätzung erhalten haben.
     </p>
     <div class="ui divider dotted"></div>
     <div class="ui divider hidden"></div>
@@ -86,9 +86,9 @@
                 </div>
             @else
                 <div class="cta-text">
-                    <h2 class="green colored">Du hast noch keine/n Partnerin/Partner hinterlegt.</h2>
+                    <h2 class="green colored">Sie haben noch keine Checkpartnerin bzw. keinen Checkpartner hinterlegt.</h2>
                     <p>
-                        Lege eine/n neuen Partnerin/Partner an oder klicke auf Hilfe um mehr über Partner und Partnerinnen zu erfahren.
+                        Fügen Sie eine neue Partnerin bzw. einen neuen Partner hinzu.
                     </p>
                 </div>
             @endif

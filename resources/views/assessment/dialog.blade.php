@@ -1,6 +1,10 @@
 <form class="ui form assessment dialog">
     {{ csrf_field() }}
-    <div class="statement">Der/Die Lernende {{ $phrase->statement }}</div>
+
+    <div class="statement">@if($phrase->getCategory()) <i class="{{ $phrase->getCategory()->icon }} icon"></i>@endif Der/Die Lernende {{ $phrase->statement }}</div>
+    <div class="field">
+        <label>Niveaustufen:</label>
+    </div>
     <div class="ui colossal bullseye rating" data-rating="{{ $runphrase->rating }}"></div>
     <br/>
     <div class="ui label rating-text rating-no" style="@if(!$runphrase->rating || $runphrase->rating == 0 ) display:block; @else display: none; @endif">Es wurde noch keine Einschätzund durchgeführt.</div>
@@ -12,7 +16,7 @@
     <div class="fields">
         <div class="sixteen wide field">
             <label>Kommentar:</label>
-            <textarea name="comment" placeholder="Notieren Sie hier Erfahrungen und Begründungen, die zur Kompetenzeinschätzung geführt haben.">{{ $runphrase->comment }}</textarea>
+            <textarea name="comment" placeholder="Notieren Sie hier Erfahrungen, Beobachtungen und Begründungen, die zur Kompetenzeinschätzung geführt haben.">{{ $runphrase->comment }}</textarea>
         </div>
     </div>
     <input type="hidden" name="check" value="{{ $check->id }}"/>

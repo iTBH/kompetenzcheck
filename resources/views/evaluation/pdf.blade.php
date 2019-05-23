@@ -8,28 +8,32 @@
     <link rel="stylesheet" href="{{ $css }}">
 </head>
 <body>
+
+<h2 class="green colored">Beschreibung</h2>
+
 <div class="pdf-evaluation-container">
     <h2 class="green colored">Auswertung des Checks</h2>
     <p>
-        Hier sehen Sie die Auswertung des durchgeführten Kompetenz-Checks. Führen Sie auf Grundlage der Ergebnisse z. B. ein Auswertungsgespräch. Die Hilfefunktion unterstützt Sie dabei.
+        Hier sehen Sie die Auswertung des durchgeführten Kompetenz-Checks. Führen Sie auf Grundlage der Ergebnisse z. B.
+        ein Auswertungsgespräch. Die Hilfefunktion unterstützt Sie dabei.
     </p>
 
     <table class="result-table">
         <tr>
-            <td><label>Kurztitel des Checks</label></td>
+            <td><b>Kurztitel des Checks:</b></td>
             <td>{{ $check->title }}</td>
         </tr>
         <tr>
-            <td><label>Verwendungszweck</label></td>
+            <td><b>Verwendungszweck:</b></td>
             <td>{{ $check->purpose }}</td>
         </tr>
         <tr>
-            <td><label>Auftragsbeschreibung</label></td>
+            <td><b>Auftragsbeschreibung:</b></td>
             <td>{{ $check->description }}</td>
         </tr>
         @if($check->tags->count() > 0)
             <tr>
-                <td><label>Schlagwörter</label></td>
+                <td><b>Schlagwörter</b></td>
                 <td>
                     @foreach($check->tags as $checkTag)
                         <a href="#" class="ui label">{{ $checkTag->name }}</a>
@@ -40,7 +44,8 @@
     </table>
     <h2 class="green colored">Prozessansicht des Checks</h2>
     <p>
-        Die Prozessansicht zeigt Ihnen alle im Check durchgeführten Einschätzungen im Durchschnitt pro Kompetenzdimension an. Nutzen Sie die Prozessansicht für einen ersten Überblick und als
+        Die Prozessansicht zeigt Ihnen alle im Check durchgeführten Einschätzungen im Durchschnitt pro
+        Kompetenzdimension an. Nutzen Sie die Prozessansicht für einen ersten Überblick und als
         Einstieg
         in die Auswertung des Checks.
     </p>
@@ -151,11 +156,13 @@
 
                         <td>
                             <div class="bar bar-green bar-left" style="height: {{$meHeightP}}px;"><span>Ich</span></div>
-                            <div class="bar bar-light-green bar-right" style="height: {{$theyHeightP}}px;"><span>Andere/r</span></div>
+                            <div class="bar bar-light-green bar-right" style="height: {{$theyHeightP}}px;"><span>Andere/r</span>
+                            </div>
                         </td>
                         <td>
                             <div class="bar bar-blue bar-left" style="height:{{$meHeightF}}px;"><span>Ich</span></div>
-                            <div class="bar bar-light-blue bar-right" style="height:{{$theyHeightF}}px;"><span>Andere/r</span></div>
+                            <div class="bar bar-light-blue bar-right" style="height:{{$theyHeightF}}px;">
+                                <span>Andere/r</span></div>
                         </td>
                     @endif
                 @endforeach
@@ -166,15 +173,15 @@
                     @if($phase->phrases->count() > 0)
                         <td>
                             <br/>
-                            <img class="comp-icon comp-left" src="{{url('\images\s-green.svg')}}">
-                            <img class="comp-icon comp-right" src="{{url('\images\s-light-green.svg')}}"><br/>
+                            <img class="comp-icon comp-left" src="{{$url . '\images\s-green.svg'}}">
+                            <img class="comp-icon comp-right" src="{{$url .'\images\s-light-green.svg'}}"><br/>
                             Personale<br/>
-                            Kompezent
+                            Kompetenz
                         </td>
                         <td>
                             <br/>
-                            <img class="comp-icon comp-left" src="{{url('\images\f-blue.svg')}}">
-                            <img class="comp-icon comp-right" src="{{url('\images\f-light-blue.svg')}}"><br/>
+                            <img class="comp-icon comp-left" src="{{$url .'\images\f-blue.svg'}}">
+                            <img class="comp-icon comp-right" src="{{$url .'\images\f-light-blue.svg'}}"><br/>
                             Fach-<br/>
                             kompetenz
                         </td>
@@ -190,7 +197,8 @@
                 <div class="page_break"></div>
                 <h2 class="green colored">Detailansicht des Checks</h2>
                 <p>
-                    Hier sehen Sie die detaillierte Darstellung der Einschätzungen pro Prozessphase, Kompetenzdimension und mit Ihren Kommentaren.
+                    Hier sehen Sie die detaillierte Darstellung der Einschätzungen pro Prozessphase, Kompetenzdimension
+                    und mit Ihren Kommentaren.
                 </p>
             @endif
             <h4>{{$phase->phase->name}}</h4>
@@ -203,9 +211,9 @@
                                 @if($runPhrase->run->type == "me")
                                     <span class="count-column">
                                         @if($check->runs->sortBy('start')->first() == $runPhrase->run)
-                                            <img src="{{url('\images\evaluation\count-1.png')}}" alt="count">
+                                            <img src="{{$url .'\images\evaluation\count-1.png'}}" alt="count">
                                         @elseif($check->runs->sortByDesc('start')->first() == $runPhrase->run)
-                                            <img src="{{url('\images\evaluation\count-2.png')}}" alt="count">
+                                            <img src="{{$url .'\images\evaluation\count-2.png'}}" alt="count">
                                         @endif
                                         <b>Ich:</b> Meine Selbsteinschätzung
                                     </span>

@@ -5,7 +5,9 @@
 ln -sfT /dev/stdout /var/www/html/storage/laravel.log;
 
 if [ ! -f /var/www/html/.env ]; then
-    echo "APP_KEY=" > /var/www/html/.env
+    touch /var/www/html/.env
+    echo "APP_KEY=" >> /var/www/html/.env
+    echo "APP_URL=${APP_URL}" >> /var/www/html/.env
 fi
 
 # `/var/www/html/storage/app/public/` ist ein Verzeichnis, welches beim Starten
@@ -17,6 +19,8 @@ php artisan key:generate
 php artisan storage:link
 php artisan migrate
 php artisan db:seed
+php artisan cache:clear
+php artisan view:clear
 
 php-fpm &
 caddy
