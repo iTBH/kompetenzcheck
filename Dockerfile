@@ -9,8 +9,7 @@ RUN npm install \
 	&& npm run dev \
 	&& npm cache clean \
 	&& composer install
-
-RUN chown -R www-data:www-data /var/www/html
+	
 RUN chmod +x /var/www/html/entrypoint.sh
 RUN chmod +x /var/www/html/wait-for-it.sh
 
