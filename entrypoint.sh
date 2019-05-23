@@ -19,7 +19,7 @@ php artisan cache:clear
 php artisan view:clear
 
 
-find /var/www/html/ ! -user www-data -exec chown www-data:www-data {} \
+find /var/www/html/ ! -user www-data -exec chown www-data:www-data {} \;
 
 php-fpm &
 caddy
