@@ -1,6 +1,8 @@
 #!/bin/sh
 /var/www/html/wait-for-it.sh db:3306 -t 60
 
+# Laravel soll seinen Logger dazu bringen, nach STDOUT zu loggen
+# am besten per Konfiguration im `docker-compose.yml`
 #touch /var/www/html/storage/laravel.log
 #ln -sfT /dev/stdout /var/www/html/storage/logs/laravel.log;
 
