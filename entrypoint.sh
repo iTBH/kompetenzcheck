@@ -10,6 +10,7 @@ if [ ! -f /var/www/html/.env ]; then
     touch /var/www/html/.env
     echo "APP_KEY=" >> /var/www/html/.env
     echo "APP_URL=${APP_URL}" >> /var/www/html/.env
+    echo "LOG_CHANNEL=errorlog" >> /var/www/html/.env
 fi
 
 
