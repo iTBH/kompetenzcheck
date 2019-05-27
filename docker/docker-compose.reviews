@@ -52,6 +52,9 @@ services:
 
   db:
     image: mariadb:latest
+    labels:
+      ONLINE_JOURNALCTL: 'true'
+      ONLINE_JOURNALCTL_TOKEN: '${ONLINE_JOURNALCTL_TOKEN}'
     restart: 'always'
     ports:
       - "3306"
@@ -62,6 +65,9 @@ services:
       MYSQL_PASSWORD: 'fhtHS9NFtfLGrr3kaQqczV'
 
   redis:
+    labels:
+      ONLINE_JOURNALCTL: 'true'
+      ONLINE_JOURNALCTL_TOKEN: '${ONLINE_JOURNALCTL_TOKEN}'
     image: redis:3
     restart: 'always'
     ports:
