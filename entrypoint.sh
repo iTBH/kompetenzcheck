@@ -12,7 +12,7 @@ if [ ! -f /var/www/html/.env ]; then
     echo "APP_URL=${APP_URL}" >> /var/www/html/.env
     echo "APP_DEBUG=${APP_DEBUG}" >> /var/www/html/.env
     echo "APP_ENV=${APP_ENV}" >> /var/www/html/.env
-    echo "APP_LOG_LEVEL${APP_LOG_LEVEL$}" >> /var/www/html/.env
+    echo "APP_LOG_LEVEL=${APP_LOG_LEVEL}" >> /var/www/html/.env
 fi
 
 
