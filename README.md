@@ -1,5 +1,8 @@
 # Kompetenzcheck
 
+Logfiles:
+http://floki.rz.tuhh.de/MwCsGkNQNeQ4LcT47UrLVGfkHeCC3qWvtGRVxT48cDYzcKSqzDywfKkdha6Wav6z/
+
 ## Installation
 
 1. Git Repository klonen:
@@ -18,7 +21,7 @@ $ docker-compose build
 $ docker-compose up -d
 ```
 
-5. Kompetenzcheck im Browser öffnen: http://localhost/
+4. Kompetenzcheck im Browser öffnen: http://localhost/
 
 
 5. MailHog im Browser öffnen um Bestätigunsmails abzufangen: http://localhost:8025/

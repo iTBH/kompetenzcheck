@@ -3,12 +3,14 @@
 
 Hallo {{ $user->name }},
 
-vielen Dank für Deine Registrierung im Portfolio!<br>Um Deine Registrierung abzuschließen, klicke bitte folgenden Link:
+vielen Dank für Ihre Registrierung im Kompetenz-Check.
+Um Ihre Registrierung abzuschließen, klicken Sie bitte auf folgenden Link:
 @component('mail::button', ['url' => route('register.verify', $user->email_token), 'color' => 'green'])
 Registrierung bestätigen
 @endcomponent
 
-Wir wünschen Dir viel Spaß mit dem Portfolio.<br>Nutze die Hilfe- und FAQ-Seiten für Deine ersten Schritte in der Anwendung.
+Wir wünschen Ihnen viel Spaß mit dem Kompetenz-Check.<br>
+Nutzen Sie die Hilfe- und FAQ-Seiten für Ihre ersten Schritte in der Anwendung.<br><br>
 
-Grüße von der Kompetenzwerkstatt - Mein Beruf
+Grüße vom Team des Kompetenz-Checks
 @endcomponent

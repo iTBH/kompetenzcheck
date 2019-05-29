@@ -13,13 +13,13 @@ class AssessmentController extends Controller
 {
     public function index(Check $check)
     {
-        if( !$check->id ) {
+        if (!$check->id) {
             session()->flash('status', ['message' => 'Der gewählte Check existiert nicht.', 'level' => 'error']);
             return redirect(route('dashboard.index'));
         }
 
         $locked = $check->getLockedStatus();
-        if($locked) {
+        if ($locked) {
             $locked = Carbon::createFromFormat('Y-m-d', $locked);
             session()->flash('status', ['message' => 'Der Check wurde bereits am ' . $locked->format('d.m.Y') . ' abgeschlossen.', 'level' => 'error']);
             return redirect(route('dashboard.index'));
@@ -97,7 +97,7 @@ class AssessmentController extends Controller
 
         return response()->json([
             'modal' => [
-                'header' => '<h1>Kompetenz bewerten</h1>',
+                'header' => '<h1>Kompetenz einschätzen</h1>',
                 'content' => view('assessment.dialog',
                     [
                         'check' => $check,
@@ -144,11 +144,16 @@ class AssessmentController extends Controller
 
     public function save(Check $check, Request $request)
     {
-        if( $check->id && $request->only('run') ) {
+        $phrasesCount = (new RunPhrase)->where('run_id', $request->get('run'))->count();
+
+        if ($check->id && $request->only('run') && $check->phrases->count() == $phrasesCount) {
             (new Run)->find($request->get('run'))->update([
                 'end' => Carbon::now()
             ]);
             session()->flash('status', ['message' => 'Die Einschätzung wurde erfolgreich abgeschlossen.', 'level' => 'success']);
+        } elseif ($check->phrases->count() != $phrasesCount) {
+            session()->flash('status', ['message' => 'Es wurden noch nicht alle Kompetenzen eingeschätzt. ', 'level' => 'error']);
+            return redirect()->back();
         } else {
             session()->flash('status', ['message' => 'Die Einschätzung konnte nicht abgeschlossen werden.', 'level' => 'error']);
         }

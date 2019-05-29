@@ -6,3 +6,5 @@ require('../../../node_modules/semantic-ui-calendar/dist/calendar.min.js');
 window.Dropzone = require('dropzone');
 Dropzone.autoDiscover = false;
 
+/** Iro - Colorpicker */
+// window.iro = require('@jaames/iro');

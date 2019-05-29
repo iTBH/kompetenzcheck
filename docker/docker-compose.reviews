@@ -3,6 +3,9 @@ version: '2'
 services:
   app:
     image: '${CI_PROJECT_PATH_SLUG}:${CI_COMMIT_REF_SLUG}'
+    labels:
+      ONLINE_JOURNALCTL: 'true'
+      ONLINE_JOURNALCTL_TOKEN: '${ONLINE_JOURNALCTL_TOKEN}'
     build:
       context: ../
       dockerfile: ./Dockerfile
@@ -18,7 +21,7 @@ services:
       APP_ENV: 'local'
       APP_DEBUG: 'true'
       APP_LOG_LEVEL: 'debug'
-      APP_URL: 'http://localhost'
+      APP_URL: 'https://${CI_PROJECT_ID}-${CI_ENVIRONMENT_SLUG}.hpn.rz.tuhh.de'
 
       DB_CONNECTION: 'mysql'
       DB_HOST: 'db'
@@ -37,16 +40,22 @@ services:
       REDIS_PORT: '6379'
 
       MAIL_DRIVER: 'smtp'
-      MAIL_HOST: 'floki.rz.tu-harburg.de'
+      MAIL_HOST: 'floki.rz.tuhh.de'
       MAIL_PORT: '25'
       MAIL_USERNAME: 'null'
       MAIL_PASSWORD: 'null'
       MAIL_ENCRYPTION: 'null'
       MAIL_FROM_ADDRESS: 'nobody@tuhh.de'
-      MAIL_FROM_NAME: 'Ausbildungsportfolio ${CI_ENVIRONMENT_SLUG}'
+      MAIL_FROM_NAME: 'Kompetenzcheck ${CI_ENVIRONMENT_SLUG}'
+
+      HELP_URL: 'https://fizban05.rz.tu-harburg.de/itbh/kompetenzcheck/kompetenzcheck-hilfe/'
 
   db:
     image: mariadb:latest
+    labels:
+      ONLINE_JOURNALCTL: 'true'
+      ONLINE_JOURNALCTL_TOKEN: '${ONLINE_JOURNALCTL_TOKEN}'
+    restart: 'always'
     ports:
       - "3306"
     environment:
@@ -56,7 +65,11 @@ services:
       MYSQL_PASSWORD: 'fhtHS9NFtfLGrr3kaQqczV'
 
   redis:
+    labels:
+      ONLINE_JOURNALCTL: 'true'
+      ONLINE_JOURNALCTL_TOKEN: '${ONLINE_JOURNALCTL_TOKEN}'
     image: redis:3
+    restart: 'always'
     ports:
       - "6379"
 

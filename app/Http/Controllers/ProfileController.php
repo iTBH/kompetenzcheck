@@ -22,8 +22,20 @@ class ProfileController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'date_of_birth' => 'date_format:"d.m.Y"'
+            'date_of_birth' => 'date_format:"d.m.Y"',
+            'picture' => 'max:10240|mimes:jpeg,png,jpg,gif'
         ]);
+
+        $user = Auth::user();
+        if (($request->has('picture_delete') && boolval($request->get('picture_delete'))) || $request->hasFile('picture')) {
+            if ($user->getFirstMedia('picture')) {
+                $user->getFirstMedia('picture')->delete();
+            }
+        }
+
+        if ($request->hasFile('picture')) {
+            $user->addMediaFromRequest('picture')->toMediaCollection('picture');
+        }
 
         $data = $request->only(['name', 'profession', 'location_of_birth', 'street', 'city', 'phone', 'education']);
         $data['date_of_birth'] = $request->date_of_birth ? Carbon::createFromFormat('d.m.Y', $request->date_of_birth) : null;
