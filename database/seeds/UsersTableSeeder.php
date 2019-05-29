@@ -11,12 +11,18 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'Admin',
-            'email' => 'admin@localhost',
-            'password' => bcrypt('admin'),
-            'verified' => 1,
-            'is_admin' => 1
-        ]);
+        $email = env('ADMIN_EMAIL', 'admin@localhost');
+        $username = env('ADMIN_USERNAME', 'admin');
+
+        // Check if user with email exists
+        if (!\App\Models\User::where('email', $email)->first()) {
+            DB::table('users')->insert([
+                'name' => $username,
+                'email' => $email,
+                'password' => bcrypt(env('ADMIN_PASSWORD', 'admin')),
+                'verified' => 1,
+                'is_admin' => 1
+            ]);
+        }
     }
 }
