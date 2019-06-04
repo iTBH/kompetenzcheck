@@ -62,6 +62,14 @@ class Check extends Model
                 $_phasesCheck->delete();
             }
         }
+
+        $status = $this->status()->get();
+        if ($status) {
+            foreach ($status as $_s) {
+                $_s->delete();
+            }
+        }
+
         $this->untagAll();
 
         return parent::delete();
