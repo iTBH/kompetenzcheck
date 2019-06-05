@@ -30,6 +30,11 @@ class AdminController extends Controller
      */
     public function userDestroy(Request $request, User $user)
     {
+        if (User::where('is_admin', 1)->count() <= 1) {
+            $request->session()->flash('status', ['message' => 'Der Benutzer kann nicht gelöscht werden. Er ist der letzte Admin.', 'level' => 'error']);
+            redirect()->back();
+        }
+
         $user->delete();
 
         $request->session()->flash('status', ['message' => 'Der Benutzer wurde erfolgreich gelöscht.', 'level' => 'success']);
@@ -131,13 +136,13 @@ class AdminController extends Controller
         $config = new Config();
 
         foreach ([
-                 'system_logo',
-                 'system_footer_1',
-                 'system_footer_2',
-                 'system_footer_3',
-                 'system_footer_4',
-                 'system_footer_5'
-             ] as $_type) {
+                     'system_logo',
+                     'system_footer_1',
+                     'system_footer_2',
+                     'system_footer_3',
+                     'system_footer_4',
+                     'system_footer_5'
+                 ] as $_type) {
             $config->setConfig($_type, $this->_saveConfigImages($request, $_type));
         }
 
