@@ -1,4 +1,6 @@
-FROM collaborating.tuhh.de:5005/itbh/kompetenzcheck/docker:latest
+ARG BASE_IMAGE=itbh/kompetenzcheck-docker-base:latest
+
+FROM ${BASE_IMAGE}
 
 # Copy project to /var/www/html
 WORKDIR /var/www/html
