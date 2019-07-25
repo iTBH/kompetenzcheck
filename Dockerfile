@@ -1,6 +1,7 @@
 ARG BASE_IMAGE=itbh/kompetenzcheck-docker-base:latest
 
 FROM ${BASE_IMAGE}
+FROM node:6
 
 # Copy project to /var/www/html
 WORKDIR /var/www/html
@@ -8,8 +9,6 @@ COPY . /var/www/html
 
 RUN chmod +x /var/www/html/entrypoint.sh
 RUN chmod +x /var/www/html/wait-for-it.sh
-
-FROM node:6
 
 RUN npm install \
 	&& npm run dev \
