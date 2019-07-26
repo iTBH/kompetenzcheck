@@ -2,15 +2,7 @@ ARG BASE_IMAGE=itbh/kompetenzcheck-docker-base:latest
 
 FROM ${BASE_IMAGE}
 FROM node:6
-
-FROM php:7
-
-# Install composer:
-RUN  apt-get update \
-  && apt-get install -y wget \
-  && wget https://raw.githubusercontent.com/composer/getcomposer.org/1b137f8bf6db3e79a38a5bc45324414a6b1f9df2/web/installer -O - -q
-RUN mv composer.phar /usr/local/bin/composer
-RUN composer install
+RUN curl -o /usr/local/bin/composer https://getcomposer.org/composer.phar && chmod +x /usr/local/bin/composer && composer global require hirak/prestissimo
 
 # Copy project to /var/www/html
 WORKDIR /var/www/html
@@ -19,10 +11,10 @@ COPY . /var/www/html
 RUN chmod +x /var/www/html/entrypoint.sh
 RUN chmod +x /var/www/html/wait-for-it.sh
 
-#RUN npm install \
-#	&& npm run dev \
-#	&& npm cache clean \
-#	&& /usr/local/bin/composer install
+RUN npm install \
+	&& npm run dev \
+	&& npm cache clean \
+	&& /usr/local/bin/composer install
 	
 RUN chown -R www-data:www-data /var/www/html
 
