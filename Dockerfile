@@ -2,6 +2,7 @@ ARG BASE_IMAGE=itbh/kompetenzcheck-docker-base:latest
 
 FROM ${BASE_IMAGE}
 FROM node:6
+FROM php:fpm
 RUN curl -o /usr/local/bin/composer https://getcomposer.org/composer.phar && chmod +x /usr/local/bin/composer && composer global require hirak/prestissimo
 
 # Copy project to /var/www/html
