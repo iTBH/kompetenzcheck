@@ -32,7 +32,7 @@ RUN chmod +x /var/www/html/wait-for-it.sh
 RUN npm install \
 	&& npm run dev \
 	&& npm cache clean \
-	&& /usr/local/bin/composer install
+	&& composer install
 	
 RUN chown -R www-data:www-data /var/www/html
 
