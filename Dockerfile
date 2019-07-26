@@ -3,6 +3,9 @@ ARG BASE_IMAGE=itbh/kompetenzcheck-docker-base:latest
 FROM ${BASE_IMAGE}
 FROM node:6
 
+RUN curl -sS https://getcomposer.org/installer | php
+RUN mv composer.phar /usr/local/bin/composer
+
 # Copy project to /var/www/html
 WORKDIR /var/www/html
 COPY . /var/www/html
