@@ -1,7 +1,7 @@
 ARG BASE_IMAGE=itbh/kompetenzcheck-docker-base:latest
 
 FROM ${BASE_IMAGE}
-FROM node:6
+#FROM node:6
 
 # Copy project to /var/www/html
 WORKDIR /var/www/html
