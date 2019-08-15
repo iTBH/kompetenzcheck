@@ -7,6 +7,8 @@ COPY . /var/www/html
 RUN chmod +x /var/www/html/entrypoint.sh
 RUN chmod +x /var/www/html/wait-for-it.sh
 
+RUN npm install -g webpack cross-env laravel-mix gulp
+
 RUN npm install \
 	&& npm run dev \
 	&& npm cache clean \
