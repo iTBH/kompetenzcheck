@@ -1,4 +1,4 @@
-FROM collaborating.tuhh.de:5005/itbh/kompetenzcheck/docker:latest
+FROM collaborating.tuhh.de:5005/itbh/kompetenzcheck/kompetenzcheck-docker-base:latest
 
 # Copy project to /var/www/html
 WORKDIR /var/www/html
