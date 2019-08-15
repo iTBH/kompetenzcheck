@@ -1,4 +1,4 @@
-FROM collaborating.tuhh.de:5005/itbh/kompetenzcheck/kompetenzcheck-docker-base:latest
+FROM collaborating.tuhh.de:5005/itbh/kompetenzcheck/docker:latest
 
 # Copy project to /var/www/html
 WORKDIR /var/www/html
@@ -6,8 +6,6 @@ COPY . /var/www/html
 
 RUN chmod +x /var/www/html/entrypoint.sh
 RUN chmod +x /var/www/html/wait-for-it.sh
-
-RUN npm install -g webpack cross-env laravel-mix gulp
 
 RUN npm install \
 	&& npm run dev \
