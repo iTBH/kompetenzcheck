@@ -17,8 +17,8 @@
     "dropzone": "^4.3.0",
     "imagesloaded": "^4.1.2",
     "jquery": "^3.2.1",
-    "semantic-ui": "~2.2.9",
-    "semantic-ui-calendar": "0.0.7",
+    "semantic-ui": "~2.4.2",
+    "semantic-ui-calendar": "0.0.8",
     "slick-carousel": "^1.6.0",
     "trumbowyg": "^2.5.1"
   }
