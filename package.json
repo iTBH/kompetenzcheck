@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "laravel-mix": "^0.8.1",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.13"
   },
   "dependencies": {
     "@jaames/iro": "^3.4.1",
