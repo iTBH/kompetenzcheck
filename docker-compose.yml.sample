@@ -2,7 +2,7 @@ version: '2'
 
 services:
   php:
-    image: kompetenzcheck
+    image: itbh/kompetenzcheck
     ports:
       - "80:80"
     depends_on:

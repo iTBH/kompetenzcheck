@@ -18,9 +18,9 @@ version: '2'
 
 services:
   php:
-    image: kompetenzcheck
+    image: itbh/kompetenzcheck
     ports:
-      - "80:80"
+      - "8080:80"
     depends_on:
       - db
     environment:
